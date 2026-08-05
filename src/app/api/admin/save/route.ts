@@ -27,6 +27,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, count: data.length });
   } catch (err) {
     console.error("[admin/save] error", err);
+
+    // Serverless hosts (Vercel, Netlify Functions) give each request a read-only
+    // filesystem, so the JSON content store cannot persist there. Say so plainly
+    // instead of surfacing a generic 500 to whoever pressed Save.
+    const code = (err as NodeJS.ErrnoException)?.code;
+    if (code === "EROFS" || code === "EACCES" || code === "EPERM") {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Saving is disabled on this deployment: its filesystem is read-only. Content can still be edited by running the site locally and committing the change, until a storage backend (e.g. Vercel Blob) is connected.",
+        },
+        { status: 501 }
+      );
+    }
+
     return NextResponse.json({ ok: false, error: "Failed to save" }, { status: 500 });
   }
 }
