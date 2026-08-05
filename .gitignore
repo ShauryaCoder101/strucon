@@ -25,3 +25,6 @@ yarn-error.log*
 
 # NOTE: content-data/ IS committed on purpose — it holds live content saved from
 # the /admin panel, so the deployed site ships the content staff actually published.
+
+# Excel/Word lock files
+~$*
