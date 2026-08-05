@@ -1,0 +1,135 @@
+/**
+ * Field schemas that drive the /admin editor forms — one per editable collection.
+ * `type` controls the input: text/textarea/number/boolean, `lines` (one value per line → string[]),
+ * or `json` (structured data edited as JSON, for nested arrays/objects).
+ */
+export type AdminFieldType = "text" | "textarea" | "number" | "boolean" | "lines" | "json";
+export type AdminField = { key: string; label: string; type: AdminFieldType; help?: string };
+export type AdminSchema = { label: string; singular: string; labelKey: string; fields: AdminField[] };
+
+export const adminSchemas: Record<string, AdminSchema> = {
+  services: {
+    label: "Services",
+    singular: "service",
+    labelKey: "title",
+    fields: [
+      { key: "slug", label: "Slug (URL)", type: "text", help: "e.g. steel-detailing" },
+      { key: "code", label: "Discipline code", type: "text", help: "e.g. DTL" },
+      { key: "title", label: "Title", type: "text" },
+      { key: "summary", label: "Summary", type: "textarea" },
+      { key: "heroPrompt", label: "Hero image prompt", type: "textarea" },
+      { key: "overview", label: "Overview paragraphs", type: "lines", help: "One paragraph per line" },
+      { key: "software", label: "Software", type: "lines" },
+      { key: "deliverables", label: "Deliverables", type: "lines" },
+      { key: "benefits", label: "Benefits", type: "json", help: 'Array of {"title","description"}' },
+      { key: "process", label: "Process steps", type: "json", help: 'Array of {"title","description"}' },
+      { key: "faqs", label: "FAQs", type: "json", help: 'Array of {"q","a"}' },
+      { key: "seo", label: "SEO", type: "json", help: '{"title","description","keywords":[]}' },
+      { key: "featured", label: "Featured", type: "boolean" },
+    ],
+  },
+  industries: {
+    label: "Industries",
+    singular: "industry",
+    labelKey: "title",
+    fields: [
+      { key: "slug", label: "Slug (URL)", type: "text" },
+      { key: "title", label: "Title", type: "text" },
+      { key: "summary", label: "Summary", type: "textarea" },
+      { key: "imagePrompt", label: "Image prompt", type: "textarea" },
+      { key: "overview", label: "Overview paragraphs", type: "lines" },
+      { key: "applications", label: "Applications", type: "lines" },
+      { key: "relatedServices", label: "Related service slugs", type: "lines" },
+      { key: "seo", label: "SEO", type: "json" },
+    ],
+  },
+  projects: {
+    label: "Projects",
+    singular: "project",
+    labelKey: "title",
+    fields: [
+      { key: "slug", label: "Slug (URL)", type: "text" },
+      { key: "title", label: "Title", type: "text" },
+      { key: "client", label: "Client", type: "text" },
+      { key: "industry", label: "Industry", type: "text" },
+      { key: "location", label: "Location", type: "text" },
+      { key: "thumbnail", label: "Thumbnail path", type: "text", help: "e.g. /images/projects/x.jpg (optional)" },
+      { key: "imagePrompt", label: "Lead image prompt", type: "textarea" },
+      { key: "challenge", label: "Challenge", type: "textarea" },
+      { key: "solution", label: "Solution", type: "textarea" },
+      { key: "results", label: "Results", type: "textarea" },
+      { key: "metrics", label: "Metrics", type: "json", help: 'Array of {"label","value"}' },
+      { key: "software", label: "Software", type: "lines" },
+      { key: "gallery", label: "Gallery prompts", type: "lines" },
+      { key: "seo", label: "SEO", type: "json" },
+      { key: "featured", label: "Featured", type: "boolean" },
+    ],
+  },
+  blog: {
+    label: "Blog posts",
+    singular: "post",
+    labelKey: "title",
+    fields: [
+      { key: "slug", label: "Slug (URL)", type: "text" },
+      { key: "title", label: "Title", type: "text" },
+      { key: "excerpt", label: "Excerpt", type: "textarea" },
+      { key: "category", label: "Category", type: "text" },
+      { key: "author", label: "Author", type: "text" },
+      { key: "date", label: "Date (YYYY-MM-DD)", type: "text" },
+      { key: "readingMinutes", label: "Reading minutes", type: "number" },
+      { key: "coverPrompt", label: "Cover image prompt", type: "textarea" },
+      { key: "body", label: "Body blocks", type: "json", help: 'Array of {"type":"p"|"h2","text"} or {"type":"ul","items":[]}' },
+      { key: "seo", label: "SEO", type: "json" },
+    ],
+  },
+  team: {
+    label: "Team",
+    singular: "member",
+    labelKey: "name",
+    fields: [
+      { key: "slug", label: "Slug", type: "text" },
+      { key: "name", label: "Name", type: "text" },
+      { key: "role", label: "Role", type: "text" },
+      { key: "bio", label: "Bio", type: "textarea" },
+      { key: "photoPrompt", label: "Photo prompt", type: "textarea" },
+      { key: "linkedin", label: "LinkedIn URL", type: "text" },
+      { key: "leadership", label: "Show in leadership", type: "boolean" },
+    ],
+  },
+  clients: {
+    label: "Clients",
+    singular: "client",
+    labelKey: "name",
+    fields: [
+      { key: "name", label: "Name", type: "text" },
+      { key: "logo", label: "Logo path", type: "text", help: "e.g. /images/clients/x.svg (optional)" },
+    ],
+  },
+  testimonials: {
+    label: "Testimonials",
+    singular: "testimonial",
+    labelKey: "name",
+    fields: [
+      { key: "quote", label: "Quote", type: "textarea" },
+      { key: "name", label: "Name", type: "text" },
+      { key: "role", label: "Role", type: "text" },
+      { key: "company", label: "Company", type: "text" },
+    ],
+  },
+  jobs: {
+    label: "Careers",
+    singular: "opening",
+    labelKey: "title",
+    fields: [
+      { key: "slug", label: "Slug", type: "text" },
+      { key: "title", label: "Title", type: "text" },
+      { key: "department", label: "Department", type: "text" },
+      { key: "location", label: "Location", type: "text" },
+      { key: "type", label: "Type", type: "text", help: "Full-time, Contract…" },
+      { key: "experience", label: "Experience", type: "text" },
+      { key: "summary", label: "Summary", type: "textarea" },
+      { key: "responsibilities", label: "Responsibilities", type: "lines" },
+      { key: "requirements", label: "Requirements", type: "lines" },
+    ],
+  },
+};

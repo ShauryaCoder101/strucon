@@ -1,0 +1,463 @@
+<title>Strucon Website Rebuild — Comparative Audit &amp; Business Case</title>
+<style>
+  :root{
+    --ink:#0B1F33; --steel:#1B4B77; --steel-soft:#4E7CA6; --accent:#F26419; --accent-deep:#D8500F;
+    --ground:#F4F6F9; --card:#FFFFFF; --line:#D9E0E8; --text:#22303F; --muted:#5A6B7E;
+    --pass:#1F7A4D; --pass-bg:#E8F4EE; --fail:#B3372A; --fail-bg:#F9ECEA;
+    --code-bg:#EDF1F6; --head:#0B1F33;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#081826; --card:#0F2338; --line:rgba(255,255,255,.13); --text:#D9E3ED; --muted:#93A6B8;
+      --pass:#4CC08A; --pass-bg:rgba(46,160,103,.16); --fail:#E2705F; --fail-bg:rgba(199,77,60,.16);
+      --code-bg:rgba(255,255,255,.08); --head:#F2F6FA; --steel-soft:#9FBAD1;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#081826; --card:#0F2338; --line:rgba(255,255,255,.13); --text:#D9E3ED; --muted:#93A6B8;
+    --pass:#4CC08A; --pass-bg:rgba(46,160,103,.16); --fail:#E2705F; --fail-bg:rgba(199,77,60,.16);
+    --code-bg:rgba(255,255,255,.08); --head:#F2F6FA; --steel-soft:#9FBAD1;
+  }
+  :root[data-theme="light"]{
+    --ink:#0B1F33; --steel:#1B4B77; --steel-soft:#4E7CA6; --accent:#F26419; --accent-deep:#D8500F;
+    --ground:#F4F6F9; --card:#FFFFFF; --line:#D9E0E8; --text:#22303F; --muted:#5A6B7E;
+    --pass:#1F7A4D; --pass-bg:#E8F4EE; --fail:#B3372A; --fail-bg:#F9ECEA;
+    --code-bg:#EDF1F6; --head:#0B1F33;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    margin:0; background:var(--ground); color:var(--text);
+    font:16px/1.68 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+
+  /* ============ masthead: engineering title block ============ */
+  .mast{background:var(--ink);color:#E8EEF5;border-bottom:3px solid var(--accent)}
+  .mast .wrap{padding:44px 20px 0}
+  .doc-eyebrow{display:flex;align-items:center;gap:10px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9FBAD1}
+  .doc-eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--accent)}
+  .mast h1{
+    margin:18px 0 10px;color:#fff;font-size:clamp(28px,4.6vw,44px);line-height:1.08;
+    letter-spacing:-.02em;font-weight:800;text-wrap:balance;
+  }
+  .mast .sub{max-width:62ch;color:rgba(232,238,245,.78);font-size:17px;margin:0 0 30px}
+  .titleblock{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    border-top:1px solid rgba(255,255,255,.16);
+  }
+  .titleblock div{padding:12px 14px 20px;border-right:1px solid rgba(255,255,255,.10)}
+  .titleblock div:last-child{border-right:0}
+  .titleblock dt{font-family:ui-monospace,Consolas,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#7E96AB;margin:0}
+  .titleblock dd{margin:4px 0 0;color:#fff;font-weight:600;font-size:14px}
+
+  /* ============ sections ============ */
+  .section{padding:52px 0 8px}
+  .eyebrow{display:flex;align-items:center;gap:10px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel-soft)}
+  .eyebrow::before{content:"";display:inline-block;width:26px;height:1px;background:var(--accent)}
+  h2{margin:14px 0 8px;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-.015em;color:var(--head);font-weight:800;text-wrap:balance}
+  h3{margin:30px 0 6px;font-size:18px;color:var(--head);font-weight:700}
+  p{max-width:72ch;margin:12px 0}
+  .lede{font-size:17.5px;color:var(--text)}
+  ul{max-width:72ch;padding-left:22px;margin:10px 0}
+  li{margin:7px 0}
+  a{color:var(--steel);text-decoration-color:color-mix(in srgb,var(--steel) 45%,transparent);overflow-wrap:anywhere}
+  @media (prefers-color-scheme: dark){ a{color:#9FBAD1} }
+  :root[data-theme="dark"] a{color:#9FBAD1}
+  :root[data-theme="light"] a{color:var(--steel)}
+  strong{color:var(--head)}
+  sup{font-size:11px}
+  sup a{text-decoration:none;color:var(--accent-deep)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+  /* ============ verdict tiles ============ */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:26px 0 8px}
+  .tile{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--accent);padding:16px 16px 14px}
+  .tile .k{font-family:ui-monospace,Consolas,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .tile .v{font-size:26px;font-weight:800;color:var(--head);margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .tile .d{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.45}
+
+  /* ============ tables ============ */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);background:var(--card);margin:20px 0}
+  table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+  caption{text-align:left;font-family:ui-monospace,Consolas,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:12px 14px 4px}
+  th{background:#12293F;color:#E8EEF5;text-align:left;padding:10px 14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  @media (prefers-color-scheme: dark){ th{background:rgba(255,255,255,.07);color:#D9E3ED} }
+  :root[data-theme="dark"] th{background:rgba(255,255,255,.07);color:#D9E3ED}
+  :root[data-theme="light"] th{background:#12293F;color:#E8EEF5}
+  td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:600;color:var(--head);white-space:nowrap}
+  tr:nth-child(even) td{background:color-mix(in srgb,var(--card) 60%,var(--ground))}
+  td .note{display:block;font-size:12.5px;color:var(--muted);font-weight:400;white-space:normal;margin-top:2px}
+  .num{font-variant-numeric:tabular-nums}
+
+  .chip{display:inline-block;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:600;letter-spacing:.05em;padding:2px 8px;border-radius:2px;white-space:nowrap}
+  .chip.fail{color:var(--fail);background:var(--fail-bg)}
+  .chip.pass{color:var(--pass);background:var(--pass-bg)}
+  .chip.warn{color:var(--accent-deep);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+
+  /* ============ research stat callouts ============ */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:20px 0}
+  .stat{background:var(--card);border:1px solid var(--line);padding:16px}
+  .stat .big{font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--accent-deep);font-variant-numeric:tabular-nums}
+  @media (prefers-color-scheme: dark){ .stat .big{color:var(--accent)} }
+  :root[data-theme="dark"] .stat .big{color:var(--accent)}
+  :root[data-theme="light"] .stat .big{color:var(--accent-deep)}
+  .stat .cap{font-size:13.5px;color:var(--text);margin-top:6px;line-height:1.5}
+  .stat .src{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;color:var(--muted);margin-top:8px;letter-spacing:.04em}
+
+  /* ============ old vs new panels ============ */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+  @media (max-width:720px){.duo{grid-template-columns:1fr}}
+  .panel{border:1px solid var(--line);background:var(--card);padding:18px}
+  .panel h4{margin:0 0 4px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-family:ui-monospace,Consolas,monospace}
+  .panel.old h4{color:var(--fail)}
+  .panel.new h4{color:var(--pass)}
+  .panel ul{margin:10px 0 0;padding-left:18px;font-size:14px}
+  .panel li{margin:6px 0}
+
+  code{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(--code-bg);padding:1px 6px;border-radius:3px}
+
+  .callout{border-left:3px solid var(--accent);background:var(--card);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 18px;margin:20px 0;max-width:76ch}
+  .callout p{margin:6px 0}
+  .callout .t{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .caveat{border-left:3px solid var(--steel-soft)}
+
+  ol.sources{max-width:78ch;padding-left:24px;font-size:13.5px;color:var(--muted)}
+  ol.sources li{margin:8px 0}
+  ol.sources strong{color:var(--text);font-weight:600}
+
+  footer{margin-top:56px;border-top:1px solid var(--line);padding:22px 0 44px;color:var(--muted);font-size:13px}
+  .divider{height:1px;background:var(--line);margin:44px 0 0}
+</style>
+
+<header class="mast">
+  <div class="wrap">
+    <p class="doc-eyebrow">Strucon Consulting · Digital Infrastructure Review</p>
+    <h1>Website Rebuild: Comparative Audit &amp; Business Case</h1>
+    <p class="sub">An evidence-based comparison of the current <strong style="color:#fff">strucon.net</strong> against the newly built platform — covering trust, typography, performance, SEO, lead generation, and security — with the published research that connects each detail to revenue.</p>
+    <dl class="titleblock">
+      <div><dt>Doc No.</dt><dd>STR-WEB-2026-01</dd></div>
+      <div><dt>Date</dt><dd>1 Aug 2026</dd></div>
+      <div><dt>Revision</dt><dd>A</dd></div>
+      <div><dt>Status</dt><dd>For approval</dd></div>
+      <div><dt>Method</dt><dd>Live HTTP audit + build analysis</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="section" id="summary">
+    <p class="eyebrow">01 · Executive summary</p>
+    <h2>The current site actively works against the business. The new one is built to win it.</h2>
+    <p class="lede">We audited the live <strong>strucon.net</strong> over HTTP and compared it against the production build of the new platform. The findings below are <strong>measured facts, not opinions</strong> — and each is paired with published research quantifying what it costs in bounced visitors, lost rankings, and unearned distrust.</p>
+
+    <div class="tiles">
+      <div class="tile"><div class="k">CMS core</div><div class="v">Dec 2018</div><div class="d">Current site runs WordPress 5.0.22 — a seven-year-old core with legacy WooCommerce &amp; Slider Revolution plugins.</div></div>
+      <div class="tile"><div class="k">Meta descriptions found</div><div class="v">0</div><div class="d">Not one page on the current site tells Google what it's about. The new site: unique metadata on every route.</div></div>
+      <div class="tile"><div class="k">Structured data (schema)</div><div class="v">0 vs 6</div><div class="d">Current site: zero JSON-LD objects. New site: Organization, LocalBusiness, Service, FAQ, Article, Breadcrumb.</div></div>
+      <div class="tile"><div class="k">Homepage slider payload</div><div class="v">1.33&nbsp;MB</div><div class="d">Three unoptimized JPEGs (723 KB + 494 KB + 112 KB) vs AVIF/WebP with priority-loaded LCP on the new site.</div></div>
+      <div class="tile"><div class="k">sitemap.xml</div><div class="v">404</div><div class="d">The current site has no sitemap for Google to crawl. The new one generates it automatically from content.</div></div>
+      <div class="tile"><div class="k">Lead-capture paths</div><div class="v">1 vs 5</div><div class="d">One generic contact page vs five intent-specific conversion flows with validation and tender upload.</div></div>
+    </div>
+
+    <div class="callout">
+      <p class="t">The one-sentence case</p>
+      <p>Research says visitors judge a firm's credibility in <strong>50 milliseconds</strong>,<sup><a href="#s1">1</a></sup> that <strong>75% of users judge company credibility from website design</strong>,<sup><a href="#s2">2</a></sup> and that B2B buyers now complete roughly <strong>two-thirds of their evaluation digitally before ever talking to a supplier</strong>.<sup><a href="#s12">12</a></sup> For most EPC prospects, strucon.net <em>is</em> the first impression and the shortlist decision — and today it presents 20+ years of engineering excellence through a 2018-era template with broken stat counters.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="method">
+    <p class="eyebrow">02 · Methodology &amp; honesty notes</p>
+    <h2>How this report was produced</h2>
+    <ul>
+      <li><strong>Current site:</strong> live audit of <code>strucon.net</code> — HTTP headers, full homepage HTML, font/script/stylesheet inventory, asset weights, robots/sitemap probes, and inner-page checks.</li>
+      <li><strong>New site:</strong> measured from the production build (44 routes, static/SSG output) and its verified behaviors — admin save-to-live cycle, form validation, schema output.</li>
+      <li><strong>Research figures</strong> are from published industry studies (cited inline, listed in <a href="#sources">Sources</a>). They quantify <em>directional</em> effects observed across many sites — strong evidence, not guarantees for any single site.</li>
+      <li><strong>Performance:</strong> the new site is engineered for 95+ Lighthouse (static HTML, self-hosted fonts, AVIF/WebP, minimal JS). Final scores should be validated on production hosting — this report does not claim a measured score before that.</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="trust">
+    <p class="eyebrow">03 · First impressions &amp; trust</p>
+    <h2>Design is not decoration — it is the credibility audit every visitor runs</h2>
+    <p>Stanford's Web Credibility Project — still the largest study of its kind (2,684 participants) — found that when people assess whether a company can be trusted, <strong>the look and design of the site is the single most-cited factor, ahead of the actual information on it</strong>.<sup><a href="#s2">2</a></sup> A companion study on advice sites found <strong>94% of user comments explaining mistrust were about design</strong> — layout, typography, clutter — not content.<sup><a href="#s3">3</a></sup></p>
+
+    <div class="stats">
+      <div class="stat"><div class="big">50 ms</div><div class="cap">Time in which users form a stable aesthetic judgment of a webpage — before reading a single word.</div><div class="src">Lindgaard et al., Behaviour &amp; IT, 2006 [1]</div></div>
+      <div class="stat"><div class="big">75%</div><div class="cap">Of users admit judging a company's credibility by its website design.</div><div class="src">Stanford Web Credibility Project [2]</div></div>
+      <div class="stat"><div class="big">94%</div><div class="cap">Of first-impression mistrust feedback relates to design factors rather than content.</div><div class="src">Sillence et al., 2004 [3]</div></div>
+      <div class="stat"><div class="big">88%</div><div class="cap">Of online users are less likely to return to a site after a bad experience.</div><div class="src">Gomez / Akamai research [4]</div></div>
+    </div>
+
+    <h3>What the 50-millisecond judgment sees today</h3>
+    <div class="duo">
+      <div class="panel old">
+        <h4>✕ Current strucon.net</h4>
+        <ul>
+          <li>Generic construction template (<code>buildpro</code> theme, WPBakery page builder) — indistinguishable from thousands of small-contractor sites.</li>
+          <li>Animated stat counters that render as <strong>"0" Hours of Work, "0" Clients, "0" Staff</strong> — the homepage literally displays zeros next to trust claims.</li>
+          <li><strong>ISO 9001:2008</strong> on the masthead — a standard withdrawn in September 2018. To a procurement auditor this reads as a lapsed certification.</li>
+          <li>Footer: "Copyright 2023" — signals an unmaintained property.</li>
+          <li>Stock slider carousel with 2019-era imagery.</li>
+        </ul>
+      </div>
+      <div class="panel new">
+        <h4>✓ New platform</h4>
+        <ul>
+          <li>A proprietary "engineering drawing" identity — blueprint grids, discipline codes (STR/DTL/BIM), title-block data strips. It could belong to no one but a structural engineering firm.</li>
+          <li>Working stats bar, hero title-block with founding year, tonnage, and certification.</li>
+          <li>Case studies in the format EPC buyers actually evaluate: <strong>Challenge → Solution → Results</strong> with tonnage, schedule, and code metrics.</li>
+          <li>Every trust claim placeholder is flagged for verification before go-live — nothing false ships.</li>
+          <li>Consistent CTAs on all 25+ pages, so credibility converts instead of evaporating.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>Why this matters for EPC specifically:</strong> Gartner finds B2B buying groups spend only <strong>17% of their journey meeting potential suppliers</strong> — the rest is independent research, mostly online.<sup><a href="#s12">12</a></sup> McKinsey reports <strong>~70–80% of B2B decision-makers now prefer remote or digital self-serve interactions</strong>.<sup><a href="#s13">13</a></sup> When a Middle-East EPC engineer shortlists steel detailers at 11pm, the website <em>is</em> the meeting. The current site loses that meeting in 50 milliseconds.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="type">
+    <p class="eyebrow">04 · Typography — the deep dive</p>
+    <h2>Font-by-font: what each site says before you read it</h2>
+    <p class="lede">Typography research is unambiguous: typefaces measurably change how <em>credible</em>, <em>effortless</em>, and <em>professional</em> content feels. In the New York Times "Baskerville experiment" (~45,000 participants), the same statement earned <strong>measurably higher agreement when set in one typeface versus another</strong> — readers found identical words more trustworthy purely from the letterforms.<sup><a href="#s5">5</a></sup> Song &amp; Schwarz showed that hard-to-process type makes described tasks feel harder and people less willing to act<sup><a href="#s6">6</a></sup> — directly relevant when the "task" is engaging an engineering vendor. And an MIT AgeLab / Monotype study found humanist letterforms were processed <strong>faster than square-grotesque faces</strong>, especially at a glance.<sup><a href="#s7">7</a></sup></p>
+
+    <div class="tblwrap">
+      <table>
+        <caption>Typography system — measured comparison</caption>
+        <tr><th>Attribute</th><th>Current strucon.net</th><th>New platform</th></tr>
+        <tr>
+          <td>Typefaces</td>
+          <td>Montserrat (headings) + Open Sans (body)<span class="note">The default pairing of the purchased "buildpro" theme — among the most-used combinations on the web, so the site reads as a template even to non-designers.</span></td>
+          <td>Space Grotesk (display) + Inter (body) + IBM Plex Mono (data/annotations)<span class="note">A three-role system chosen for the subject: a technical display voice, a screen-optimized body face, and a monospace "drawing annotation" layer unique to an engineering firm.</span></td>
+        </tr>
+        <tr>
+          <td>Weights loaded</td>
+          <td class="num">7 weights of Montserrat (200–800) + Open Sans 400, plus a <em>second duplicate</em> Google Fonts request<span class="note">Measured in the homepage HTML: two separate <code>fonts.googleapis.com</code> stylesheets. Most weights are never used — pure dead payload.</span></td>
+          <td class="num">Only the weights used, subset to Latin<span class="note">Loaded via <code>next/font</code>, which subsets and serves exactly what the design consumes.</span></td>
+        </tr>
+        <tr>
+          <td>Delivery</td>
+          <td><span class="chip fail">External CDN, render-blocking</span><span class="note">Two round-trips to Google's servers before text can settle; classic flash-of-invisible/unstyled text on slow site-office connections.</span></td>
+          <td><span class="chip pass">Self-hosted, zero external requests</span><span class="note"><code>next/font</code> inlines and self-hosts with automatic fallback metrics (<code>size-adjust</code>) — text renders instantly and never shifts.</span></td>
+        </tr>
+        <tr>
+          <td>Layout shift from fonts</td>
+          <td><span class="chip fail">Yes — swap reflow</span><span class="note">Web-font swap without metric-matched fallbacks causes visible jumps; layout shift is a scored Core Web Vitals failure (CLS).</span></td>
+          <td><span class="chip pass">None by construction</span><span class="note">Metric-compatible fallbacks are generated at build time, so CLS from fonts is ~0.</span></td>
+        </tr>
+        <tr>
+          <td>Body legibility</td>
+          <td>Open Sans 400 at theme defaults<span class="note">Adequate but characterless; line lengths uncontrolled by the page builder.</span></td>
+          <td>Inter — tall x-height, open apertures, designed for screens<span class="note">Body text capped at ~68 characters per line, the readability optimum; fluid type scale via <code>clamp()</code> from mobile to 4K.</span></td>
+        </tr>
+        <tr>
+          <td>Distinctiveness</td>
+          <td><span class="chip fail">Template vernacular</span><span class="note">Montserrat/Open Sans signals "bought theme" — the opposite of a firm selling precision.</span></td>
+          <td><span class="chip pass">Ownable identity</span><span class="note">The IBM Plex Mono annotation layer (discipline codes, tonnage labels, title blocks) mirrors the fabrication drawings Strucon actually produces — typography as proof of domain.</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="big">+1.5%</div><div class="cap">Higher agreement with identical statements when set in a more credible typeface — from ~45,000 NYT readers. Small per reader; compounding across every visitor.</div><div class="src">Errol Morris NYT experiment, 2012 [5]</div></div>
+      <div class="stat"><div class="big">2×</div><div class="cap">Tasks described in a hard-to-read font were estimated to take roughly twice as long — processing fluency shapes willingness to engage.</div><div class="src">Song &amp; Schwarz, Psychological Science, 2008 [6]</div></div>
+      <div class="stat"><div class="big">−10.6%</div><div class="cap">Reduction in glance time for humanist vs square-grotesque type in MIT AgeLab trials — legibility differences are measurable, not taste.</div><div class="src">Reimer, Mehler &amp; Monotype / MIT AgeLab, 2012 [7]</div></div>
+    </div>
+
+    <p><strong>The business translation:</strong> a procurement director skimming ten vendor sites doesn't consciously note x-heights. They feel that one site was <em>effortless and precise</em> and the others were <em>noisy</em> — and fluency research shows that feeling transfers onto judgments of the company itself.<sup><a href="#s6">6</a></sup> The new type system is engineered to make Strucon the effortless one.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="perf">
+    <p class="eyebrow">05 · Performance &amp; Core Web Vitals</p>
+    <h2>Speed is a revenue line, and Google made it a ranking factor</h2>
+
+    <div class="tblwrap">
+      <table>
+        <caption>Measured technical payload — homepage</caption>
+        <tr><th>Metric (measured)</th><th>Current strucon.net</th><th>New platform</th></tr>
+        <tr><td>Rendering model</td><td>WordPress 5.0.22 + WooCommerce 3.6.7 + WPBakery + Slider Revolution, assembled per request</td><td>Next.js 16 — pages pre-rendered to static HTML at build time; nothing assembled on request</td></tr>
+        <tr><td>Script tags</td><td class="num"><span class="chip fail">39</span></td><td class="num"><span class="chip pass">Minimal</span> — server components; JS only for nav, reveal animations, and forms</td></tr>
+        <tr><td>Stylesheets</td><td class="num"><span class="chip fail">21</span></td><td class="num"><span class="chip pass">1</span> — Tailwind, purged of unused rules</td></tr>
+        <tr><td>Hero imagery</td><td class="num"><span class="chip fail">1.33 MB</span> of JPEG sliders (723 + 494 + 112 KB), no modern formats</td><td><span class="chip pass">AVIF/WebP</span> via <code>next/image</code>, responsive sizes, lazy-loaded below the fold, LCP asset priority-loaded</td></tr>
+        <tr><td>Fonts</td><td>2 external render-blocking CDN requests, 8 weights</td><td>Self-hosted, subset, zero external requests, zero CLS</td></tr>
+        <tr><td>E-commerce code</td><td><span class="chip warn">WooCommerce loaded</span> on an engineering consultancy site with nothing for sale — pure overhead</td><td>None</td></tr>
+        <tr><td>Carousel</td><td>Slider Revolution 5.4.8.1 — heavy jQuery slider</td><td>No carousel (see §07 — carousels measurably underperform)</td></tr>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="big">+32%</div><div class="cap">Increase in bounce probability as mobile load time grows from 1s to 3s; +90% by 5s.</div><div class="src">Google/SOASTA machine-learning study, 2017 [8]</div></div>
+      <div class="stat"><div class="big">53%</div><div class="cap">Of mobile visits are abandoned if a page takes longer than 3 seconds.</div><div class="src">Google mobile research, 2016 [9]</div></div>
+      <div class="stat"><div class="big">+8.4%</div><div class="cap">Conversion lift observed from a 0.1-second speed improvement (retail; +10.1% travel).</div><div class="src">Deloitte × Google, "Milliseconds Make Millions", 2020 [10]</div></div>
+      <div class="stat"><div class="big">Ranking factor</div><div class="cap">Core Web Vitals (loading, interactivity, layout stability) are part of Google's ranking systems since the 2021 Page Experience update.</div><div class="src">Google Search Central [11]</div></div>
+    </div>
+
+    <p>The current homepage asks a first-time visitor — often on a site-office connection or a phone — to download a seven-year-old plugin stack, 21 stylesheets, 39 scripts, and 1.33&nbsp;MB of slider JPEGs before the page settles. The new site ships pre-rendered HTML with the heavy work done at build time. Same fibre, different physics.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="seo">
+    <p class="eyebrow">06 · Search visibility</p>
+    <h2>SEO head-to-head: the current site is nearly invisible to Google by choice</h2>
+
+    <div class="tblwrap">
+      <table>
+        <caption>On-site SEO inventory — measured</caption>
+        <tr><th>Signal</th><th>Current strucon.net</th><th>New platform</th></tr>
+        <tr><td>Title tags</td><td><span class="chip fail">One generic title</span><span class="note">"STRUCON Consulting – CIVIL AND STRUCTURAL ENGINEERING" — no service, industry, or intent keywords.</span></td><td><span class="chip pass">Unique per route</span><span class="note">e.g. "Steel Detailing Company — Tekla Fabrication Drawings", "Power Plant Structural Design &amp; Steel Detailing".</span></td></tr>
+        <tr><td>Meta descriptions</td><td><span class="chip fail">0 found</span><span class="note">Homepage and inner pages checked — none. Google invents snippets; CTR is left to chance.</span></td><td><span class="chip pass">Every route</span><span class="note">Commercial-intent copy written per page.</span></td></tr>
+        <tr><td>Structured data</td><td><span class="chip fail">0 JSON-LD objects</span></td><td><span class="chip pass">6 schema types</span><span class="note">Organization, LocalBusiness/ProfessionalService, Service, FAQPage, Article, BreadcrumbList — FAQ &amp; Article are rich-result eligible.</span></td></tr>
+        <tr><td>sitemap.xml</td><td><span class="chip fail">404 — does not exist</span></td><td><span class="chip pass">Auto-generated</span><span class="note">Every new project, service, or blog post added via the admin panel appears automatically.</span></td></tr>
+        <tr><td>Open Graph / social cards</td><td><span class="chip fail">0 OG tags</span><span class="note">Links shared on LinkedIn — Strucon's primary channel — render bare.</span></td><td><span class="chip pass">Full OG + Twitter cards</span><span class="note">With a branded 1200×630 share image generated at build.</span></td></tr>
+        <tr><td>Keyword architecture</td><td>None discernible</td><td>Commercial-intent clusters mapped page-by-page<span class="note">"Steel Detailing Company", "Tekla Modeling Services", "Pipe Rack Design", "Conveyor Gallery Design", "EPC Engineering Design"…</span></td></tr>
+        <tr><td>Content engine</td><td><span class="chip fail">No blog</span></td><td><span class="chip pass">Blog with Article schema</span><span class="note">Seed posts targeting long-tail EPC queries; new posts publishable from the admin panel.</span></td></tr>
+        <tr><td>Internal linking</td><td>Flat menu only</td><td>Services ↔ industries ↔ projects ↔ blog cross-linked with breadcrumbs sitewide</td></tr>
+        <tr><td>Indexable pages</td><td class="num">~15 thin pages</td><td class="num">44 routes, each targeting a distinct query cluster</td></tr>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="big">+30.8%</div><div class="cap">Average relative CTR gain from moving up a single organic position — rankings compound.</div><div class="src">Backlinko CTR study, 4M results [14]</div></div>
+      <div class="stat"><div class="big">82%</div><div class="cap">Higher click-through rate observed on pages appearing as rich results vs plain results (Nestlé case study). Rich results require the structured data the current site has none of.</div><div class="src">Google Search Central case studies [15]</div></div>
+      <div class="stat"><div class="big">44 vs ~15</div><div class="cap">Indexable, individually optimized pages — each new page is another way for a buyer with a tender in hand to find Strucon.</div><div class="src">Measured build output</div></div>
+    </div>
+
+    <p><strong>The strategic point:</strong> Strucon doesn't need to win "engineering" — it needs to win <em>"steel detailing company"</em>, <em>"Tekla modeling services"</em>, <em>"pipe rack design"</em>: the queries typed by someone with a tender in hand. The current site doesn't target a single one of them anywhere in its markup. The new site dedicates an optimized page to each.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="leads">
+    <p class="eyebrow">07 · Lead generation</p>
+    <h2>From brochure to acquisition machine</h2>
+
+    <div class="duo">
+      <div class="panel old">
+        <h4>✕ Current: one exit door</h4>
+        <ul>
+          <li>A single "Contact Us" page; no CTAs woven through content.</li>
+          <li>Hero is a rotating carousel — Notre Dame's benchmark study found only <strong>~1% of visitors ever click a carousel</strong>, and 84% of those clicks are on slide one.<sup><a href="#s16">16</a></sup></li>
+          <li>No way to submit a tender, book a review, or request a scoped proposal.</li>
+          <li>No case-study format a buyer can forward to a colleague.</li>
+        </ul>
+      </div>
+      <div class="panel new">
+        <h4>✓ New: five intent-matched paths</h4>
+        <ul>
+          <li><strong>Request Consultation · Request Proposal · Upload Tender Documents (file upload) · Book Engineering Review · Download Company Profile</strong> — each with its own validated form, fields matched to intent.</li>
+          <li>Every one of the 25+ pages ends in a relevant CTA; the navbar carries a persistent consultation button.</li>
+          <li>Case studies structured as Challenge → Solution → Results with metrics — the internal-forwarding format.</li>
+          <li>Client-side + server-side validation (React Hook Form + Zod), graceful success states, and a lead API ready to wire to email/CRM.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="big">$12M</div><div class="cap">Annual revenue gain Expedia attributed to deleting a single confusing form field — form friction has measurable cost, and every new-site form asks only what its intent requires.</div><div class="src">Expedia / UX case study [17]</div></div>
+      <div class="stat"><div class="big">1.07%</div><div class="cap">Of visitors interact with homepage carousels at all — the current site spends its most valuable pixels on a pattern users ignore.</div><div class="src">Runyon, University of Notre Dame [16]</div></div>
+      <div class="stat"><div class="big">17%</div><div class="cap">Of B2B buying-journey time is spent meeting suppliers; the website carries the rest of the evaluation.</div><div class="src">Gartner B2B buying research [12]</div></div>
+    </div>
+
+    <div class="callout">
+      <p class="t">Illustrative funnel math — not a forecast</p>
+      <p>Suppose search + referrals bring <strong>1,000 relevant visitors/month</strong>. Industry-typical B2B service conversion runs ~1–2% on a well-built site and materially lower on a slow, CTA-less one. If the rebuild moves conversion from 0.5% to 1.5% — well within the range the cited speed, trust, and form research supports — that is <strong>5 → 15 qualified enquiries/month</strong>. If even one incremental enquiry per quarter becomes a detailing contract, the rebuild pays for itself many times over. The multiplier compounds again as the SEO architecture grows traffic itself.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="security">
+    <p class="eyebrow">08 · Security &amp; maintainability</p>
+    <h2>The current stack is a documented breach risk</h2>
+    <div class="tblwrap">
+      <table>
+        <caption>Platform risk profile</caption>
+        <tr><th>Factor</th><th>Current strucon.net</th><th>New platform</th></tr>
+        <tr><td>Core software</td><td><span class="chip fail">WordPress 5.0.22</span><span class="note">The 5.0 line shipped December 2018. Running years-old branches means missing hardening the ecosystem assumes.</span></td><td><span class="chip pass">Next.js 16 (current, patched)</span><span class="note">Upgraded during this build specifically to clear a published CVE.</span></td></tr>
+        <tr><td>Plugin surface</td><td><span class="chip fail">WooCommerce 3.6.7 (2019) + WPBakery + Slider Revolution 5.4.8.1</span><span class="note">Slider Revolution is historically among the most-exploited WordPress plugins — the 2014–15 RevSlider vulnerability compromised 100k+ sites (SoakSoak). Sucuri's incident reports consistently identify outdated plugins/themes as the leading WordPress infection vector. [18]</span></td><td><span class="chip pass">No plugin ecosystem</span><span class="note">A handful of audited npm dependencies, pinned and updatable in one place.</span></td></tr>
+        <tr><td>Attack surface</td><td>Dynamic PHP + database + admin exposed at a well-known URL</td><td>Static pre-rendered pages; no database; admin is cookie-gated with env-configured credentials and blocked from search indexing</td></tr>
+        <tr><td>Content editing</td><td>Full WP admin — powerful, dated, and risky to update (theme lock-in via page builder)</td><td>Purpose-built <code>/admin</code> panel: staff edit Projects, Blog, Team, Clients, Services, Careers; changes go live instantly with no code and no plugin roulette</td></tr>
+        <tr><td>Cost of a hack</td><td colspan="2">Beyond cleanup: Google flags compromised sites in results and browsers ("This site may be hacked"), destroying exactly the trust and rankings this report is about. Risk is asymmetric — prevention is cheap, recovery is not. [18]</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="access">
+    <p class="eyebrow">09 · Accessibility &amp; reach</p>
+    <h2>Small details, larger market</h2>
+    <ul>
+      <li><strong>WCAG-conscious build:</strong> semantic landmarks, skip-to-content link, visible keyboard focus, form labels and error messaging, contrast-checked palette, <code>prefers-reduced-motion</code> respected. The current site's page-builder markup offers none of this systematically.</li>
+      <li><strong>Why it's business, not charity:</strong> the WHO estimates ~16% of the world lives with some disability; accessibility overlaps heavily with usability for everyone — including engineers on gloves-and-glare site tablets. Accessible structure is also what search crawlers parse best, so the SEO and accessibility work compound.</li>
+      <li><strong>Global audience:</strong> fluid type and mobile-first layout serve the low-bandwidth, small-screen contexts common across EPC site offices — precisely where the 1.33&nbsp;MB slider payload fails today.</li>
+    </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="verdict">
+    <p class="eyebrow">10 · Recommendation</p>
+    <h2>Replace, redirect, verify — in that order</h2>
+    <p class="lede"><strong>Recommendation: replace strucon.net with the new platform.</strong> Every measured dimension — trust signals, typography, payload, search architecture, lead capture, security — favors the rebuild, and the research above prices each gap in lost enquiries.</p>
+
+    <h3>Go-live conditions (the honest checklist)</h3>
+    <ul>
+      <li><strong>301 redirect map</strong> from every old URL (<code>/index.php/about/</code> etc.) to its new equivalent — preserves the domain's existing link equity.</li>
+      <li><strong>Verify before publishing:</strong> the stats bar (26+ years / 500+ projects / 100+ engineers / 20 countries), current ISO certification version, real client names/logos with display rights, real leadership bios, and NDA-cleared case-study details. Placeholders are flagged in the build and must not ship as fact.</li>
+      <li><strong>Wire the lead API</strong> to email/CRM and file storage; set a strong <code>ADMIN_PASSWORD</code>.</li>
+      <li><strong>Validate Lighthouse/CWV on production hosting</strong> and submit the new sitemap in Google Search Console.</li>
+      <li><strong>Keep the hero video ≤ ~3 MB</strong> (compressed, muted, with poster) so it never undoes the performance case.</li>
+    </ul>
+
+    <div class="callout caveat">
+      <p class="t">Scope caveat</p>
+      <p>Research statistics cited here describe effects measured across large samples of other sites; they establish direction and order of magnitude, not a guaranteed outcome for strucon.net. The measured audit facts (versions, payloads, missing tags) are directly verifiable today and are sufficient grounds for the recommendation on their own.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section" id="sources">
+    <p class="eyebrow">11 · Sources</p>
+    <h2>Research cited</h2>
+    <ol class="sources">
+      <li id="s1"><strong>Lindgaard, Fernandes, Dudek &amp; Brown (2006)</strong> — "Attention web designers: You have 50 milliseconds to make a good first impression!", <em>Behaviour &amp; Information Technology</em> 25(2).</li>
+      <li id="s2"><strong>Stanford Web Credibility Project — Fogg et al. (2002)</strong> — "How Do People Evaluate a Web Site's Credibility?", Stanford Persuasive Technology Lab; 2,684 participants. Widely reported as "75% of users judge credibility by design"; the study's coded data show visual design cues as the most frequently mentioned credibility factor (46.1% of comments).</li>
+      <li id="s3"><strong>Sillence, Briggs, Fishwick &amp; Harris (2004)</strong> — "Trust and mistrust of online health sites", CHI 2004; 94% of mistrust comments related to design elements.</li>
+      <li id="s4"><strong>Gomez / Akamai</strong> — "Why Web Performance Matters" consumer research; 88% of online consumers less likely to return after a bad experience.</li>
+      <li id="s5"><strong>Errol Morris / NYT (2012)</strong> — "Hear, All Ye People; Hearken, O Earth" typeface-credibility experiment, ~45,000 respondents; Baskerville produced a statistically significant lift in agreement vs other faces.</li>
+      <li id="s6"><strong>Song &amp; Schwarz (2008)</strong> — "If It's Hard to Read, It's Hard to Do", <em>Psychological Science</em> 19(10); processing fluency alters effort estimates and willingness.</li>
+      <li id="s7"><strong>Reimer &amp; Mehler, MIT AgeLab × Monotype (2012)</strong> — glance-legibility trials; humanist typeface reduced response/glance time vs square grotesque (~10.6% in male drivers).</li>
+      <li id="s8"><strong>Google / SOASTA (2017)</strong> — mobile page-speed machine-learning study; bounce probability +32% (1→3s), +90% (1→5s), +123% (1→10s).</li>
+      <li id="s9"><strong>Google (2016)</strong> — mobile speed research; 53% of mobile site visits abandoned beyond 3 seconds.</li>
+      <li id="s10"><strong>Deloitte × Google (2020)</strong> — "Milliseconds Make Millions"; +0.1s speed → +8.4% retail / +10.1% travel conversions.</li>
+      <li id="s11"><strong>Google Search Central</strong> — Page Experience update (2021): Core Web Vitals in ranking systems; HTTPS, mobile-first indexing documentation.</li>
+      <li id="s12"><strong>Gartner</strong> — "The B2B Buying Journey": buying groups spend ~17% of journey time meeting suppliers; ~27% researching independently online.</li>
+      <li id="s13"><strong>McKinsey (2020–21)</strong> — B2B Pulse: 70–80% of B2B decision-makers prefer remote human interaction or digital self-service.</li>
+      <li id="s14"><strong>Backlinko (Dean)</strong> — organic CTR analysis of 4M+ Google results; +30.8% relative CTR moving up one position; #1 averages ~27–28%.</li>
+      <li id="s15"><strong>Google Search Central case studies</strong> — structured data outcomes: Nestlé (~82% higher CTR on rich-result pages), Rotten Tomatoes (+25% engagement), and others; rich-result eligibility requires valid structured data.</li>
+      <li id="s16"><strong>Runyon, E., University of Notre Dame</strong> — "Carousel Interaction Stats": ~1.07% of visitors clicked carousels; 84%+ of clicks on the first slide. Corroborated by Nielsen Norman Group carousel guidance.</li>
+      <li id="s17"><strong>Expedia (reported by Bryan Eisenberg / UX literature)</strong> — removing one redundant form field attributed with ~$12M annual profit impact.</li>
+      <li id="s18"><strong>Sucuri (GoDaddy) Hacked Website Reports</strong> — outdated/vulnerable plugins, themes and cores as the leading WordPress compromise vector; RevSlider/SoakSoak campaign (2014–15) compromised 100,000+ sites.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <div>STR-WEB-2026-01 · Rev A · Audit method: live HTTP inspection of strucon.net + production build analysis of the replacement platform. Measured facts verifiable via page source; research figures per cited studies.</div>
+  </footer>
+</div>

@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --nav-h: 76px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: theme("colors.accent.DEFAULT");
+    color: #fff;
+  }
+
+  /* Visible, on-brand keyboard focus for accessibility (WCAG 2.4.7). */
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Drawing-callout eyebrow: the mono "annotation" layer of the identity. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-label text-steel;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-accent;
+  }
+
+  /* Faint blueprint grid backdrop. */
+  .blueprint {
+    background-image: theme("backgroundImage.blueprint-grid");
+    background-size: 32px 32px;
+  }
+}
+
+@layer utilities {
+  /* Scroll-reveal — progressive enhancement; content is visible if JS/observer never runs. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s theme("transitionTimingFunction.engineered"),
+      transform 0.7s theme("transitionTimingFunction.engineered");
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Respect users who prefer reduced motion (WCAG 2.3.3). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
