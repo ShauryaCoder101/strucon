@@ -52,9 +52,14 @@ export default function AdminLoginPage() {
           {loading ? "Signing in…" : "Sign in"}
         </button>
       </form>
-      <p className="mt-4 text-xs text-slate-soft">
-        Default dev password: <code className="font-mono">strucon-admin</code> — set <code className="font-mono">ADMIN_PASSWORD</code> in your environment for production.
-      </p>
+      {/* Dev-only hint. Never rendered in production builds, so the password
+          is not disclosed on the live site. */}
+      {process.env.NODE_ENV !== "production" && (
+        <p className="mt-4 text-xs text-slate-soft">
+          Dev password: <code className="font-mono">strucon-admin</code>. In production, set{" "}
+          <code className="font-mono">ADMIN_PASSWORD</code> and <code className="font-mono">ADMIN_TOKEN</code> — without them, sign-in is disabled.
+        </p>
+      )}
     </div>
   );
 }
