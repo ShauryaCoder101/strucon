@@ -13,6 +13,12 @@ Dear [Name],
 
 Good news — the new STRUCON website is built, and every page is in place.
 
+**You can view it here:** https://strucon.vercel.app
+
+Please do have a look through it before you start on the form below — seeing the pages makes it
+much easier to picture where each piece of information appears. This is a private preview link
+for your review; it is not visible on Google and has not replaced your existing website.
+
 There is one step left before we can take it live: confirming the content is accurate.
 
 ### Why we need your help
@@ -97,8 +103,10 @@ Kind regards,
 
 Dear [Name],
 
-The new STRUCON website is built and ready. Before it goes live, we need your help confirming the
-content is accurate.
+The new STRUCON website is built and ready — you can view it here: **https://strucon.vercel.app**
+(a private preview for your review; it is not on Google and has not replaced your current site).
+
+Before it goes live, we need your help confirming the content is accurate.
 
 To build it, we used what was available on your current site — but much of that has not been
 updated for some years. Where information was missing, we wrote realistic **example text** so you
