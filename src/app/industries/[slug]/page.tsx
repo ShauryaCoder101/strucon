@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
 
-import { getIndustry, industrySlugs, getService, getFeaturedProjects } from "@/lib/content";
+import { getIndustry, industrySlugs, getService, getProjects } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -30,7 +30,8 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
   if (!ind) notFound();
 
   const related = ind.relatedServices.map(getService).filter(Boolean);
-  const projects = getFeaturedProjects().filter((p) => p.industry === ind.title).slice(0, 3);
+  // Surface every case study in this sector, not just the homepage-featured ones.
+  const projects = getProjects().filter((p) => p.industry === ind.title).slice(0, 3);
 
   return (
     <>

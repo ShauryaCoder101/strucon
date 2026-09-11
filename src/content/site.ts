@@ -2,26 +2,40 @@ import type { NavItem, Office } from "@/types";
 
 /**
  * Global site configuration — the single place to edit company-wide facts.
- * Values marked PLACEHOLDER are unverified; confirm before go-live (see REQUIREMENTS.md).
+ * All values below are client-confirmed (content update form, Sept 2026).
+ *
+ * NOTE ON CERTIFICATION: the client left the ISO certification question BLANK, so no ISO
+ * claim is published anywhere on this site. Design/detailing STANDARDS the client confirmed
+ * they work to live in src/content/about.ts → `standards`. Do not reintroduce a
+ * `certification` field here without a written, current certificate from the client.
  */
 export const site = {
   name: "STRUCON",
-  legalName: "STRUCON Consulting Pvt. Ltd.",
-  tagline: "Design & Detailing of Industrial & Commercial Structures",
-  // Marketing headline per brief.
-  positioning: "Engineering Tomorrow's Infrastructure",
-  // Update once a production domain is confirmed (used for canonical URLs, sitemap, schema).
+  legalName: "STRUCON Consulting Private Limited",
+  tagline:
+    "Innovative Structural Engineering • BIM • Steel Detailing • Project Engineering for Industrial & Infrastructure Projects Worldwide",
+  // Marketing headline — client-approved positioning line.
+  positioning: "Engineering Structures. Detailed with Precision.",
   url: "https://www.strucon.net",
+  // The company story (about.ts) states establishment in 2003; the CIN is a later 2008
+  // incorporation of the private limited entity. 2003 is the date used publicly.
   founded: "2003",
-  certification: "ISO 9001:2008", // PLACEHOLDER: confirm current version (2015?) before publishing.
+  // Corporate Identity Number — shown in the footer for statutory transparency.
+  cin: "U24319HR2008PTC037858",
   email: "info@strucon.net",
+  emailSecondary: "owais@strucon.net",
+  emailSales: "aly@strucon.net",
+  emailCareers: "careers@strucon.net",
   phone: "+91-120-4740796",
   phoneHref: "tel:+911204740796",
-  whatsapp: "+911204740796", // PLACEHOLDER: confirm dedicated WhatsApp business number.
-  whatsappHref: "https://wa.me/911204740796",
-  linkedin: "https://www.linkedin.com/company/28028403",
+  mobile: "+91 98100 89862",
+  mobileHref: "tel:+919810089862",
+  whatsapp: "+919810089862",
+  whatsappHref: "https://wa.me/919810089862",
+  linkedin: "https://www.linkedin.com/company/strucon-consulting-private-limited/",
+  businessHours: "6:00 – 23:00",
   description:
-    "STRUCON Consulting Pvt. Ltd. delivers multidisciplinary engineering, structural design, BIM, and steel detailing services to global EPC companies — with proven experience across Indian, American, and European standards.",
+    "STRUCON Consulting Private Limited delivers structural engineering, BIM, steel detailing, and project engineering for industrial and infrastructure projects in India and international markets.",
 };
 
 export const offices: Office[] = [

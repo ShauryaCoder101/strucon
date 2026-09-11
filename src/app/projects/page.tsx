@@ -29,7 +29,7 @@ export default function ProjectsIndexPage() {
       <PageHeader
         eyebrow="Selected Work"
         title="Case studies from the field"
-        intro="A snapshot of recent delivery. Client names are shown as placeholders pending NDA clearance."
+        intro="Selected delivery across power, refinery, cement, steel and material handling projects in India and international markets."
         trail={[{ name: "Home", path: "/" }, { name: "Projects", path: "/projects" }]}
       />
 

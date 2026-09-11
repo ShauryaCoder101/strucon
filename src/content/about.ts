@@ -1,22 +1,61 @@
 /**
- * About-page content. Copy is placeholder built around STRUCON's real profile
- * (Indian consultancy since 2003, ISO-certified, Tekla-led). Confirm specifics before go-live.
+ * About-page content. Story, mission and vision are the client's own words, reproduced
+ * verbatim from the content update form (Sept 2026) — do not paraphrase them.
+ *
+ * NOTE: `standards` are the design/detailing standards the client confirmed they WORK TO.
+ * They are deliberately NOT called certifications: the client left the ISO certification
+ * question blank, so no certification claim (ISO or otherwise) is made anywhere on this site.
  */
 export const about = {
   story: [
-    "STRUCON Consulting Pvt. Ltd. was founded in 2003 as an Indian engineering consultancy with a simple conviction: that global EPC companies deserve an offshore engineering partner who behaves like an in-house team — fast, accurate, and accountable.",
-    "From a steel-detailing core, we have grown into a multidisciplinary consultancy delivering structural, civil, mechanical, process, and E&I engineering for heavy industry. Along the way we have detailed hundreds of thousands of tonnes of steel to Indian, American, and European standards.",
-    "Today, engineers, checkers, and detailers across our offices support EPC projects worldwide — powered by Tekla-led BIM and a checking discipline built into every stage.",
+    "STRUCON Consulting was established in 2003 with a focused ambition: to provide dependable engineering and detailing solutions for complex industrial and commercial structures. From its early beginnings with a small team of engineers and detailers, the company has developed into an engineering services organization serving clients across India and international markets.",
+    "Our core strength lies in civil and structural engineering, structural steel detailing, 3D modelling and multidisciplinary engineering support. Over the years, STRUCON has worked across power, cement, steel, refinery and petrochemical, material handling, lime and commercial infrastructure projects, delivering engineering solutions for structures ranging from individual industrial components to major plant facilities.",
+    "Our engineers, designers, checkers and detailers combine engineering knowledge with practical detailing experience and international project exposure. We work with metric and imperial systems and have experience working with Indian, American and European engineering and detailing requirements.",
+    "Today, STRUCON is focused on building long-term engineering partnerships by combining technical capability, disciplined project execution and quality-driven delivery.",
   ],
+  /** Closing line of the client's story — rendered as a pull-quote, not as body copy. */
+  objective: {
+    lead: "Our objective is simple:",
+    quote:
+      "Understand the engineering requirement. Engineer it accurately. Detail it intelligently. Deliver it reliably.",
+  },
   mission:
-    "To deliver engineering that is safe, buildable, and on time — helping our EPC clients build the world's infrastructure faster and with fewer surprises.",
+    "To deliver accurate, practical and dependable engineering solutions that help our clients design, fabricate and execute complex structures with confidence.",
   vision:
-    "To be the engineering partner of choice for industrial and EPC projects worldwide, known for quality, speed, and integrity.",
+    "To become a globally trusted engineering partner for civil, structural and steel detailing services, recognized for technical excellence, delivery reliability and long-term client relationships.",
   pillars: [
-    { title: "Infrastructure", description: "Industry-matching offices, hardware, and licensed software built for high-volume detailing and design." },
-    { title: "Technology", description: "Tekla-led BIM, clash detection, and constructible modelling across every discipline." },
-    { title: "Quality", description: "ISO-certified processes with independent checking gates at every stage of delivery." },
-    { title: "People", description: "Experienced engineers, checkers, and detailers fluent across international codes." },
+    {
+      title: "Engineering",
+      description:
+        "Civil and structural engineering, steel detailing, 3D modelling and multidisciplinary engineering support under one roof.",
+    },
+    {
+      title: "Technology",
+      description:
+        "STAAD.Pro analysis, Tekla Structures modelling and AutoCAD documentation, plus any further software a project's specification calls for.",
+    },
+    {
+      title: "Delivery",
+      description:
+        "Disciplined project execution with checking built into every stage — engineers, designers, checkers and detailers working to one programme.",
+    },
+    {
+      title: "People",
+      description:
+        "Engineers and detailers with practical fabrication experience and exposure to Indian, American and European project requirements.",
+    },
   ],
-  certifications: ["ISO 9001:2008", "AISC detailing standards", "Eurocode & IS design codes", "BS & AS/NZS experience"],
+  /** Design & detailing standards worked to — client-confirmed list. Not certifications. */
+  standards: [
+    "Indian Standards (IS)",
+    "AISC",
+    "ASCE",
+    "Eurocodes",
+    "British Standards",
+    "AWS",
+    "ASTM",
+    "EN standards",
+    "Client-specific standards",
+    "Project-specific specifications",
+  ],
 };

@@ -57,9 +57,18 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
 
               <div className="grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
                 <ContactRow label="Phone" value={site.phone} href={site.phoneHref} />
-                <ContactRow label="Email" value={site.email} href={`mailto:${site.email}`} />
+                <ContactRow label="Mobile" value={site.mobile} href={site.mobileHref} />
+                <ContactRow label="General enquiries" value={site.email} href={`mailto:${site.email}`} />
+                <ContactRow label="Direct" value={site.emailSecondary} href={`mailto:${site.emailSecondary}`} />
+                <ContactRow label="Sales / RFP" value={site.emailSales} href={`mailto:${site.emailSales}`} />
+                <ContactRow label="Careers" value={site.emailCareers} href={`mailto:${site.emailCareers}`} />
                 <ContactRow label="WhatsApp" value="Message us" href={site.whatsappHref} external />
                 <ContactRow label="LinkedIn" value="Follow us" href={site.linkedin} external />
+              </div>
+
+              <div className="border-t border-line pt-6">
+                <p className="font-mono text-[11px] uppercase tracking-label text-slate">Business hours</p>
+                <p className="mt-1 font-medium text-ink">{site.businessHours} IST</p>
               </div>
             </div>
 

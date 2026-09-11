@@ -28,7 +28,7 @@ export default function LeadershipPage() {
       <PageHeader
         eyebrow="Leadership"
         title="Experienced engineers, hands-on leaders"
-        intro="Our leadership team combines decades of structural engineering and steel detailing experience across international EPC projects."
+        intro="The directors and engineering leadership behind STRUCON Consulting."
         trail={[{ name: "Home", path: "/" }, { name: "About", path: "/about" }, { name: "Leadership", path: "/leadership" }]}
       />
 
@@ -40,7 +40,8 @@ export default function LeadershipPage() {
                 <MediaFrame src={undefined} alt={m.name} prompt={m.photoPrompt} className="aspect-[4/5] w-full" />
                 <h2 className="mt-4 font-display text-lg font-semibold text-ink">{m.name}</h2>
                 <p className="font-mono text-xs uppercase tracking-label text-steel">{m.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-slate">{m.bio}</p>
+                {/* Bios are only published where the individual supplied one. */}
+                {m.bio && <p className="mt-3 text-sm leading-relaxed text-slate">{m.bio}</p>}
                 {m.linkedin && (
                   <a href={m.linkedin} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-ink underline hover:text-accent">LinkedIn</a>
                 )}
@@ -48,7 +49,7 @@ export default function LeadershipPage() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-10 text-sm text-slate-soft">Team details are placeholders — replace names, bios, photos, and LinkedIn links before go-live.</p>
+        <p className="mt-10 text-sm text-slate-soft">Headshots to follow — photography is being arranged.</p>
       </Section>
 
       <CtaBanner title="Want to join this team?" primary={{ label: "View open roles", href: "/careers" }} secondary={null} />

@@ -6,14 +6,16 @@ import { Reveal } from "@/components/ui/Reveal";
  * on-brand (drawing grid) and fast (no JS/tiles). Markers plotted by approximate lon/lat %.
  * Swap for a real interactive map (e.g. react-simple-maps) later if desired.
  */
+/**
+ * Only regions corroborated by a real, client-supplied case study are plotted — India (HQ and
+ * most projects), the UAE (Sharjah Cement), Indonesia (Semen Andalas) and Nigeria (NOM Cement
+ * Terminal). Europe, North America and Australia were removed: no supplied project supports them.
+ */
 const markers = [
   { label: "HQ — Noida, India", x: 70, y: 46, hq: true },
-  { label: "Middle East", x: 58, y: 48 },
-  { label: "Southeast Asia", x: 78, y: 55 },
-  { label: "Europe", x: 49, y: 34 },
-  { label: "Africa", x: 52, y: 60 },
-  { label: "North America", x: 20, y: 40 },
-  { label: "Australia", x: 84, y: 72 },
+  { label: "UAE — Sharjah", x: 60, y: 49 },
+  { label: "Indonesia", x: 78, y: 58 },
+  { label: "Nigeria", x: 49, y: 56 },
 ];
 
 export function GlobalPresence() {
@@ -22,8 +24,8 @@ export function GlobalPresence() {
       id="global"
       tone="white"
       eyebrow="Global Presence"
-      title="One team, delivering across 20 countries"
-      intro="Headquartered in India, engineering for EPC projects worldwide — to AISC, Eurocode, IS, BS, and AS/NZS standards."
+      title="One team, delivering across 12 countries"
+      intro="Headquartered in India, engineering for industrial projects in India and international markets — to IS, AISC, ASCE, Eurocode, British Standards, AWS, ASTM and EN."
     >
       <Reveal>
         <div className="relative overflow-hidden rounded-sm border border-line bg-ink">

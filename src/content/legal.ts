@@ -7,7 +7,7 @@ type LegalSection = { heading: string; body: string[] };
 export const privacy: { updated: string; intro: string; sections: LegalSection[] } = {
   updated: "2026-07-01",
   intro:
-    "This Privacy Policy explains how STRUCON Consulting Pvt. Ltd. (“STRUCON”, “we”, “us”) collects, uses, and protects the personal information you provide through this website. This is a placeholder to be reviewed by legal counsel.",
+    "This Privacy Policy explains how STRUCON Consulting Private Limited (“STRUCON”, “we”, “us”) collects, uses, and protects the personal information you provide through this website. This is a placeholder to be reviewed by legal counsel.",
   sections: [
     { heading: "Information we collect", body: ["When you submit a form, we collect the details you provide — such as your name, company, email, phone number, message, and any files you upload.", "We may also collect standard technical data (such as IP address and browser type) and analytics data if analytics are enabled."] },
     { heading: "How we use your information", body: ["We use your information to respond to enquiries, prepare proposals, evaluate tender documents, process job applications, and improve our services.", "We do not sell your personal information."] },

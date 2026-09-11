@@ -32,7 +32,8 @@ export function Footer() {
         <div className="col-span-2 lg:col-span-1">
           <span className="font-display text-2xl font-bold text-white">{site.name}</span>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">{site.tagline}.</p>
-          <p className="mt-4 font-mono text-xs text-steel-200">EST. {site.founded} · {site.certification}</p>
+          <p className="mt-4 font-mono text-xs text-steel-200">EST. {site.founded}</p>
+          <p className="mt-2 font-mono text-[11px] text-white/40">CIN: {site.cin}</p>
         </div>
 
         <div>
@@ -75,6 +76,7 @@ export function Footer() {
             <li className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
               <a href={site.phoneHref} className="transition-colors hover:text-white">{site.phone}</a>
               <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">{site.email}</a>
+              <a href={site.mobileHref} className="transition-colors hover:text-white">{site.mobile}</a>
             </li>
             <li className="flex gap-4 pt-1">
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">LinkedIn</a>

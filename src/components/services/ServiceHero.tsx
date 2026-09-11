@@ -38,7 +38,7 @@ export function ServiceHero({ service }: { service: Service }) {
           </div>
 
           <MediaFrame
-            src={undefined}
+            src={service.image}
             alt={`${service.title} — illustrative`}
             prompt={service.heroPrompt}
             className="aspect-[4/3] w-full"

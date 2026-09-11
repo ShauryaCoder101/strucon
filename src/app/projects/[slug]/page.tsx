@@ -77,9 +77,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="mt-12 grid gap-12 lg:grid-cols-3">
           <div className="space-y-8 lg:col-span-2">
+            {p.scope && p.scope.length > 0 && (
+              <Reveal>
+                <p className="eyebrow">Scope</p>
+                <ul className="mt-4 grid max-w-prose gap-x-8 gap-y-3 sm:grid-cols-2">
+                  {p.scope.map((s) => (
+                    <li key={s} className="flex items-start gap-3 border-b border-line pb-3">
+                      <span className="mt-1.5 h-2 w-2 shrink-0 bg-accent" aria-hidden="true" />
+                      <span className="text-ink">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
             {p.challenge && <Block label="Challenge" text={p.challenge} />}
             {p.solution && <Block label="Solution" text={p.solution} />}
-            {p.results && <Block label="Results" text={p.results} />}
+            {p.results && <Block label="Outcome" text={p.results} />}
           </div>
           <aside className="h-fit border border-line bg-paper p-6">
             <p className="font-mono text-xs uppercase tracking-label text-steel">Project facts</p>

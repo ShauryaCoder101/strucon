@@ -29,7 +29,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = buildMetadata({
   title: "Structural Engineering & Steel Detailing Consultants | STRUCON",
   description:
-    "STRUCON delivers structural engineering, steel detailing, Tekla modeling, and BIM services to global EPC companies. ISO-certified, multi-code, and schedule-driven.",
+    "STRUCON delivers structural engineering, steel detailing, Tekla modeling, and BIM services for industrial and infrastructure projects in India and international markets.",
   path: "/",
   keywords: keywordBank.home,
 });

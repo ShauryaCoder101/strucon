@@ -15,7 +15,7 @@ export function FeaturedProjects() {
       tone="paper"
       eyebrow="Selected Work"
       title="Case studies from the field"
-      intro="A snapshot of recent delivery. Client names shown as placeholders pending NDA clearance."
+      intro="Real projects, real tonnages — a snapshot of delivery across power, refinery and cement plants."
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {projects.map((p, i) => (

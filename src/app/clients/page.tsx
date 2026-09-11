@@ -28,7 +28,7 @@ export default function ClientsPage() {
       <PageHeader
         eyebrow="Clients"
         title="Trusted by global EPC companies"
-        intro="We work as an engineering partner to EPC contractors, plant owners, and fabricators across the world. Logos and names shown as placeholders pending approval."
+        intro="We work as an engineering partner to EPC contractors, plant owners and fabricators. The organisations below are named on the strength of projects we have delivered for them."
         trail={[{ name: "Home", path: "/" }, { name: "Clients", path: "/clients" }]}
       />
 
@@ -43,23 +43,25 @@ export default function ClientsPage() {
         </div>
       </Section>
 
-      {/* Testimonials */}
-      <Section tone="paper" eyebrow="In their words" title="What clients say">
-        <div className="grid gap-6 lg:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <Reveal key={i} delay={i * 80}>
-              <figure className="flex h-full flex-col border border-line bg-white p-7">
-                <span className="font-display text-4xl leading-none text-accent" aria-hidden="true">&ldquo;</span>
-                <blockquote className="mt-3 flex-1 leading-relaxed text-ink">{t.quote}</blockquote>
-                <figcaption className="mt-6 border-t border-line pt-4">
-                  <p className="font-display font-semibold text-ink">{t.name}</p>
-                  <p className="font-mono text-xs uppercase tracking-label text-slate">{t.role}, {t.company}</p>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
+      {/* Testimonials — omitted entirely when none are supplied. No invented quotes are published. */}
+      {testimonials.length > 0 && (
+        <Section tone="paper" eyebrow="In their words" title="What clients say">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <figure className="flex h-full flex-col border border-line bg-white p-7">
+                  <span className="font-display text-4xl leading-none text-accent" aria-hidden="true">&ldquo;</span>
+                  <blockquote className="mt-3 flex-1 leading-relaxed text-ink">{t.quote}</blockquote>
+                  <figcaption className="mt-6 border-t border-line pt-4">
+                    <p className="font-display font-semibold text-ink">{t.name}</p>
+                    <p className="font-mono text-xs uppercase tracking-label text-slate">{t.role}, {t.company}</p>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
 
       <CtaBanner title="Become our next success story." />
     </>

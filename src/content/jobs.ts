@@ -1,108 +1,77 @@
 import type { Job } from "@/types";
 
 /**
- * PLACEHOLDER openings — replace with real vacancies before go-live, or wire this list to
- * your ATS (see REQUIREMENTS.md §3.7). `department` powers the careers filter.
+ * Careers content.
+ *
+ * IMPORTANT — the client instructed, in writing: "Do not publish inactive or fictional
+ * vacancies." `jobs` is therefore EMPTY and must stay empty until HR supplies live, dated
+ * vacancies. The careers page detects the empty array and renders a speculative-application
+ * state built around `hiringAreas` instead of an openings list. Do not seed example roles.
  */
-export const culture = [
-  { title: "Learn every day", description: "Complex EPC projects across power, oil & gas, and steel — real engineering, not repetition." },
-  { title: "Global standards", description: "Work to AISC, Eurocode, IS, and BS — and grow fluent across international codes." },
-  { title: "Latest technology", description: "Tekla-led BIM and a modern toolset, kept current." },
-  { title: "Grow with us", description: "Clear progression from detailer to checker to lead, backed by mentoring." },
+
+/** The client's own careers copy, verbatim. */
+export const careersIntro = [
+  "At STRUCON, we bring together engineers, designers, detailers and project professionals who enjoy solving complex engineering problems.",
+  "We are interested in professionals who want to work on challenging industrial and structural engineering projects serving clients in India and international markets.",
 ];
 
+/** Where speculative applications go — client-specified. */
+export const applicationsEmail = "careers@strucon.net";
+
+/** "Areas We Hire For" — the client's list, in their order. */
+export const hiringAreas = [
+  "Structural Engineers",
+  "Civil Engineers",
+  "Steel Detailers",
+  "Tekla Detailers",
+  "BIM Modelers",
+  "AutoCAD Detailers",
+  "Project Engineers",
+  "Design Engineers",
+  "Checkers",
+  "Project Coordinators",
+  "Business Development Professionals",
+];
+
+export const culture = [
+  {
+    title: "Complex problems",
+    description:
+      "Engineers, designers, detailers and project professionals who enjoy solving complex engineering problems.",
+  },
+  {
+    title: "Industrial projects",
+    description:
+      "Challenging industrial and structural engineering work across power, cement, steel, refinery and material handling plants.",
+  },
+  {
+    title: "International exposure",
+    description:
+      "Projects serving clients in India and international markets, in both metric and imperial systems.",
+  },
+  {
+    title: "Technical training",
+    description:
+      "Software and technical training with clear career progression from detailer to checker to lead.",
+  },
+];
+
+/** Employee benefits — the client's real list. Only actual benefits are published. */
 export const benefits = [
   "Competitive compensation",
-  "Structured training & upskilling",
-  "Exposure to international projects",
-  "Health & wellbeing support",
-  "Supportive, engineering-led culture",
-  "Modern tools & infrastructure",
+  "Performance incentives",
+  "Professional development",
+  "Technical training",
+  "Software training",
+  "Career progression",
+  "Employee recognition",
+  "Health insurance",
+  "Paid leave",
+  "Provident Fund",
+  "Learning and development",
 ];
 
-export const jobs: Job[] = [
-  {
-    slug: "senior-steel-detailer-tekla",
-    title: "Senior Steel Detailer (Tekla)",
-    department: "Steel Detailing",
-    location: "Noida, India",
-    type: "Full-time",
-    experience: "5+ years",
-    summary: "Produce and check fabrication and erection drawings in Tekla Structures for heavy industrial projects.",
-    responsibilities: [
-      "Model and detail steel structures in Tekla Structures",
-      "Design and model connections to project standards",
-      "Prepare fabrication/erection drawings, BOMs, and CNC data",
-      "Support checking and resolve site RFIs",
-    ],
-    requirements: [
-      "5+ years of steel detailing in Tekla Structures",
-      "Experience with AISC / BS / IS detailing standards",
-      "Strong understanding of connections and fabrication",
-      "Good communication and coordination skills",
-    ],
-  },
-  {
-    slug: "structural-design-engineer",
-    title: "Structural Design Engineer",
-    department: "Structural Engineering",
-    location: "Noida, India",
-    type: "Full-time",
-    experience: "3+ years",
-    summary: "Analyse and design steel and RCC structures for industrial and EPC projects.",
-    responsibilities: [
-      "Perform structural analysis and design in STAAD.Pro / ETABS",
-      "Develop GA drawings and design calculations",
-      "Coordinate with detailing and other disciplines",
-      "Support independent design checks",
-    ],
-    requirements: [
-      "B.E./M.E. in Civil/Structural Engineering",
-      "3+ years designing industrial structures",
-      "Proficiency in STAAD.Pro or ETABS",
-      "Knowledge of IS / AISC / Eurocode",
-    ],
-  },
-  {
-    slug: "bim-coordinator",
-    title: "BIM Coordinator",
-    department: "BIM",
-    location: "Noida, India",
-    type: "Full-time",
-    experience: "4+ years",
-    summary: "Own federated models and clash detection across disciplines for EPC projects.",
-    responsibilities: [
-      "Federate and coordinate multi-discipline models in Navisworks",
-      "Run clash detection and manage resolution",
-      "Maintain BIM standards and the BIM execution plan",
-      "Support quantity take-offs and coordination reporting",
-    ],
-    requirements: [
-      "4+ years in BIM coordination for industrial projects",
-      "Proficiency in Navisworks, Revit, and/or Tekla",
-      "Understanding of LOD and constructible modelling",
-      "Strong coordination and reporting skills",
-    ],
-  },
-  {
-    slug: "graduate-engineer-trainee",
-    title: "Graduate Engineer Trainee",
-    department: "Structural Engineering",
-    location: "Noida, India",
-    type: "Full-time",
-    experience: "0–1 years",
-    summary: "Start your engineering career with structured training across design and detailing.",
-    responsibilities: [
-      "Learn structural design and detailing workflows",
-      "Support senior engineers on live projects",
-      "Build proficiency in industry software",
-    ],
-    requirements: [
-      "B.E./B.Tech in Civil/Structural Engineering",
-      "Strong fundamentals and eagerness to learn",
-      "Good analytical and communication skills",
-    ],
-  },
-];
+/** No live vacancies published — see the note at the top of this file. */
+export const jobs: Job[] = [];
 
 export const jobDepartments = () => Array.from(new Set(jobs.map((j) => j.department)));

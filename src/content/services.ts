@@ -1,10 +1,19 @@
 import type { Service } from "@/types";
 
 /**
- * The 8 services per the brief. Copy is industry-accurate placeholder grounded in STRUCON's
- * real capabilities (Tekla-led steel detailing, multi-code experience). Edit here to update
- * both the homepage grid and each /services/[slug] page — this file is the single source.
- * Confirm the final list — the live site also lists Architectural, 3D Modeling & Engineering Consultation.
+ * The 8 services. Edit here to update both the homepage grid and each /services/[slug] page —
+ * this file is the single source.
+ *
+ * SOFTWARE: every `software` list is the client's confirmed answer to "software actually used"
+ * — STAAD.Pro, AutoCAD and Tekla Structures, plus other approved software as a project requires.
+ * The previous lists named packages the client never confirmed (Revit, Navisworks, SDS/2,
+ * SAP2000, ETABS, AVEVA E3D, ETAP, Primavera); do not reinstate a tool without confirmation.
+ *
+ * STANDARDS: only the standards the client confirmed are named (IS, AISC, ASCE, Eurocodes,
+ * British Standards, AWS, ASTM, EN). No certification (ISO or otherwise) is claimed anywhere.
+ *
+ * `image` carries a real photo where one has been supplied; other services keep `heroPrompt`
+ * alone so MediaFrame renders the art direction for the asset still to be sourced.
  */
 export const services: Service[] = [
   {
@@ -13,10 +22,11 @@ export const services: Service[] = [
     title: "Structural Engineering",
     summary:
       "Analysis and design of steel and RCC structures to Indian, American, and European codes.",
+    image: "/images/ga-drawing.jpg",
     heroPrompt:
       "Engineer reviewing a STAAD.Pro structural analysis model on a large monitor beside printed GA drawings, industrial office, focused, photoreal, no logos.",
     overview: [
-      "Our structural engineering team designs safe, buildable, and economical steel and RCC structures for heavy industrial facilities. From load derivation to final GA drawings, we work to the code your project demands — AISC, Eurocode, IS, BS, or AS/NZS.",
+      "Our structural engineering team designs safe, buildable, and economical steel and RCC structures for heavy industrial facilities. From load derivation to final GA drawings, we work to the code your project demands — IS, AISC, ASCE, Eurocodes, British Standards or EN.",
       "Every design is optimised for material efficiency and constructability, then independently checked before it leaves our office. The result is a coordinated structural package your fabricator and site team can build without surprises.",
     ],
     benefits: [
@@ -31,7 +41,7 @@ export const services: Service[] = [
       { title: "Checking & QA", description: "Independent check of calculations and drawings against the design basis." },
       { title: "Issue & support", description: "GA drawings issued for detailing, with design support through fabrication." },
     ],
-    software: ["STAAD.Pro", "SAP2000", "ETABS", "Tekla Structural Designer", "STAAD Foundation"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Design basis report & load calculations",
       "Structural analysis models",
@@ -41,7 +51,7 @@ export const services: Service[] = [
       "Design check certificates",
     ],
     faqs: [
-      { q: "Which design codes do you work to?", a: "AISC 360, Eurocode 3, IS 800, BS 5950, and AS/NZS — selected per your project's design basis." },
+      { q: "Which design codes do you work to?", a: "Indian Standards (IS), AISC, ASCE, Eurocodes, British Standards, AWS, ASTM and EN — plus any client- or project-specific specification, selected per your design basis." },
       { q: "Can you take over a partially completed design?", a: "Yes. We regularly pick up mid-stream, review the existing basis, and continue without restarting." },
       { q: "Do you provide independent design checks?", a: "Yes — third-party / independent checking of another consultant's design is a standalone service we offer." },
     ],
@@ -59,6 +69,7 @@ export const services: Service[] = [
     title: "Steel Detailing",
     summary:
       "Fabrication and erection drawings, connection design, and BOMs — 1000+ MT/month capacity.",
+    image: "/images/detailing-drawing.jpg",
     heroPrompt:
       "Close-up of a detailed Tekla Structures steel connection model on screen — bolts, plates, welds — with a fabrication drawing beside it, photoreal, industrial.",
     overview: [
@@ -67,7 +78,7 @@ export const services: Service[] = [
     ],
     benefits: [
       { title: "1000+ MT/month capacity", description: "Scale to absorb large packages and compressed fabrication schedules." },
-      { title: "Multi-standard fluency", description: "Detailing to AISC, BS, IS, and Eurocode conventions as your shop requires." },
+      { title: "Multi-standard fluency", description: "Detailing to IS, AISC, British Standards and Eurocode conventions as your shop requires." },
       { title: "Fewer RFIs at site", description: "Model-based checking catches clashes and errors before fabrication." },
       { title: "Fabricator-ready data", description: "CNC/DSTV, NC files, and BOMs that plug straight into the shop." },
     ],
@@ -77,7 +88,7 @@ export const services: Service[] = [
       { title: "Checking", description: "Independent model and drawing check against inputs and standards." },
       { title: "Issue & revisions", description: "Fabrication/erection drawings, BOMs, and CNC files issued and revision-controlled." },
     ],
-    software: ["Tekla Structures", "SDS/2", "AutoCAD"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Fabrication (shop) drawings",
       "Erection drawings & marking plans",
@@ -88,7 +99,7 @@ export const services: Service[] = [
     ],
     faqs: [
       { q: "What is your monthly detailing capacity?", a: "Over 1000 MT per month, scalable with dedicated teams for large or fast-track projects." },
-      { q: "Which detailing standards do you follow?", a: "AISC, BS, IS, and Eurocode — matched to your fabricator's shop standards and preferences." },
+      { q: "Which detailing standards do you follow?", a: "IS, AISC, ASCE, Eurocodes, British Standards, AWS, ASTM and EN — matched to your fabricator's shop standards and preferences." },
       { q: "Do you provide CNC/DSTV files for automated fabrication?", a: "Yes, we export CNC/DSTV and NC data directly from the Tekla model." },
     ],
     seo: {
@@ -105,8 +116,9 @@ export const services: Service[] = [
     title: "BIM",
     summary:
       "Coordinated 3D models, clash detection, and constructible data across every discipline.",
+    image: "/images/bim-model.jpg",
     heroPrompt:
-      "Federated BIM model of an industrial plant in Navisworks showing structure, piping, and equipment colour-coded, clash markers visible, photoreal screen capture.",
+      "Federated BIM model of an industrial plant showing structure, piping, and equipment colour-coded, clash markers visible, photoreal screen capture.",
     overview: [
       "We build federated, constructible BIM models that bring structural, piping, mechanical, and electrical disciplines into a single coordinated environment. Clash detection resolves interferences on screen — long before they cost money at site.",
       "Beyond geometry, our models carry the data your project needs: quantities, materials, and status — supporting quantity take-offs, planning, and downstream fabrication.",
@@ -120,10 +132,10 @@ export const services: Service[] = [
     process: [
       { title: "BIM execution plan", description: "Agree LOD, standards, coordinates, and a federation strategy." },
       { title: "Discipline modelling", description: "Structure, piping, and equipment modelled to the agreed LOD." },
-      { title: "Clash detection", description: "Federated review in Navisworks; clashes logged and resolved." },
+      { title: "Clash detection", description: "Federated model review; clashes logged and resolved." },
       { title: "Coordinated output", description: "Constructible model and reports issued for detailing and construction." },
     ],
-    software: ["Revit", "Navisworks", "Tekla Structures", "AVEVA E3D"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "BIM execution plan (BEP)",
       "Federated multi-discipline model",
@@ -134,13 +146,13 @@ export const services: Service[] = [
     ],
     faqs: [
       { q: "What level of detail (LOD) do you model to?", a: "Typically LOD 350–400 for constructible outputs; we agree the exact LOD in the BIM execution plan." },
-      { q: "Can you coordinate models from multiple vendors?", a: "Yes — we federate and clash-check models from different disciplines and vendors in Navisworks." },
+      { q: "Can you coordinate models from multiple vendors?", a: "Yes — we federate and clash-check models from different disciplines and vendors." },
       { q: "Do your BIM models feed steel detailing?", a: "Yes, our Tekla structural models are constructible and flow directly into fabrication." },
     ],
     seo: {
       title: "Structural BIM Services — Clash Detection & Coordination",
       description:
-        "Structural BIM services: federated 3D models, clash detection, and constructible data for EPC and industrial projects. Tekla and Navisworks led.",
+        "Structural BIM services: federated 3D models, clash detection, and constructible data for EPC and industrial projects. Tekla Structures led.",
       keywords: ["Structural BIM Services", "BIM Clash Detection", "Tekla BIM", "3D Modeling Services"],
     },
     featured: true,
@@ -169,7 +181,7 @@ export const services: Service[] = [
       { title: "Coordination & check", description: "Cross-checked with structural/mechanical, then independently verified." },
       { title: "Issue for construction", description: "GFC civil drawings and BBS issued with site support." },
     ],
-    software: ["AutoCAD Civil 3D", "STAAD Foundation", "AutoCAD"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Foundation design & layout drawings",
       "Rebar detailing & bar bending schedules",
@@ -215,7 +227,7 @@ export const services: Service[] = [
       { title: "Coordination & check", description: "Coordinated with structure/process and independently checked." },
       { title: "Issue & support", description: "GA and detail drawings issued with fabrication support." },
     ],
-    software: ["AutoCAD", "Inventor", "AutoCAD Plant 3D"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Equipment layout & GA drawings",
       "Material handling system design",
@@ -260,7 +272,7 @@ export const services: Service[] = [
       { title: "Review & check", description: "Cross-discipline review and independent checking." },
       { title: "Issue & revisions", description: "Issue controlled process deliverables with revision management." },
     ],
-    software: ["AutoCAD Plant 3D", "AVEVA E3D", "AutoCAD"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Process flow diagrams (PFDs)",
       "Piping & instrumentation diagrams (P&IDs)",
@@ -305,7 +317,7 @@ export const services: Service[] = [
       { title: "Coordination & check", description: "Routing coordinated in the model and independently checked." },
       { title: "Issue for construction", description: "GFC drawings, cable schedules, and BOQs issued with support." },
     ],
-    software: ["AutoCAD Electrical", "ETAP", "AutoCAD"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Single-line diagrams (SLDs)",
       "Cable tray routing & layouts",
@@ -333,7 +345,7 @@ export const services: Service[] = [
     summary:
       "Planning, coordination, and quality control that keep EPC schedules on track.",
     heroPrompt:
-      "Project management war-room with a Primavera P6 schedule on screen and engineers coordinating over drawings, industrial setting, photoreal.",
+      "Project management war-room with a project schedule on screen and engineers coordinating over drawings, industrial setting, photoreal.",
     overview: [
       "Our project management wraps every engineering package with the planning, coordination, and quality control that EPC delivery demands. A single point of contact keeps scope, schedule, and quality visible and under control.",
       "We manage interfaces between disciplines and with your team, track progress against the plan, and surface risks early — so deliverables arrive on time and right first time.",
@@ -350,7 +362,7 @@ export const services: Service[] = [
       { title: "Quality control", description: "Stage-gate checking and QA against the deliverables register." },
       { title: "Reporting & close-out", description: "Regular progress reporting and structured project close-out." },
     ],
-    software: ["Primavera P6", "MS Project", "Navisworks"],
+    software: ["STAAD.Pro", "AutoCAD", "Tekla Structures", "Other approved engineering software as required by project"],
     deliverables: [
       "Project execution & quality plans",
       "Deliverables register & schedule",
@@ -361,7 +373,7 @@ export const services: Service[] = [
     ],
     faqs: [
       { q: "Can you manage a multi-discipline engineering package end-to-end?", a: "Yes — a single lead coordinates all disciplines, interfaces, and quality gates to your schedule." },
-      { q: "How do you report progress?", a: "Against a live Primavera/MS Project schedule with regular status reports and an updated deliverables register." },
+      { q: "How do you report progress?", a: "Against a live project schedule with regular status reports and an updated deliverables register." },
       { q: "Do you manage document control?", a: "Yes, we run transmittals, revision control, and a document register throughout the project." },
     ],
     seo: {

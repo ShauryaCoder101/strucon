@@ -1,15 +1,24 @@
 import type { Client } from "@/types";
 
 /**
- * PLACEHOLDER client list — no client names were published on the live site.
- * Supply real, rights-cleared logos/names before go-live (see REQUIREMENTS.md §2.8 / §3.5).
- * Names below are generic industry descriptors, not real clients.
+ * Named clients. Every name below is corroborated by a real case study in
+ * src/content/projects.ts — i.e. the client told us the project AND the client it was for.
+ *
+ * DELIBERATELY EXCLUDED: the content update form also listed Samsung Engineering, Technip,
+ * Siemens, Engineers India Limited, Holtec, Alstom, Lanco and Holcim, but hedged them as
+ * organisations "potentially appearing in existing STRUCON public information". None of them
+ * appears in a supplied case study, so none is published here. Add a name only when the client
+ * confirms it in writing and a project can be pointed at.
+ *
+ * `logo` is intentionally unset — no rights-cleared logo files have been supplied, so the
+ * strip renders names as text.
  */
 export const clients: Client[] = [
-  { name: "Global EPC Partner" },
-  { name: "Power Sector Major" },
-  { name: "Refinery Group" },
-  { name: "Steel Plant Operator" },
-  { name: "Cement Manufacturer" },
-  { name: "Infrastructure Developer" },
+  { name: "Larsen & Toubro" },
+  { name: "Reliance Energy" },
+  { name: "Jaypee Ventures" },
+  { name: "Punj Lloyd" },
+  { name: "Paul Wurth" },
+  { name: "JSW Steel" },
+  { name: "Enexco Technologies" },
 ];

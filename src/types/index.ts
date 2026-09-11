@@ -13,6 +13,7 @@ export type Service = {
   code: string; // discipline code shown as a drawing annotation, e.g. "STR"
   title: string;
   summary: string;
+  image?: string; // real hero image path when supplied; otherwise the placeholder renders
   heroPrompt: string; // AI art direction for the service hero image
   overview: string[]; // paragraphs
   benefits: Benefit[];
@@ -46,6 +47,8 @@ export type Project = {
   location: string;
   thumbnail?: string;
   imagePrompt: string;
+  /** Scope of work as supplied by the client — rendered as a bullet list on the case study. */
+  scope?: string[];
   challenge?: string;
   solution?: string;
   results?: string;

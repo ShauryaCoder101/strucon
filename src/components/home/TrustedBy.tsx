@@ -2,8 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { getClients } from "@/lib/content";
 
 /**
- * Trusted-by logo strip. PLACEHOLDER: renders client names as text chips until
- * real, rights-cleared logos are supplied (edit via /admin or src/content/clients.ts).
+ * Trusted-by strip. Renders real, case-study-corroborated client names as text chips —
+ * no rights-cleared logo files have been supplied yet (see src/content/clients.ts).
  */
 export function TrustedBy() {
   const clients = getClients();
@@ -11,7 +11,7 @@ export function TrustedBy() {
     <section className="border-y border-line bg-white py-10">
       <Container>
         <p className="text-center font-mono text-xs uppercase tracking-label text-slate">
-          Trusted by EPC leaders across power, oil &amp; gas, and infrastructure
+          Engineering delivered for leading EPC contractors and plant owners
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {clients.map((c) => (

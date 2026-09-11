@@ -1,155 +1,248 @@
 import type { Industry } from "@/types";
 
 /**
- * 8 industries per brief. `imagePrompt` is art direction for sourcing/generating the final
- * image (no generic office stock). Drop a real path into `image` to replace the placeholder.
+ * The 8 sectors the client confirmed, using their exact sector names. Each `applications`
+ * list is the client's own "Typical Scope" for that sector, verbatim and in their order.
+ * `overview` and `summary` are written strictly from those scope bullets — no capability,
+ * tonnage or standard is claimed here that the client did not supply.
+ *
+ * `image` carries a real photo where one exists; slots without a photo keep their
+ * `imagePrompt` so MediaFrame renders the art direction for the asset still to be sourced.
  */
 export const industries: Industry[] = [
   {
-    slug: "power",
-    title: "Power",
-    summary: "Structural design and detailing for thermal, hydro, and renewable power plants.",
+    slug: "power-energy",
+    title: "Power & Energy",
+    summary: "Main plant, boiler, turbine and material handling structures for power generation projects.",
+    image: "/images/tekla-model.jpg",
     imagePrompt:
-      "Wide shot of a coal/thermal power plant steel structure under construction at dusk, boiler framing and pipe racks, cranes, dramatic industrial lighting, no people, photoreal.",
+      "Wide shot of a thermal power plant steel structure under construction at dusk, boiler framing and bunker bay, cranes, dramatic industrial lighting, no people, photoreal.",
     overview: [
-      "Power projects demand heavy, closely-coordinated steel — boiler structures, turbine buildings, ESPs, chimneys, and dense pipe racks — delivered to tight EPC schedules.",
-      "STRUCON has detailed steel for power plants across capacities and standards, coordinating structural design and detailing so fabrication and erection stay ahead of the programme.",
+      "Power projects are built around heavy, closely interlocked steelwork — boiler structures, turbine buildings and bunker bays that all have to align with the equipment they carry.",
+      "STRUCON details these structures together with the conveyor systems, pipe racks, platforms and access steel that serve them, so a single coordinated package covers the whole plant area.",
     ],
-    applications: ["Boiler & TG structures", "Pipe racks & trestles", "ESP & ducting supports", "Chimney & silo structures", "Coal & ash handling structures"],
+    applications: [
+      "Power plant structures",
+      "Boiler structures",
+      "Turbine buildings",
+      "Bunker bays",
+      "CHP structures",
+      "Conveyor systems",
+      "Equipment supports",
+      "Pipe racks",
+      "Platforms",
+      "Access structures",
+    ],
     relatedServices: ["structural-engineering", "steel-detailing", "bim"],
     seo: {
-      title: "Power Plant Structural Design & Steel Detailing",
-      description: "Structural design and steel detailing for thermal, hydro, and renewable power plants — boiler structures, pipe racks, and material handling, to EPC schedules.",
-      keywords: ["Power Plant Structural Design", "Boiler Structure Detailing", "Power Plant Steel Detailing"],
+      title: "Power Plant Structural Engineering & Steel Detailing",
+      description:
+        "Structural engineering and steel detailing for power and energy projects — boiler structures, turbine buildings, bunker bays, CHP structures, pipe racks and access steel.",
+      keywords: ["Power Plant Structural Design", "Boiler Structure Detailing", "Turbine Building Steel Detailing"],
     },
   },
   {
-    slug: "steel",
-    title: "Steel Plants",
-    summary: "Heavy structures for integrated steel plants, mills, and material handling.",
+    slug: "cement-minerals",
+    title: "Cement & Minerals",
+    summary: "Preheater towers, mills, silos and packing plants detailed for cement and minerals processing.",
+    image: "/images/bim-model.jpg",
     imagePrompt:
-      "Interior of an integrated steel plant rolling mill, molten-orange glow, massive steel gantry structures and overhead cranes, sparks, photoreal, cinematic.",
+      "Cement plant preheater tower and conveyor galleries at golden hour, tall steel process structure, silos behind, photoreal, no people.",
     overview: [
-      "Integrated steel plants involve some of the heaviest structures in industry — mill buildings, crane gantries, and material handling running at high duty cycles.",
-      "We detail these structures for strength and fabricability, coordinating heavy connections and crane loads with the mechanical equipment they support.",
+      "Cement and minerals plants stack process equipment into tall, tightly framed structures — preheater towers, cement and coal mills, silos and packing plants.",
+      "We detail these process structures along with the conveyor galleries, transfer towers, hoppers and crushers that move material between them, including the equipment support steel throughout.",
     ],
-    applications: ["Mill & shop buildings", "Heavy crane gantry girders", "Furnace & caster structures", "Conveyor & material handling", "Stockyard structures"],
+    applications: [
+      "Preheater towers",
+      "Cement mills",
+      "Coal mills",
+      "Silos",
+      "Packing plants",
+      "Conveyor galleries",
+      "Transfer towers",
+      "Hoppers",
+      "Crushers",
+      "Equipment support structures",
+    ],
+    relatedServices: ["structural-engineering", "steel-detailing", "bim"],
+    seo: {
+      title: "Cement Plant Structural Detailing — Preheater Towers & Silos",
+      description:
+        "Steel detailing and structural engineering for cement and minerals plants: preheater towers, mills, silos, packing plants, conveyor galleries and transfer towers.",
+      keywords: ["Cement Plant Structural Design", "Preheater Tower Detailing", "Silo Structural Detailing"],
+    },
+  },
+  {
+    slug: "steel-metals",
+    title: "Steel & Metals",
+    summary: "Blast furnace, coke plant and process structures for integrated steel and metals works.",
+    image: "/images/tekla-model.jpg",
+    imagePrompt:
+      "Blast furnace and coke plant steel structures at an integrated steel works, heavy framing and gas cleaning plant, industrial haze, photoreal, no people.",
+    overview: [
+      "Integrated steel works carry some of the heaviest and hottest structures in industry, from blast furnace steelwork to coke plant framing.",
+      "STRUCON details these process structures with the material handling and conveyor steel, platforms, equipment supports and pipe racks that run through and around them.",
+    ],
+    applications: [
+      "Blast furnace structures",
+      "Coke plant structures",
+      "Material handling",
+      "Conveyor structures",
+      "Process structures",
+      "Platforms",
+      "Equipment supports",
+      "Pipe racks",
+    ],
     relatedServices: ["structural-engineering", "steel-detailing", "mechanical"],
     seo: {
-      title: "Steel Plant Structures — Heavy Industrial Steel Detailing",
-      description: "Structural design and detailing for integrated steel plants: mill buildings, crane gantries, and material handling structures engineered for heavy duty cycles.",
-      keywords: ["Steel Plant Structures", "Crane Gantry Girder Design", "Industrial Steel Structures"],
+      title: "Steel Plant Structures — Blast Furnace & Coke Plant Detailing",
+      description:
+        "Structural steel detailing for steel and metals plants: blast furnace structures, coke plant structures, conveyor and material handling steel, platforms and pipe racks.",
+      keywords: ["Blast Furnace Structural Detailing", "Steel Plant Structures", "Industrial Steel Structures"],
     },
   },
   {
-    slug: "oil-gas",
-    title: "Oil & Gas",
-    summary: "Onshore and offshore structures, pipe racks, and equipment supports.",
+    slug: "oil-gas-petrochemical",
+    title: "Oil, Gas & Petrochemical",
+    summary: "Pipe racks, process structures and equipment supports for refineries and petrochemical plants.",
+    image: "/images/refinery-sunset.jpg",
     imagePrompt:
-      "Oil & gas onshore facility with dense steel pipe racks and process modules against a blue sky, no people, industrial photography.",
+      "Refinery pipe racks and process structures at blue hour, multi-tier racks with piping and steel platforms, wide industrial landscape, photoreal, no people.",
     overview: [
-      "Oil & gas facilities are defined by their pipe racks, modules, and equipment supports — where structural, piping, and process disciplines must resolve together.",
-      "We deliver coordinated structures and pipe racks that carry the plant cleanly, using BIM to clear interferences before anything reaches the fabrication shop.",
+      "Refinery and petrochemical sites are defined by their pipe racks and the process structures, platforms and equipment supports threaded between them.",
+      "We detail that steelwork — including compressor and technological structures, access steel and the industrial buildings that sit alongside the process units — as one coordinated package.",
     ],
-    applications: ["Multi-tier pipe racks", "Equipment & vessel supports", "Technological & access structures", "Modules & skids", "Flare & stack supports"],
+    applications: [
+      "Pipe racks",
+      "Process structures",
+      "Platforms",
+      "Equipment supports",
+      "Compressor structures",
+      "Technological structures",
+      "Access structures",
+      "Industrial buildings",
+    ],
     relatedServices: ["structural-engineering", "steel-detailing", "process"],
     seo: {
-      title: "Oil & Gas Structures — Pipe Rack Design & Detailing",
-      description: "Structural engineering and detailing for oil & gas: multi-tier pipe racks, equipment supports, modules, and technological structures — BIM-coordinated.",
-      keywords: ["Pipe Rack Design", "Oil and Gas Structural Engineering", "Equipment Support Design"],
+      title: "Refinery & Petrochemical Structural Detailing — Pipe Racks",
+      description:
+        "Structural engineering and steel detailing for oil, gas and petrochemical projects: pipe racks, process and compressor structures, platforms and equipment supports.",
+      keywords: ["Pipe Rack Design", "Refinery Structural Design", "Petrochemical Steel Detailing"],
     },
   },
   {
-    slug: "petrochemical",
-    title: "Petrochemical",
-    summary: "Structural and process support for refineries and petrochemical complexes.",
+    slug: "material-handling",
+    title: "Material Handling",
+    summary: "Conveyor galleries, transfer towers, hoppers and chutes that move bulk material across a plant.",
     imagePrompt:
-      "Refinery / petrochemical complex at blue hour, distillation columns, pipe racks and steel platforms lit up, wide industrial landscape, photoreal.",
+      "Long steel conveyor gallery spanning between transfer towers at an industrial plant, stockyard behind, golden hour, photoreal, no people.",
     overview: [
-      "Refineries and petrochemical complexes combine dense piping, large equipment, and demanding process requirements across sprawling sites.",
-      "STRUCON supports these projects with coordinated structural and process engineering — pipe racks, platforms, and supports detailed for constructability and access.",
+      "Material handling steel runs the length of a plant: conveyor galleries and transfer towers carrying bulk material between process areas.",
+      "STRUCON details the galleries, hoppers, crushers and chutes together with their support structures and the maintenance platforms crews need to reach them.",
     ],
-    applications: ["Pipe racks & sleepers", "Column & vessel access platforms", "Heater & furnace structures", "Process P&IDs & documentation", "Tie-in & revamp structures"],
-    relatedServices: ["structural-engineering", "process", "steel-detailing"],
+    applications: [
+      "Conveyor galleries",
+      "Transfer towers",
+      "Hoppers",
+      "Crushers",
+      "Chutes",
+      "Galleries",
+      "Support structures",
+      "Maintenance platforms",
+    ],
+    relatedServices: ["steel-detailing", "structural-engineering", "mechanical"],
     seo: {
-      title: "Petrochemical & Refinery Structural Engineering",
-      description: "Structural and process engineering for refineries and petrochemical plants: pipe racks, access platforms, heater structures, and P&ID support.",
-      keywords: ["Refinery Structural Design", "Petrochemical Engineering Consultants", "Pipe Rack Design"],
+      title: "Material Handling Structures — Conveyor Galleries & Transfer Towers",
+      description:
+        "Steel detailing for material handling systems: conveyor galleries, transfer towers, hoppers, crushers, chutes, support structures and maintenance platforms.",
+      keywords: ["Conveyor Gallery Design", "Transfer Tower Detailing", "Material Handling Structures"],
     },
   },
   {
-    slug: "mining",
-    title: "Mining",
-    summary: "Conveyor galleries, transfer towers, and ore-handling steel structures.",
+    slug: "lime-process",
+    title: "Lime & Process Plants",
+    summary: "Process and hydration plant structures, silos, conveyors and access steel for lime production.",
+    image: "/images/refinery-dusk.jpg",
     imagePrompt:
-      "Long steel conveyor gallery and transfer tower at a mining site crossing rugged terrain, golden hour, industrial engineering photography, no people.",
+      "Lime and hydration plant process structures with silos and conveyors, steel framing around vessels, overcast industrial light, photoreal, no people.",
     overview: [
-      "Mining and mineral handling rely on long conveyor galleries, transfer towers, and stockyard structures — often over difficult terrain and live operations.",
-      "We detail these long-span structures for staged erection, keeping installation possible without halting the plant.",
+      "Lime and process plants combine vessels, silos and conveying equipment inside compact steel frames that have to stay accessible for operation and maintenance.",
+      "We detail the process and hydration plant structures with their silos, conveyors, equipment supports, platforms and access steel.",
     ],
-    applications: ["Conveyor galleries", "Transfer towers", "Stackers & reclaimers structures", "Crushing & screening structures", "Stockyard & silo structures"],
-    relatedServices: ["structural-engineering", "steel-detailing", "mechanical"],
+    applications: [
+      "Process structures",
+      "Lime plants",
+      "Hydration plants",
+      "Conveyors",
+      "Equipment supports",
+      "Platforms",
+      "Silos",
+      "Access structures",
+    ],
+    relatedServices: ["structural-engineering", "steel-detailing", "process"],
     seo: {
-      title: "Mining Structures — Conveyor Gallery & Transfer Tower Design",
-      description: "Structural design and detailing for mining and material handling: conveyor galleries, transfer towers, and ore-handling structures built for staged erection.",
-      keywords: ["Conveyor Gallery Design", "Transfer Tower Design", "Material Handling Structures"],
+      title: "Lime & Process Plant Structural Engineering",
+      description:
+        "Structural engineering and steel detailing for lime and process plants: process and hydration plant structures, silos, conveyors, equipment supports and access steel.",
+      keywords: ["Lime Plant Structural Design", "Process Plant Steel Detailing", "Industrial Process Structures"],
     },
   },
   {
-    slug: "infrastructure",
-    title: "Infrastructure",
-    summary: "Bridges, industrial buildings, and large-span structural systems.",
+    slug: "industrial-manufacturing",
+    title: "Industrial & Manufacturing",
+    summary: "Factory and steel buildings, equipment supports, mezzanines and structural modifications.",
+    image: "/images/tekla-hangar.jpg",
     imagePrompt:
-      "Large-span steel truss bridge or infrastructure structure under construction, engineers-eye view of connections, clean sky, photoreal.",
+      "Large steel factory building interior under construction, portal frames and mezzanine floor, roof lights, photoreal, no people.",
     overview: [
-      "Infrastructure work spans bridges, large-span roofs, and industrial buildings where geometry and connections drive the engineering.",
-      "We bring structural design and detailing together to deliver efficient, buildable large-span systems.",
+      "Manufacturing facilities need steel buildings that work around the equipment inside them rather than the other way round.",
+      "STRUCON details factory and industrial buildings, their equipment supports, platforms, mezzanines and miscellaneous steel, including structural modifications to facilities already in service.",
     ],
-    applications: ["Steel & composite bridges", "Large-span roofs & trusses", "Industrial & commercial buildings", "Airport & station structures", "Pedestrian structures"],
+    applications: [
+      "Factory buildings",
+      "Industrial structures",
+      "Equipment supports",
+      "Steel buildings",
+      "Platforms",
+      "Mezzanines",
+      "Miscellaneous steel",
+      "Structural modifications",
+    ],
     relatedServices: ["structural-engineering", "steel-detailing", "civil-engineering"],
     seo: {
-      title: "Infrastructure Structural Engineering & Steel Detailing",
-      description: "Structural engineering and steel detailing for infrastructure: bridges, large-span roofs, and industrial buildings — efficient, buildable systems.",
-      keywords: ["Infrastructure Steel Detailing", "Bridge Structural Design", "Large Span Steel Structures"],
+      title: "Industrial & Manufacturing Steel Buildings — Detailing & Design",
+      description:
+        "Structural engineering and steel detailing for factory and industrial buildings: equipment supports, platforms, mezzanines, miscellaneous steel and structural modifications.",
+      keywords: ["Industrial Steel Buildings", "Factory Building Design", "Mezzanine Structural Detailing"],
     },
   },
   {
-    slug: "warehousing",
-    title: "Warehousing",
-    summary: "Pre-engineered buildings and long-span warehouse structures.",
+    slug: "commercial-institutional",
+    title: "Commercial & Institutional",
+    summary: "Structural steel and RCC for commercial and institutional buildings, canopies and staircases.",
+    image: "/images/tekla-hangar.jpg",
     imagePrompt:
-      "Interior of a vast pre-engineered steel warehouse, repeating portal frames and purlins, skylights, clean and modern, wide angle, no people.",
+      "Structural steel frame of a commercial building with an architectural canopy and feature staircase, clean daylight, photoreal, no people.",
     overview: [
-      "Warehousing and logistics buildings reward efficient, repeatable structural systems — portal frames, purlins, and cladding support optimised for cost.",
-      "We design and detail PEB and long-span warehouse structures that are fast to fabricate and erect.",
+      "Commercial and institutional buildings put the structure on show, so steel and RCC have to be as tidy as they are efficient.",
+      "We handle commercial structures and institutional buildings in both structural steel and RCC, down to canopies, staircases, platforms and modifications to existing buildings.",
     ],
-    applications: ["Pre-engineered buildings (PEB)", "Long-span portal frames", "Mezzanine structures", "Crane-supporting warehouses", "Cladding & purlin systems"],
-    relatedServices: ["structural-engineering", "steel-detailing", "civil-engineering"],
-    seo: {
-      title: "Warehouse & PEB Structural Design & Detailing",
-      description: "Structural design and detailing for warehouses and pre-engineered buildings (PEB): portal frames, mezzanines, and long-span systems optimised for cost.",
-      keywords: ["PEB Structural Design", "Warehouse Steel Structures", "Pre-Engineered Building Design"],
-    },
-  },
-  {
-    slug: "industrial-buildings",
-    title: "Industrial Buildings",
-    summary: "Cement, lime, fertilizer, and chemical plant structures.",
-    imagePrompt:
-      "Cement plant with preheater tower and steel structures against a dramatic sky, conveyor lines, industrial photography, photoreal.",
-    overview: [
-      "Cement, lime, fertilizer, and chemical plants combine tall process structures, silos, and heavy material handling.",
-      "STRUCON has deep experience across these plants — detailing preheater towers, silos, and process structures to demanding schedules.",
+    applications: [
+      "Commercial structures",
+      "Institutional buildings",
+      "Structural steel",
+      "RCC structures",
+      "Canopies",
+      "Staircases",
+      "Platforms",
+      "Structural modifications",
     ],
-    applications: ["Preheater & process towers", "Silos & bunkers", "Kiln & mill structures", "Packing & dispatch structures", "Conveyor & handling structures"],
-    relatedServices: ["structural-engineering", "steel-detailing", "civil-engineering"],
+    relatedServices: ["structural-engineering", "civil-engineering", "steel-detailing"],
     seo: {
-      title: "Cement & Industrial Plant Structural Design",
-      description: "Structural design and steel detailing for cement, lime, fertilizer, and chemical plants: preheater towers, silos, and process structures.",
-      keywords: ["Cement Plant Structural Design", "Industrial Building Design", "Process Structure Detailing"],
+      title: "Commercial & Institutional Structural Engineering",
+      description:
+        "Structural steel and RCC engineering for commercial and institutional buildings — canopies, staircases, platforms and structural modifications to existing structures.",
+      keywords: ["Commercial Structural Design", "Institutional Building Structures", "RCC Structural Design"],
     },
   },
 ];
-
-export const getIndustry = (slug: string) => industries.find((i) => i.slug === slug);
-export const industrySlugs = () => industries.map((i) => i.slug);

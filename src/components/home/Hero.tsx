@@ -22,7 +22,7 @@ export function Hero() {
         muted
         loop
         playsInline
-        poster="/media/hero-poster.jpg"
+        poster="/images/refinery-sunset.jpg"
         aria-hidden="true"
       >
         <source src="/media/hero.mp4" type="video/mp4" />
@@ -41,9 +41,9 @@ export function Hero() {
           {site.positioning}
         </h1>
 
+        {/* The client's secondary tagline, used verbatim as the hero sub-line. */}
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80 md:text-xl">
-          Delivering multidisciplinary engineering, structural design, BIM, and steel
-          detailing solutions to global EPC companies.
+          {site.tagline}
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -61,7 +61,9 @@ export function Hero() {
           {[
             { k: "Established", v: site.founded },
             { k: "Steel Detailed", v: "6 Lac+ MT" },
-            { k: "Quality", v: site.certification },
+            // No certification claim is published (the client left ISO blank) — we show the
+            // design/detailing standards actually worked to instead.
+            { k: "Standards", v: "AISC · IS · EN" },
           ].map((item) => (
             <div key={item.k}>
               <dt className="font-mono text-[10px] uppercase tracking-label text-steel-200">{item.k}</dt>

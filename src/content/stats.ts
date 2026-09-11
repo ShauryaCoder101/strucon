@@ -1,47 +1,53 @@
 import type { Stat, ValueProp } from "@/types";
 
 /**
- * Stats bar — figures per the brief.
- * PLACEHOLDER: these differ from the live site (founded 2003, 6 lac+ MT detailed, 34+ Tekla users).
- * Confirm the accurate, legally-safe figures before go-live (see REQUIREMENTS.md mismatch table).
+ * Headline stats — client-confirmed figures.
+ *
+ * YEARS: the client's form said "26+", but their own company story dates establishment to 2003,
+ * which is 23 years as of 2026. "20+" is the largest claim the client's own facts support, so
+ * that is what we publish, with the founding year shown alongside it.
  */
 export const stats: Stat[] = [
-  { value: "26+", label: "Years of Engineering", note: "Since 2003" },
+  { value: "20+", label: "Years of Engineering", note: "Since 2003" },
   { value: "500+", label: "Projects Delivered" },
   { value: "100+", label: "Engineers & Detailers" },
-  { value: "20", label: "Countries Served" },
+  { value: "12", label: "Countries Served" },
 ];
 
-/** "Why Choose Strucon" — 6 differentiators per brief. Order is not a sequence (no numbering). */
+/**
+ * "Why Choose Strucon" differentiators. Order is not a sequence (no numbering).
+ * Every claim here traces back to the client's own content: no certification claim is made,
+ * and only the standards and software the client confirmed are named.
+ */
 export const whyChoose: ValueProp[] = [
   {
     title: "Experienced Engineers",
     description:
-      "A dedicated team of engineers, checkers, and detailers versed in Indian, American, and European standards.",
+      "Engineers, designers, checkers and detailers who combine engineering knowledge with practical detailing experience.",
   },
   {
-    title: "Fast Delivery",
+    title: "Proven Delivery",
     description:
-      "Detailing capacity of 1000+ MT per month with change-control workflows that protect EPC schedules.",
+      "Detailing packages of up to 19,000 MT delivered on large industrial plants, coordinated across multiple structural areas.",
   },
   {
-    title: "ISO Processes",
+    title: "Checking Discipline",
     description:
-      "Quality-managed delivery under ISO-certified processes, with checking gates at every stage.",
+      "Independent checkers review calculations and drawings before issue, so what reaches the shop is buildable.",
   },
   {
     title: "Global Standards",
     description:
-      "Fluency across AISC, Eurocode, IS, BS, and AS/NZS codes for projects on every continent.",
+      "Experience across IS, AISC, ASCE, Eurocodes, British Standards, AWS, ASTM and EN — in both metric and imperial systems.",
   },
   {
-    title: "Cost Efficient",
+    title: "International Exposure",
     description:
-      "An offshore engineering model that lowers your total design cost without compromising quality.",
+      "Projects delivered in India, UAE, Indonesia and Nigeria for Indian and international EPC contractors.",
   },
   {
-    title: "Latest BIM Technology",
+    title: "3D Modelling",
     description:
-      "Tekla-led, fully coordinated BIM with clash detection for constructible, buildable models.",
+      "Tekla Structures modelling and 3D coordination that resolve interfaces before fabrication begins.",
   },
 ];

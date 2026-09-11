@@ -17,7 +17,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 export const metadata: Metadata = buildMetadata({
   title: "About STRUCON — Structural Engineering Since 2003",
   description:
-    "STRUCON Consulting is an ISO-certified Indian engineering consultancy delivering structural design, steel detailing, and BIM to global EPC companies since 2003.",
+    "STRUCON Consulting has delivered civil and structural engineering, steel detailing and 3D modelling for industrial and commercial projects in India and international markets since 2003.",
   path: "/about",
   keywords: ["Structural Engineering Consultant", "Steel Detailing Company", "Engineering Outsourcing"],
 });
@@ -31,7 +31,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="An engineering partner that behaves like your own team"
-        intro="Since 2003, STRUCON has delivered structural, steel detailing, and BIM services to EPC companies worldwide — fast, accurate, and accountable."
+        intro="Since 2003, STRUCON has provided dependable engineering and detailing solutions for complex industrial and commercial structures."
         trail={[{ name: "Home", path: "/" }, { name: "About", path: "/about" }]}
       />
 
@@ -40,6 +40,14 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-5">
             {about.story.map((p) => <p key={p.slice(0, 20)} className="max-w-prose text-lg leading-relaxed text-slate">{p}</p>)}
+
+            {/* The closing line of the client's story, set apart as a pull-quote. */}
+            <figure className="mt-8 max-w-prose border-l-2 border-accent pl-6">
+              <p className="eyebrow">{about.objective.lead}</p>
+              <blockquote className="mt-3 font-display text-xl leading-snug text-ink md:text-2xl">
+                {about.objective.quote}
+              </blockquote>
+            </figure>
           </div>
           <MediaFrame src={undefined} alt="STRUCON engineering office" prompt="Engineers collaborating over structural drawings and Tekla models in a modern industrial engineering office, photoreal, no logos." className="aspect-[4/3] w-full" />
         </div>
@@ -86,14 +94,16 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Certifications */}
-      <Section tone="paper" eyebrow="Quality & certifications" title="Standards we work to">
+      {/* Design & detailing standards worked to — deliberately NOT presented as certifications held. */}
+      <Section tone="paper" eyebrow="Quality" title="Standards we work to">
         <div className="flex flex-wrap gap-3">
-          {about.certifications.map((c) => (
+          {about.standards.map((c) => (
             <span key={c} className="border border-line bg-white px-4 py-2 font-mono text-sm text-ink">{c}</span>
           ))}
         </div>
-        <p className="mt-4 text-sm text-slate-soft">Note: ISO version shown is per the legacy site — confirm current certification before publishing.</p>
+        <p className="mt-4 max-w-prose text-sm text-slate-soft">
+          These are the design and detailing standards our engineers work to on client projects, in both metric and imperial systems.
+        </p>
       </Section>
 
       {/* Leadership preview */}
