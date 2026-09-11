@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { site, offices, mainNav, ctas } from "@/content/site";
 import { getServices } from "@/lib/content";
+import { REVIEW_MODE } from "@/content/review";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -89,9 +90,15 @@ export function Footer() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-white/50 md:flex-row">
           <p>© {year} {site.legalName}. All rights reserved.</p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms of Use</Link>
+            {/* Review-only: the outstanding-content checklist. Disappears at go-live. */}
+            {REVIEW_MODE && (
+              <Link href="/review" className="font-mono text-[11px] uppercase tracking-label text-accent hover:text-white">
+                Content status (client review)
+              </Link>
+            )}
           </div>
         </Container>
       </div>

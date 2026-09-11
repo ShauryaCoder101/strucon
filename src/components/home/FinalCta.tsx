@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Button, ArrowRight } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { TbdNote } from "@/components/shared/Tbd";
 import { ctas } from "@/content/site";
 
 /** Closing conversion banner. */
@@ -29,6 +30,12 @@ export function FinalCta() {
               {ctas.profile.label}
             </Button>
           </div>
+
+          {/* Same outstanding item as CtaBanner: no company profile PDF has been supplied. */}
+          <TbdNote tone="dark" className="mt-6">
+            Company profile PDF not yet supplied &mdash; this button currently opens the enquiry form
+            instead of downloading a document.
+          </TbdNote>
         </Reveal>
       </Container>
     </section>

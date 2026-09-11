@@ -5,6 +5,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
+import { TbdBlock, TbdNote } from "@/components/shared/Tbd";
+import { REVIEW_MODE } from "@/content/review";
 
 import { getClients, getTestimonials } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -41,11 +43,20 @@ export default function ClientsPage() {
             </div>
           ))}
         </div>
+        {/* The names are real; the artwork is not. Flagged so the text-only strip is not
+            mistaken for the finished design. */}
+        <TbdNote className="mt-6">
+          Client logo image files have not been supplied, so each client is shown as text. Supply
+          rights-cleared logo artwork (SVG or transparent PNG) plus written permission to display each mark.
+        </TbdNote>
       </Section>
 
-      {/* Testimonials — omitted entirely when none are supplied. No invented quotes are published. */}
-      {testimonials.length > 0 && (
-        <Section tone="paper" eyebrow="In their words" title="What clients say">
+      {/* Testimonials. No invented quotes are ever published: during client review the section
+          still renders its heading with a panel stating exactly what is outstanding, and once
+          review mode is off it disappears again entirely rather than leaving an empty heading. */}
+      {(testimonials.length > 0 || REVIEW_MODE) && (
+      <Section tone="paper" eyebrow="In their words" title="What clients say">
+        {testimonials.length > 0 ? (
           <div className="grid gap-6 lg:grid-cols-3">
             {testimonials.map((t, i) => (
               <Reveal key={i} delay={i * 80}>
@@ -60,7 +71,23 @@ export default function ClientsPage() {
               </Reveal>
             ))}
           </div>
-        </Section>
+        ) : (
+          <TbdBlock title="Client testimonials">
+            <p>
+              No approved client quotes have been supplied yet, so nothing is published here. We will not
+              write testimonials on a client&apos;s behalf.
+            </p>
+            <p className="mt-3">Each testimonial needs all five of the following before it can go live:</p>
+            <ul className="mt-3 space-y-1.5">
+              <li>1. The quote itself, in the client&apos;s own words</li>
+              <li>2. The name of the person quoted</li>
+              <li>3. Their job title</li>
+              <li>4. Their company</li>
+              <li>5. Written permission to publish the quote and attribution</li>
+            </ul>
+          </TbdBlock>
+        )}
+      </Section>
       )}
 
       <CtaBanner title="Become our next success story." />

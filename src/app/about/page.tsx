@@ -7,6 +7,7 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
+import { TbdNote } from "@/components/shared/Tbd";
 
 import { about } from "@/content/about";
 import { getLeadership } from "@/lib/content";
@@ -104,6 +105,9 @@ export default function AboutPage() {
         <p className="mt-4 max-w-prose text-sm text-slate-soft">
           These are the design and detailing standards our engineers work to on client projects, in both metric and imperial systems.
         </p>
+        <TbdNote className="mt-5">
+          Certifications held (e.g. ISO 9001) are still to be confirmed &mdash; none are claimed on this site yet.
+        </TbdNote>
       </Section>
 
       {/* Leadership preview */}

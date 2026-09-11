@@ -8,6 +8,7 @@ import { ArrowRight } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { CtaBanner } from "@/components/shared/CtaBanner";
+import { TbdBlock } from "@/components/shared/Tbd";
 
 import { getPosts, getPost, postSlugs } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -55,6 +56,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Body */}
       <Section tone="white">
+        {/* Approval notice sits above the article, on the light section background. */}
+        <TbdBlock title="Draft article — pending approval" className="mx-auto mb-10 max-w-prose">
+            <p>
+              This article was drafted by us as seed content. The client has not reviewed or approved
+              the text, and no byline has been confirmed &mdash; the author shown is a placeholder.
+            </p>
+            <p className="mt-3">
+              Confirm the technical accuracy, approve the wording, and nominate the author (or ask us
+              to remove the article) before go-live.
+            </p>
+        </TbdBlock>
+
         <MediaFrame src={undefined} alt={post.title} prompt={post.coverPrompt} className="aspect-[21/9] w-full" priority />
         <article className="mx-auto mt-12 max-w-prose">
           {post.body.map((block, i) => {

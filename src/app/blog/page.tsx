@@ -7,6 +7,7 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
+import { TbdBlock } from "@/components/shared/Tbd";
 
 import { getPosts } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -36,6 +37,19 @@ export default function BlogIndexPage() {
       />
 
       <Section tone="white">
+        {/* One approval notice above the whole grid — all three seed articles are ours, not the client's. */}
+        <TbdBlock title="Draft articles — pending approval" className="mb-10">
+          <p>
+            All three articles below were drafted by us as seed content to show how the Insights
+            section works. None has been reviewed or approved by the client, and no byline has been
+            confirmed &mdash; the authors shown are placeholders.
+          </p>
+          <p className="mt-3">
+            Approve, edit, or ask us to remove each article, and confirm who should be credited as
+            the author, before go-live.
+          </p>
+        </TbdBlock>
+
         {/* Featured */}
         <a href={`/blog/${featured.slug}`} className="group grid overflow-hidden rounded-sm border border-line bg-white transition-shadow hover:shadow-xl lg:grid-cols-2">
           <MediaFrame src={undefined} alt={featured.title} prompt={featured.coverPrompt} className="aspect-[16/10] w-full lg:aspect-auto lg:h-full" rounded={false} />

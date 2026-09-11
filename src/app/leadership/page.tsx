@@ -6,6 +6,7 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
+import { TbdNote } from "@/components/shared/Tbd";
 
 import { getTeam } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -40,8 +41,13 @@ export default function LeadershipPage() {
                 <MediaFrame src={undefined} alt={m.name} prompt={m.photoPrompt} className="aspect-[4/5] w-full" />
                 <h2 className="mt-4 font-display text-lg font-semibold text-ink">{m.name}</h2>
                 <p className="font-mono text-xs uppercase tracking-label text-steel">{m.role}</p>
-                {/* Bios are only published where the individual supplied one. */}
-                {m.bio && <p className="mt-3 text-sm leading-relaxed text-slate">{m.bio}</p>}
+                {/* Bios are only published where the individual supplied one;
+                    the rest are flagged as outstanding rather than silently blank. */}
+                {m.bio ? (
+                  <p className="mt-3 text-sm leading-relaxed text-slate">{m.bio}</p>
+                ) : (
+                  <TbdNote className="mt-3">Biography to be supplied.</TbdNote>
+                )}
                 {m.linkedin && (
                   <a href={m.linkedin} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-ink underline hover:text-accent">LinkedIn</a>
                 )}
@@ -49,7 +55,9 @@ export default function LeadershipPage() {
             </Reveal>
           ))}
         </div>
-        <p className="mt-10 text-sm text-slate-soft">Headshots to follow — photography is being arranged.</p>
+        <TbdNote className="mt-10">
+          Headshots to be supplied for all four directors — photography is still to be arranged.
+        </TbdNote>
       </Section>
 
       <CtaBanner title="Want to join this team?" primary={{ label: "View open roles", href: "/careers" }} secondary={null} />

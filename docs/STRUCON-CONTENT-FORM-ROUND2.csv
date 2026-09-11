@@ -1,0 +1,42 @@
+﻿S.No,Area,What we still need from you,HOW IT LOOKS ON THE WEBSITE RIGHT NOW,YOUR ANSWER  (please type here),Priority,Notes
+e.g.,Certification,Current ISO certificate,Not shown on the site,"ISO 9001:2015, issued by TUV, valid to 12-2027",Critical,Example of the detail we need.
+PART 1 · STILL OUTSTANDING FROM THE FIRST FORM,,,,,,
+1,Certification,Current ISO certificate,NOT SHOWN. We removed every ISO claim from the site because this was left blank.,,Critical,"Give the certificate you hold TODAY (e.g. ISO 9001:2015), the certifying body and the expiry date. Until then the site claims no certification at all."
+2,Certification,Any other certifications held,Not shown.,,High,"Only genuine certificates. Design CODES you work to (IS, AISC, Eurocodes) are already listed separately."
+3,Brand,High-resolution logo,The site shows a temporary 'S' wordmark we designed.,,Critical,"SVG, or a large PNG with transparent background. Also a white version for dark backgrounds."
+4,Brand,Official brand colours,We matched navy + orange from your old logo.,,High,"Hex codes, or your brand guidelines document."
+5,Homepage,Hero background video,Showing your refinery photograph instead.,,Critical,"10-20 seconds, no sound, no captions, under ~3 MB. Steel erection, plant, or a model flythrough."
+6,Photos,Project photos & galleries,Only 7 photos received. Most of the 10 case studies show a grey TBD box.,,Critical,"3-5 photos per project - site photos, erection shots, model screenshots. Name each file with its project."
+7,Photos,Team headshots (4 people),All four directors show a grey TBD box.,,Critical,"Head-and-shoulders, plain background, same style for all four."
+8,Photos,Service page photos,3 of 8 services now have a real image; 5 still show TBD.,,High,One image per service.
+9,Photos,Industry photos,Some sectors have an image; the rest show TBD.,,High,One image per sector.
+10,Photos,Office / facility photos,Shows TBD.,,Medium,"Your office, workstations, team at work."
+11,Clients,Client logo image files,Client names appear as TEXT only - no logos.,,Critical,"PNG with transparent background, or SVG. Only logos you have permission to display."
+12,Clients,Testimonial 1,The testimonials section now says TBD.,,High,Quote + person's name + job title + company. Written permission needed.
+13,Clients,Testimonial 2,As above.,,High,As above.
+14,Clients,Testimonial 3,As above.,,High,As above.
+15,Legal,Privacy Policy - approved text,"A draft is shown, flagged on the page as awaiting legal review.",,Critical,Must be approved by your lawyer. We cannot give legal advice on it.
+16,Legal,Terms of Use - approved text,As above.,,Critical,As above.
+17,Marketing,Company profile PDF,The 'Download Company Profile' button has no file behind it.,,High,The button cannot work until you send this.
+18,Blog,Approve the 3 articles,All three are marked on the site as 'Draft - pending approval'.,,Medium,"We wrote them. Confirm the technical claims are ones you are happy to publish, or tell us what to change."
+19,Blog,Author name for articles,Currently 'STRUCON Engineering Team'.,,Medium,"A real person's name, or keep the team name?"
+20,Blog,Blog cover images,Show TBD.,,Low,Or we can source these.
+21,Leadership,More people to add?,Four directors are shown.,,Medium,Tell us if anyone else should appear.
+22,Technical,Inbox for website enquiries,Forms work but do NOT yet deliver to anyone.,,Critical,"Which address should receive enquiries from the website - info@, aly@, or another?"
+23,Technical,Google Analytics (GA4),Not set up.,,High,So you can see visitor and enquiry numbers.
+24,Technical,Google Search Console,Not set up.,,High,So Google indexes the new pages.
+25,Footer,Other social profiles,Only LinkedIn is shown.,,Low,"YouTube / Instagram / Facebook / X, if used."
+PART 2 · NEW QUESTIONS RAISED BY YOUR ANSWERS  (two of these are factual conflicts - please read),,,,,,
+26,Company,Founded 2003 or 2008?,The site says EST. 2003.,,Critical,"CONFLICT: your company story says established 2003, but the year-founded box said 24-04-2008 and your CIN (U24319HR2008PTC037858) shows incorporation in 2008. Likely the business began in 2003 and the Private Limited was incorporated in 2008 - please confirm the exact wording we may use."
+27,Company,Years of experience figure,The site says 20+ Years - Since 2003.,,Critical,"CONFLICT: you wrote 26+, but 2003 to 2026 is 23 years, so 26+ cannot be supported if a client asks. We published a conservative 20+. Confirm 20+, or give the correct figure and the year it counts from."
+28,Clients,The 8 unconfirmed client names,NOT shown on the site.,,Critical,"You listed Samsung Engineering, Technip, Siemens, Engineers India Limited, Holtec, Alstom, Lanco and Holcim as POTENTIAL organisations. We left them off. Confirm which are genuine clients we may name. The other 7 (L&T, Reliance, Jaypee, Punj Lloyd, Paul Wurth, JSW, Enexco) are already live because your own case studies name them."
+29,Careers,Careers email - which one?,The site uses careers@strucon.net.,,High,"CONFLICT: one answer said aly@strucon.net, your careers text said careers@strucon.net. Which is correct?"
+30,Leadership,Bio - Owais Ahmad (Director),Name and title only; the site says 'Biography to be supplied'.,,High,About 40-60 words.
+31,Leadership,Bio - Rukhsada Khatoon (Director),Name and title only.,,High,About 40-60 words.
+32,Leadership,Bio - Yasir Ali (Engineering Leadership),Name and title only.,,High,About 40-60 words. (Mohammad Shaheem's bio was supplied and is already live.)
+33,Leadership,LinkedIn profiles for the four directors,None shown.,,Medium,"Optional, but adds credibility."
+34,Projects,Client for Bakreswar Thermal Power Station,Shows 'Not disclosed'.,,High,"No client was named for this project. Give the client, or confirm it should stay undisclosed."
+35,Projects,"Client for NOM Cement Terminal, Nigeria",Shows 'Not disclosed'.,,High,As above.
+36,Projects,Challenge / Solution / Outcome for 5 projects,"Kochi, Nagarjuna, Sharjah, NOM and JSW show scope and figures only - no story.",,High,"You gave the full story for Bakreswar, Sasan, Paradip, Baga and Semen Andalas. The other five read thinner. 3-4 sentences each would strengthen them considerably."
+37,Projects,Software & standards per project,Not shown per project.,,Medium,"You told us what the practice uses overall. If you can say which software and which code applied per project, we will add it."
+38,Contact,Business hours,The site shows 6:00 - 23:00 IST.,,Medium,"Please confirm - that is a 17-hour day, which may be a typo."

@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Button, ArrowRight } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { TbdNote } from "@/components/shared/Tbd";
 import { ctas } from "@/content/site";
 
 type CtaLink = { label: string; href: string };
@@ -19,6 +20,9 @@ export function CtaBanner({
   primary?: CtaLink;
   secondary?: CtaLink | null;
 }) {
+  // True when the secondary button is the (as yet unbuilt) company-profile download.
+  const isProfileCta = secondary?.href === ctas.profile.href;
+
   return (
     <section className="relative overflow-hidden bg-ink py-24 text-white">
       <div className="blueprint absolute inset-0 opacity-30" aria-hidden="true" />
@@ -39,6 +43,15 @@ export function CtaBanner({
               </Button>
             )}
           </div>
+          {/* The "Download Company Profile" CTA currently routes to the contact form because no
+              profile PDF exists yet. Flagged wherever that CTA appears; the button itself is
+              untouched and still works. */}
+          {isProfileCta && (
+            <TbdNote tone="dark" className="mt-6">
+              Company profile PDF not yet supplied &mdash; this button currently opens the enquiry form
+              instead of downloading a document.
+            </TbdNote>
+          )}
         </Reveal>
       </Container>
     </section>
