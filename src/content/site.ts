@@ -2,41 +2,59 @@ import type { NavItem, Office } from "@/types";
 
 /**
  * Global site configuration — the single place to edit company-wide facts.
- * All values below are client-confirmed (content update form, Sept 2026).
+ * All values below are client-confirmed (content update form round 2, Oct 2026).
  *
- * NOTE ON CERTIFICATION: the client left the ISO certification question BLANK, so no ISO
- * claim is published anywhere on this site. Design/detailing STANDARDS the client confirmed
- * they work to live in src/content/about.ts → `standards`. Do not reintroduce a
- * `certification` field here without a written, current certificate from the client.
+ * NOTE ON CERTIFICATION: the client has now confirmed ISO 9001:2015 in writing (round 2,
+ * row 5) and answered "NA" to any further certifications (row 6), so `certification` below
+ * is the ONLY certification claim published anywhere on this site. Design/detailing
+ * STANDARDS the client works to are a separate thing and live in
+ * src/content/about.ts → `standards`. Do not conflate the two, and do not add further
+ * certifications without a written, current certificate from the client.
+ *
+ * NOTE ON FOUNDING YEAR: the client confirmed 2008 as the founded/incorporation year
+ * (rows 4 and 10: "incorporated in 2008, 18years"), so `founded` is 2008 and the stats bar
+ * reads "18+ Years of Engineering". Their own story copy (src/content/about.ts → `story`,
+ * supplied verbatim) still opens "Since 2003". That discrepancy is THEIRS and is deliberate
+ * here — do not silently "fix" either value; raise it with the client instead.
  */
 export const site = {
   name: "STRUCON",
   legalName: "STRUCON Consulting Private Limited",
-  tagline:
-    "Innovative Structural Engineering • BIM • Steel Detailing • Project Engineering for Industrial & Infrastructure Projects Worldwide",
-  // Marketing headline — client-approved positioning line.
-  positioning: "Engineering Structures. Detailed with Precision.",
+  // Client-approved tagline (round 2, row 3).
+  tagline: "Precision. Performance. Progress.",
+  // Marketing headline — client-approved positioning line (round 2, row 2).
+  positioning: "Engineering Excellence Without Boundaries.",
   url: "https://www.strucon.net",
-  // The company story (about.ts) states establishment in 2003; the CIN is a later 2008
-  // incorporation of the private limited entity. 2003 is the date used publicly.
-  founded: "2003",
-  // Corporate Identity Number — shown in the footer for statutory transparency.
-  cin: "U24319HR2008PTC037858",
+  // Incorporation year, client-confirmed (round 2, row 4). See the founding-year note above:
+  // the client's own story copy still says "Since 2003".
+  founded: "2008",
+  // Quality certification held — client-confirmed (round 2, row 5). The only one claimed.
+  certification: "ISO 9001:2015",
+  // Statutory registration numbers — client-supplied (round 2, row 69). The CIN supersedes
+  // the value given in round 1 (U24319HR2008PTC037858); both are shown in the footer.
+  cin: "U74140HR2008PTC037858",
+  gst: "09AAMCS1907R1ZL",
+  // General address — client-confirmed unchanged (round 2, row 22).
   email: "info@strucon.net",
   emailSecondary: "owais@strucon.net",
   emailSales: "aly@strucon.net",
-  emailCareers: "careers@strucon.net",
   phone: "+91-120-4740796",
   phoneHref: "tel:+911204740796",
-  mobile: "+91 98100 89862",
-  mobileHref: "tel:+919810089862",
-  whatsapp: "+919810089862",
-  whatsappHref: "https://wa.me/919810089862",
+  // No additional mobile number, WhatsApp line or published business hours: the client
+  // answered "na" to all three (round 2, rows 20, 21, 27). LinkedIn is the only social
+  // profile they hold (row 26).
   linkedin: "https://www.linkedin.com/company/strucon-consulting-private-limited/",
-  businessHours: "6:00 – 23:00",
   description:
     "STRUCON Consulting Private Limited delivers structural engineering, BIM, steel detailing, and project engineering for industrial and infrastructure projects in India and international markets.",
 };
+
+/**
+ * Where form submissions and direct emails are routed. Client-specified in round 2:
+ * website enquiries to owais@ and aly@ (row 73); job applications to info@ and owais@
+ * (row 53, replacing the former careers@ address, which the client did not confirm).
+ */
+export const enquiryEmails = [site.emailSecondary, site.emailSales];
+export const applicationEmails = [site.email, site.emailSecondary];
 
 export const offices: Office[] = [
   {

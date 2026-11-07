@@ -37,7 +37,6 @@ export const getTeam = () => readCollection<TeamMember[]>("team", teamSeed);
 export const getLeadership = () => getTeam().filter((m) => m.leadership);
 
 export const getJobs = () => readCollection<Job[]>("jobs", jobsSeed);
-export const getJobDepartments = () => Array.from(new Set(getJobs().map((j) => j.department)));
 
 export const getPosts = () => readCollection<BlogPost[]>("blog", postsSeed);
 export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug);

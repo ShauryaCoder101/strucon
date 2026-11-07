@@ -1,44 +1,84 @@
 import { Section } from "@/components/ui/Section";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { TbdBlock } from "@/components/shared/Tbd";
-import { formatDate } from "@/lib/utils";
+import type { LegalBlock, LegalDoc } from "@/content/legal";
 
-type LegalDoc = { updated: string; intro: string; sections: { heading: string; body: string[] }[] };
-
-/** Shared renderer for Privacy / Terms. */
+/**
+ * Shared renderer for Privacy / Terms.
+ *
+ * The documents in src/content/legal.ts are the client's own approved copy, so this renders
+ * them as written: their title line, their "Last Updated" line, their numbered headings, their
+ * sub-headings, lists and address blocks. The round-1 "Awaiting legal review" annotation is
+ * gone — the text is approved — and no disclaimer of ours is added on top of it.
+ */
 export function LegalLayout({ title, doc, trailName }: { title: string; doc: LegalDoc; trailName: string }) {
   return (
     <>
       <PageHeader
         eyebrow="Legal"
         title={title}
-        intro={`Last updated ${formatDate(doc.updated)}.`}
+        intro={doc.updatedLabel}
         trail={[{ name: "Home", path: "/" }, { name: trailName, path: "#" }]}
       />
       <Section tone="white">
         <div className="mx-auto max-w-prose">
-          <p className="text-lg leading-relaxed text-slate">{doc.intro}</p>
-          {/* Replaces the previous grey caveat box: the same warning, but unmistakably a review
-              annotation so nobody reads this wording as settled policy. */}
-          <TbdBlock title="Awaiting legal review" className="mt-6">
-            <p>
-              The wording on this page is unapproved placeholder text drafted by us. It has not been
-              written or checked by a lawyer, does not constitute legal advice, and must not be relied
-              upon by anyone &mdash; visitors or the company.
-            </p>
-            <p className="mt-3">
-              The client&apos;s legal counsel must review, correct, and approve this document before the
-              site goes live.
-            </p>
-          </TbdBlock>
+          {doc.intro.map((b, i) => (
+            <Block key={i} block={b} lead={b.type === "p" && i === 0} />
+          ))}
+
           {doc.sections.map((s) => (
             <section key={s.heading} className="mt-10">
               <h2 className="font-display text-xl font-bold text-ink">{s.heading}</h2>
-              {s.body.map((p) => <p key={p.slice(0, 20)} className="mt-3 leading-relaxed text-slate">{p}</p>)}
+              {s.body.map((b, i) => (
+                <Block key={i} block={b} />
+              ))}
             </section>
           ))}
+
+          <p className="mt-12 border-t border-line pt-6 text-sm text-slate-soft">{doc.notice}</p>
         </div>
       </Section>
     </>
   );
+}
+
+/** One block of the client's copy. `lead` sets the opening paragraph slightly larger. */
+function Block({ block, lead = false }: { block: LegalBlock; lead?: boolean }) {
+  switch (block.type) {
+    case "p":
+      return (
+        <p className={lead ? "text-lg leading-relaxed text-slate" : "mt-3 leading-relaxed text-slate"}>
+          {block.text}
+        </p>
+      );
+    case "h3":
+      return (
+        <h3 className="mt-6 font-mono text-xs uppercase tracking-label text-steel">{block.text}</h3>
+      );
+    case "ul":
+      return (
+        <ul className="mt-3 space-y-2 leading-relaxed text-slate">
+          {block.items.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden="true" />
+              <span className="min-w-0">{item}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    case "address":
+      return (
+        <div className="mt-4">
+          {block.label && (
+            <p className="font-mono text-xs uppercase tracking-label text-steel">{block.label}</p>
+          )}
+          <address className="mt-1 not-italic leading-relaxed text-slate">
+            {block.lines.map((l) => (
+              <span key={l} className="block">
+                {l}
+              </span>
+            ))}
+          </address>
+        </div>
+      );
+  }
 }

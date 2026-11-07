@@ -7,7 +7,6 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CtaBanner } from "@/components/shared/CtaBanner";
-import { TbdNote } from "@/components/shared/Tbd";
 
 import { about } from "@/content/about";
 import { getLeadership } from "@/lib/content";
@@ -15,10 +14,16 @@ import { stats } from "@/content/stats";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 
+/**
+ * NOTE ON YEARS: the client confirmed 2008 as the incorporation year (round 2, rows 4 and 10)
+ * while the story copy they supplied for this page still opens "Since 2003". Our own copy
+ * below is therefore year-neutral, so the only year on the page is the one inside their own
+ * verbatim wording. See the founding-year note in src/content/site.ts.
+ */
 export const metadata: Metadata = buildMetadata({
-  title: "About STRUCON — Structural Engineering Since 2003",
+  title: "About STRUCON — Structural Engineering & Steel Detailing",
   description:
-    "STRUCON Consulting has delivered civil and structural engineering, steel detailing and 3D modelling for industrial and commercial projects in India and international markets since 2003.",
+    "STRUCON Consulting delivers civil and structural engineering, steel detailing and 3D modelling for industrial and commercial projects in India and international markets.",
   path: "/about",
   keywords: ["Structural Engineering Consultant", "Steel Detailing Company", "Engineering Outsourcing"],
 });
@@ -32,23 +37,15 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="An engineering partner that behaves like your own team"
-        intro="Since 2003, STRUCON has provided dependable engineering and detailing solutions for complex industrial and commercial structures."
+        intro="STRUCON provides dependable engineering and detailing solutions for complex industrial and commercial structures."
         trail={[{ name: "Home", path: "/" }, { name: "About", path: "/about" }]}
       />
 
-      {/* Story */}
-      <Section tone="white" eyebrow="Our story" title="Two decades of industrial engineering">
+      {/* Story — heading and body are both the client's own words (about.ts). */}
+      <Section tone="white" eyebrow="Our story" title={about.storyHeading}>
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-5">
             {about.story.map((p) => <p key={p.slice(0, 20)} className="max-w-prose text-lg leading-relaxed text-slate">{p}</p>)}
-
-            {/* The closing line of the client's story, set apart as a pull-quote. */}
-            <figure className="mt-8 max-w-prose border-l-2 border-accent pl-6">
-              <p className="eyebrow">{about.objective.lead}</p>
-              <blockquote className="mt-3 font-display text-xl leading-snug text-ink md:text-2xl">
-                {about.objective.quote}
-              </blockquote>
-            </figure>
           </div>
           <MediaFrame src={undefined} alt="STRUCON engineering office" prompt="Engineers collaborating over structural drawings and Tekla models in a modern industrial engineering office, photoreal, no logos." className="aspect-[4/3] w-full" />
         </div>
@@ -95,19 +92,34 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Design & detailing standards worked to — deliberately NOT presented as certifications held. */}
-      <Section tone="paper" eyebrow="Quality" title="Standards we work to">
-        <div className="flex flex-wrap gap-3">
-          {about.standards.map((c) => (
-            <span key={c} className="border border-line bg-white px-4 py-2 font-mono text-sm text-ink">{c}</span>
-          ))}
+      {/* Quality. Two separately-labelled lists: certifications HELD, and the design/detailing
+          standards worked to. They are deliberately not merged — see the note in about.ts. */}
+      <Section tone="paper" eyebrow="Quality" title="Certification & standards">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_1fr]">
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-label text-steel">Certifications held</h3>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {about.certifications.map((c) => (
+                <span key={c} className="border-l-2 border-accent bg-white px-4 py-3 font-display text-lg font-semibold text-ink">{c}</span>
+              ))}
+            </div>
+            <p className="mt-4 max-w-prose text-sm text-slate-soft">
+              Our quality management system is certified to ISO 9001:2015.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-xs uppercase tracking-label text-steel">Standards we work to</h3>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {about.standards.map((c) => (
+                <span key={c} className="border border-line bg-white px-4 py-2 font-mono text-sm text-ink">{c}</span>
+              ))}
+            </div>
+            <p className="mt-4 max-w-prose text-sm text-slate-soft">
+              These are the design and detailing standards our engineers work to on client projects, in both metric and imperial systems. They are design codes, not certifications.
+            </p>
+          </div>
         </div>
-        <p className="mt-4 max-w-prose text-sm text-slate-soft">
-          These are the design and detailing standards our engineers work to on client projects, in both metric and imperial systems.
-        </p>
-        <TbdNote className="mt-5">
-          Certifications held (e.g. ISO 9001) are still to be confirmed &mdash; none are claimed on this site yet.
-        </TbdNote>
       </Section>
 
       {/* Leadership preview */}

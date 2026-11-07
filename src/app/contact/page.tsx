@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { LeadForm } from "@/components/forms/LeadForm";
 
-import { site, offices } from "@/content/site";
+import { site, offices, enquiryEmails } from "@/content/site";
 import { formConfig, type FormIntent } from "@/content/forms";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
@@ -55,20 +55,33 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
                 </div>
               ))}
 
+              {/* Client-confirmed contact routes only. No additional mobile, no WhatsApp and no
+                  published business hours — the client answered "na" to all three (round 2,
+                  rows 20, 21, 27). */}
               <div className="grid gap-4 border-t border-line pt-6 sm:grid-cols-2">
                 <ContactRow label="Phone" value={site.phone} href={site.phoneHref} />
-                <ContactRow label="Mobile" value={site.mobile} href={site.mobileHref} />
                 <ContactRow label="General enquiries" value={site.email} href={`mailto:${site.email}`} />
-                <ContactRow label="Direct" value={site.emailSecondary} href={`mailto:${site.emailSecondary}`} />
-                <ContactRow label="Sales / RFP" value={site.emailSales} href={`mailto:${site.emailSales}`} />
-                <ContactRow label="Careers" value={site.emailCareers} href={`mailto:${site.emailCareers}`} />
-                <ContactRow label="WhatsApp" value="Message us" href={site.whatsappHref} external />
                 <ContactRow label="LinkedIn" value="Follow us" href={site.linkedin} external />
               </div>
 
+              {/* Where website enquiries are routed — client-specified (round 2, row 73). */}
               <div className="border-t border-line pt-6">
-                <p className="font-mono text-[11px] uppercase tracking-label text-slate">Business hours</p>
-                <p className="mt-1 font-medium text-ink">{site.businessHours} IST</p>
+                <p className="font-mono text-[11px] uppercase tracking-label text-slate">Website enquiries go to</p>
+                <ul className="mt-2 space-y-1">
+                  {enquiryEmails.map((e) => (
+                    <li key={e}>
+                      <a
+                        href={`mailto:${e}`}
+                        className="font-medium text-ink underline-offset-2 hover:text-accent hover:underline"
+                      >
+                        {e}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 max-w-prose text-sm text-slate-soft">
+                  {site.email} remains our general address — write there if you are not sure who to reach.
+                </p>
               </div>
             </div>
 

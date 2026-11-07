@@ -1,12 +1,18 @@
 import type { Job } from "@/types";
+import { applicationEmails } from "@/content/site";
 
 /**
  * Careers content.
  *
- * IMPORTANT — the client instructed, in writing: "Do not publish inactive or fictional
- * vacancies." `jobs` is therefore EMPTY and must stay empty until HR supplies live, dated
- * vacancies. The careers page detects the empty array and renders a speculative-application
- * state built around `hiringAreas` instead of an openings list. Do not seed example roles.
+ * The client supplied five live role titles in round 2 (Oct 2026, row 51) and nothing else
+ * — no department, location, employment type, experience level, summary, responsibilities
+ * or requirements. Those roles are published below exactly as given. Nothing about them is
+ * inferred: the `Job` type itself was narrowed to title-only so there is no empty field to
+ * fill in (see src/types/index.ts), and the careers page renders a titled list with an apply
+ * action rather than a job-detail accordion.
+ *
+ * The client's round-1 instruction still stands: do not publish inactive or fictional
+ * vacancies, and do not pad these entries with drafted copy.
  */
 
 /** The client's own careers copy, verbatim. */
@@ -15,8 +21,11 @@ export const careersIntro = [
   "We are interested in professionals who want to work on challenging industrial and structural engineering projects serving clients in India and international markets.",
 ];
 
-/** Where speculative applications go — client-specified. */
-export const applicationsEmail = "careers@strucon.net";
+/**
+ * Where job applications go — client-specified (round 2, row 53). This replaces the former
+ * careers@strucon.net address, which the client did not confirm.
+ */
+export const applicationsEmails = applicationEmails;
 
 /** "Areas We Hire For" — the client's list, in their order. */
 export const hiringAreas = [
@@ -71,7 +80,11 @@ export const benefits = [
   "Learning and development",
 ];
 
-/** No live vacancies published — see the note at the top of this file. */
-export const jobs: Job[] = [];
-
-export const jobDepartments = () => Array.from(new Set(jobs.map((j) => j.department)));
+/** The client's five live openings, titles verbatim and in their order (round 2, row 51). */
+export const jobs: Job[] = [
+  { slug: "structural-design-engineers", title: "Structural Design Engineers" },
+  { slug: "structural-steel-detailers-tekla", title: "Structural Steel Detailers – Tekla" },
+  { slug: "structural-checkers", title: "Structural Checkers" },
+  { slug: "civil-structural-engineers", title: "Civil & Structural Engineers" },
+  { slug: "project-engineers-coordinators", title: "Project Engineers / Project Coordinators" },
+];

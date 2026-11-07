@@ -76,16 +76,19 @@ export type TeamMember = {
   leadership?: boolean;
 };
 
+/**
+ * A published vacancy.
+ *
+ * TITLE-ONLY BY DESIGN. The client supplied role titles and nothing else (content update
+ * form round 2, row 51): no department, location, employment type, experience level,
+ * summary, responsibilities or requirements were given. Rather than invent those fields or
+ * leave them blank in the UI, the type carries only what the client actually supplied and
+ * the careers page renders a titled list with an apply action. Add a field here only when
+ * the client supplies that detail for every published role.
+ */
 export type Job = {
   slug: string;
   title: string;
-  department: string;
-  location: string;
-  type: string; // Full-time, Contract…
-  experience: string;
-  summary: string;
-  responsibilities: string[];
-  requirements: string[];
 };
 
 export type BlogBlock =

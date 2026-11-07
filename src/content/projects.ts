@@ -81,7 +81,7 @@ export const projects: Project[] = [
     slug: "paradip-refinery-project",
     title: "Paradip Refinery Project — TSS, FSS & Hopper Structures",
     client: "Larsen & Toubro",
-    industry: "Oil, Gas & Petrochemical",
+    industry: "Oil, Gas & Petrochemicals",
     location: "Paradip, Odisha, India",
     thumbnail: "/images/refinery-dusk.jpg",
     imagePrompt:
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     slug: "kochi-refinery-project",
     title: "Kochi Refinery Project — Pipe Racks & Transfer Towers",
     client: "Larsen & Toubro",
-    industry: "Oil, Gas & Petrochemical",
+    industry: "Oil, Gas & Petrochemicals",
     location: "Kochi, Kerala, India",
     thumbnail: "/images/refinery-dusk.jpg",
     imagePrompt:
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     slug: "nagarjuna-oil-refinery",
     title: "Nagarjuna Oil Refinery — Pipe Racks & Platforms",
     client: "Punj Lloyd",
-    industry: "Oil, Gas & Petrochemical",
+    industry: "Oil, Gas & Petrochemicals",
     location: "India",
     thumbnail: "/images/refinery-dusk.jpg",
     imagePrompt:
@@ -162,7 +162,7 @@ export const projects: Project[] = [
     slug: "baga-cement-plant",
     title: "Baga Cement Plant — 135 m Preheater Tower",
     client: "Jaypee Ventures",
-    industry: "Cement & Minerals",
+    industry: "Cement & Building Materials",
     location: "Himachal Pradesh, India",
     thumbnail: "/images/bim-model.jpg",
     imagePrompt:
@@ -186,7 +186,7 @@ export const projects: Project[] = [
     slug: "semen-andalas-indonesia",
     title: "Semen Andalas — Conveyor Galleries & Packing Plant",
     client: "Enexco Technologies India",
-    industry: "Cement & Minerals",
+    industry: "Cement & Building Materials",
     location: "Indonesia",
     imagePrompt:
       "Cement plant conveyor galleries and packing plant under reconstruction in a tropical coastal setting, steel galleries on trestles, photoreal, no people.",
@@ -208,7 +208,7 @@ export const projects: Project[] = [
     slug: "sharjah-cement",
     title: "Sharjah Cement — 10,000 t Cement Silo & Packing Plant",
     client: "Enexco Technologies India",
-    industry: "Cement & Minerals",
+    industry: "Cement & Building Materials",
     location: "UAE",
     imagePrompt:
       "Large cement silo with bucket elevator and packing plant at a Middle Eastern cement works, desert light, photoreal, no people.",
@@ -229,7 +229,7 @@ export const projects: Project[] = [
     slug: "nom-cement-terminal",
     title: "NOM Cement Terminal — Packing & Loading Systems",
     client: "Not disclosed",
-    industry: "Material Handling",
+    industry: "Material Handling & Bulk Solids",
     location: "Nigeria",
     imagePrompt:
       "Cement terminal packing plant with truck and wagon loading bays, steel structures and silos, West African industrial setting, photoreal, no people.",

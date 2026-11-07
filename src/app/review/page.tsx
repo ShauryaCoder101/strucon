@@ -43,25 +43,21 @@ type Group = {
 /**
  * Every outstanding item. Keep this in step with the TbdBlock / TbdNote markers placed
  * around the site — if a marker is removed because content arrived, remove its row here.
+ *
+ * Round 2 (Oct 2026) resolved and removed: ISO certification (now confirmed and published),
+ * Privacy Policy and Terms of Use (client-approved text now live), blog approval and byline,
+ * brand colours (client has none), WhatsApp and business hours (client has neither), and the
+ * enquiry destination inbox (now specified).
  */
 const groups: Group[] = [
-  {
-    area: "Certifications",
-    items: [
-      {
-        need: "Confirmation of any certifications held (e.g. ISO 9001) with a current, dated certificate.",
-        where:
-          "About → Standards we work to. No certification is claimed anywhere on the site until a certificate is supplied; only the design/detailing standards you confirmed are listed.",
-      },
-    ],
-  },
   {
     area: "Logo & brand assets",
     items: [
       {
-        need: "Vector logo (SVG or AI/EPS) plus a mono/reversed version, and brand colour references if they exist.",
+        need:
+          "Vector logo (SVG or AI/EPS) plus a mono/reversed version. Row 56 of the round-2 form says “Attached in the email”, but no logo file reached us — please re-send it.",
         where:
-          "Site-wide header and footer, where the STRUCON name is currently set as type. The palette was sampled to complement the existing steel/industrial mark and will be re-tuned once the real artwork arrives.",
+          "Site-wide header and footer, where the STRUCON name is currently set as type. You confirmed you have no brand colour palette (row 57), so the steel/industrial palette in use stays as it is.",
       },
       {
         need: "Favicon / app icon source at 512px or larger.",
@@ -87,8 +83,8 @@ const groups: Group[] = [
         where: "Services pages. Seven supplied photos are already in use across the site; the remaining slots show a TBD frame with the art direction for the shot needed.",
       },
       {
-        need: "Industry photography.",
-        where: "Industries index and detail pages.",
+        need: "Industry photography — one image per sector, including the two new sectors (Chemical & Fertilizer, Specialized & International Steel Detailing).",
+        where: "Industries index and detail pages. Existing photos have been kept on the sectors that carried them.",
       },
       {
         need: "Project photography — site photos or rendered views per case study, with permission to publish.",
@@ -118,7 +114,7 @@ const groups: Group[] = [
     area: "Testimonials",
     items: [
       {
-        need: "Approved client quotes. Each needs the quote, the person's name, their job title, their company, and written permission to publish.",
+        need: "Approved client quotes. Each needs the quote, the person’s name, their job title, their company, and written permission to publish.",
         where:
           "Clients page. Nothing is published until real quotes arrive — we will not write testimonials on your behalf.",
       },
@@ -129,7 +125,7 @@ const groups: Group[] = [
     items: [
       {
         need: "Short biographies (60–120 words) for Owais Ahmad, Rukhsada Khatoon and Yasir Ali, written by or approved by each individual.",
-        where: "Leadership page. Mohammad Shaheem's bio has been supplied and is published.",
+        where: "Leadership page. Mohammad Shaheem’s bio has been supplied and is published.",
       },
       {
         need: "LinkedIn profile URLs for any director who wants theirs linked.",
@@ -138,29 +134,12 @@ const groups: Group[] = [
     ],
   },
   {
-    area: "Blog approval",
+    area: "Company profile",
     items: [
       {
-        need: "Review and approval of the three seed articles, or instruction to remove them.",
-        where: "Insights index and each article page.",
-      },
-      {
-        need: "Confirmed byline — who should be credited as the author of each article.",
-        where: "Article headers and the structured data attached to each post. The current authors are placeholders.",
-      },
-    ],
-  },
-  {
-    area: "Privacy & terms",
-    items: [
-      {
-        need: "Legal review and approval of the Privacy Policy and Terms of Use wording by your counsel.",
+        need: "Company profile PDF for the “Download Company Profile” button.",
         where:
-          "Privacy and Terms pages. Both currently carry unapproved placeholder wording that must not be relied upon.",
-      },
-      {
-        need: "Confirmation of how enquiry data is stored, who it is shared with, and how long it is kept.",
-        where: "Privacy Policy — the data-handling sections cannot be finalised without this.",
+          "Home page and the closing banner on most pages. The button works but opens the enquiry form, because there is no document to download yet.",
       },
     ],
   },
@@ -171,21 +150,6 @@ const groups: Group[] = [
         need: "A GA4 measurement ID (and Google Search Console access) under your own Google account.",
         where:
           "Not yet installed anywhere. No analytics or tracking script runs on the site today, so no visitor data is being collected.",
-      },
-    ],
-  },
-  {
-    area: "Enquiry inbox",
-    items: [
-      {
-        need: "The destination inbox for website enquiries, and confirmation of who monitors it.",
-        where:
-          "Contact form and every CTA that points at it. Submissions currently validate and confirm to the visitor but are not yet delivered by email — this must be wired before launch.",
-      },
-      {
-        need: "Company profile PDF for the “Download Company Profile” button.",
-        where:
-          "Home page and the closing banner on most pages. The button works but opens the enquiry form, because there is no document to download yet.",
       },
     ],
   },

@@ -32,9 +32,12 @@ export function Footer() {
       <Container className="grid grid-cols-2 gap-10 py-16 md:grid-cols-4 lg:grid-cols-5">
         <div className="col-span-2 lg:col-span-1">
           <span className="font-display text-2xl font-bold text-white">{site.name}</span>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed">{site.tagline}.</p>
+          {/* The client's tagline already ends in a full stop — no extra punctuation here. */}
+          <p className="mt-4 max-w-xs text-sm leading-relaxed">{site.tagline}</p>
           <p className="mt-4 font-mono text-xs text-steel-200">EST. {site.founded}</p>
-          <p className="mt-2 font-mono text-[11px] text-white/40">CIN: {site.cin}</p>
+          <p className="mt-2 font-mono text-xs text-steel-200">{site.certification}</p>
+          <p className="mt-4 font-mono text-[11px] text-white/40">CIN: {site.cin}</p>
+          <p className="mt-1 font-mono text-[11px] text-white/40">GST: {site.gst}</p>
         </div>
 
         <div>
@@ -77,11 +80,11 @@ export function Footer() {
             <li className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
               <a href={site.phoneHref} className="transition-colors hover:text-white">{site.phone}</a>
               <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">{site.email}</a>
-              <a href={site.mobileHref} className="transition-colors hover:text-white">{site.mobile}</a>
             </li>
+            {/* LinkedIn is the only social profile the client holds (round 2, row 26); they have
+                no WhatsApp line and no additional mobile number (rows 20, 21). */}
             <li className="flex gap-4 pt-1">
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">LinkedIn</a>
-              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">WhatsApp</a>
             </li>
           </ul>
         </div>

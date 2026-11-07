@@ -13,7 +13,7 @@ export function IndustriesGrid() {
       tone="white"
       eyebrow="Industries"
       title="Engineered for heavy industry"
-      intro="Two decades of structures for the sectors where steel does the heavy lifting."
+      intro="Ten sectors, one discipline: structures for the industries where steel does the heavy lifting."
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {industries.map((ind, i) => (

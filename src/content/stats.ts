@@ -3,12 +3,13 @@ import type { Stat, ValueProp } from "@/types";
 /**
  * Headline stats — client-confirmed figures.
  *
- * YEARS: the client's form said "26+", but their own company story dates establishment to 2003,
- * which is 23 years as of 2026. "20+" is the largest claim the client's own facts support, so
- * that is what we publish, with the founding year shown alongside it.
+ * YEARS: the client answered this explicitly in round 2 (row 10: "incorporated in 2008,
+ * 18years"), so we publish their figure with their incorporation year alongside it. Note that
+ * the client's own story copy (src/content/about.ts) still opens "Since 2003"; see the
+ * founding-year note in src/content/site.ts before changing either value.
  */
 export const stats: Stat[] = [
-  { value: "20+", label: "Years of Engineering", note: "Since 2003" },
+  { value: "18+", label: "Years of Engineering", note: "Incorporated 2008" },
   { value: "500+", label: "Projects Delivered" },
   { value: "100+", label: "Engineers & Detailers" },
   { value: "12", label: "Countries Served" },
@@ -16,8 +17,9 @@ export const stats: Stat[] = [
 
 /**
  * "Why Choose Strucon" differentiators. Order is not a sequence (no numbering).
- * Every claim here traces back to the client's own content: no certification claim is made,
- * and only the standards and software the client confirmed are named.
+ * Every claim here traces back to the client's own content: the only certification named
+ * anywhere is the client-confirmed ISO 9001:2015, and only the standards and software the
+ * client confirmed are named.
  */
 export const whyChoose: ValueProp[] = [
   {

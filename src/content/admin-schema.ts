@@ -123,16 +123,11 @@ export const adminSchemas: Record<string, AdminSchema> = {
     label: "Careers",
     singular: "opening",
     labelKey: "title",
+    // Title-only, matching the narrowed Job type: the client supplies role titles and
+    // nothing else, so there are no further fields to edit here.
     fields: [
       { key: "slug", label: "Slug", type: "text" },
       { key: "title", label: "Title", type: "text" },
-      { key: "department", label: "Department", type: "text" },
-      { key: "location", label: "Location", type: "text" },
-      { key: "type", label: "Type", type: "text", help: "Full-time, Contract…" },
-      { key: "experience", label: "Experience", type: "text" },
-      { key: "summary", label: "Summary", type: "textarea" },
-      { key: "responsibilities", label: "Responsibilities", type: "lines" },
-      { key: "requirements", label: "Requirements", type: "lines" },
     ],
   },
 };

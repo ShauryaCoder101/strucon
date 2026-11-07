@@ -68,16 +68,16 @@ export const services: Service[] = [
     code: "DTL",
     title: "Steel Detailing",
     summary:
-      "Fabrication and erection drawings, connection design, and BOMs — 1000+ MT/month capacity.",
+      "Fabrication and erection drawings, connection design, and BOMs — 3000+ MT per month capacity.",
     image: "/images/detailing-drawing.jpg",
     heroPrompt:
       "Close-up of a detailed Tekla Structures steel connection model on screen — bolts, plates, welds — with a fabrication drawing beside it, photoreal, industrial.",
     overview: [
       "Steel detailing is our core discipline. Using Tekla Structures, we produce accurate, fully coordinated fabrication and erection drawings that let your fabricator cut, drill, and weld with confidence — to Indian, American, and European detailing standards.",
-      "With capacity beyond 1000 MT per month and a dedicated checking team, we deliver large detailing packages on aggressive schedules while keeping RFIs and rework to a minimum.",
+      "With capacity of 3000+ MT per month and a dedicated checking team, we deliver large detailing packages on aggressive schedules while keeping RFIs and rework to a minimum.",
     ],
     benefits: [
-      { title: "1000+ MT/month capacity", description: "Scale to absorb large packages and compressed fabrication schedules." },
+      { title: "3000+ MT per month capacity", description: "Scale to absorb large packages and compressed fabrication schedules." },
       { title: "Multi-standard fluency", description: "Detailing to IS, AISC, British Standards and Eurocode conventions as your shop requires." },
       { title: "Fewer RFIs at site", description: "Model-based checking catches clashes and errors before fabrication." },
       { title: "Fabricator-ready data", description: "CNC/DSTV, NC files, and BOMs that plug straight into the shop." },
@@ -98,14 +98,14 @@ export const services: Service[] = [
       "Anchor bolt setting-out plans",
     ],
     faqs: [
-      { q: "What is your monthly detailing capacity?", a: "Over 1000 MT per month, scalable with dedicated teams for large or fast-track projects." },
+      { q: "What is your monthly detailing capacity?", a: "3000+ MT per month, scalable with dedicated teams for large or fast-track projects." },
       { q: "Which detailing standards do you follow?", a: "IS, AISC, ASCE, Eurocodes, British Standards, AWS, ASTM and EN — matched to your fabricator's shop standards and preferences." },
       { q: "Do you provide CNC/DSTV files for automated fabrication?", a: "Yes, we export CNC/DSTV and NC data directly from the Tekla model." },
     ],
     seo: {
       title: "Steel Detailing Company — Tekla Fabrication Drawings",
       description:
-        "Structural steel detailing company using Tekla Structures — fabrication and erection drawings, connection design, BOMs, and CNC/DSTV data. 1000+ MT/month capacity.",
+        "Structural steel detailing company using Tekla Structures — fabrication and erection drawings, connection design, BOMs, and CNC/DSTV data. 3000+ MT per month capacity.",
       keywords: ["Steel Detailing Company", "Tekla Modeling Services", "Fabrication Drawing Services", "Connection Design"],
     },
     featured: true,

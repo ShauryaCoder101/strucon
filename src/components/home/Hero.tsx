@@ -61,9 +61,11 @@ export function Hero() {
           {[
             { k: "Established", v: site.founded },
             { k: "Steel Detailed", v: "6 Lac+ MT" },
-            // No certification claim is published (the client left ISO blank) — we show the
-            // design/detailing standards actually worked to instead.
-            { k: "Standards", v: "AISC · IS · EN" },
+            // The client confirmed ISO 9001:2015 in round 2, so the third slot now carries the
+            // certification. The design/detailing standards that used to sit here are listed in
+            // full on the About page (About → Certification & standards), which is a better home
+            // for a ten-item code list than a three-column title block.
+            { k: "Quality", v: site.certification },
           ].map((item) => (
             <div key={item.k}>
               <dt className="font-mono text-[10px] uppercase tracking-label text-steel-200">{item.k}</dt>

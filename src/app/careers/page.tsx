@@ -6,8 +6,8 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHeader } from "@/components/shared/PageHeader";
 import { CareersClient } from "@/components/careers/CareersClient";
 
-import { culture, benefits, careersIntro, hiringAreas, applicationsEmail } from "@/content/jobs";
-import { getJobs, getJobDepartments } from "@/lib/content";
+import { culture, benefits, careersIntro, hiringAreas, applicationsEmails } from "@/content/jobs";
+import { getJobs } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -65,11 +65,17 @@ export default function CareersPage() {
             </li>
           ))}
         </ul>
+        {/* Application addresses are client-specified (round 2, row 53). */}
         <p className="mt-8 text-slate">
           Applications go to{" "}
-          <a href={`mailto:${applicationsEmail}`} className="font-medium text-ink underline underline-offset-2 hover:text-accent">
-            {applicationsEmail}
-          </a>
+          {applicationsEmails.map((e, i) => (
+            <span key={e}>
+              {i > 0 && " and "}
+              <a href={`mailto:${e}`} className="font-medium text-ink underline underline-offset-2 hover:text-accent">
+                {e}
+              </a>
+            </span>
+          ))}
           .
         </p>
       </Section>
@@ -86,13 +92,16 @@ export default function CareersPage() {
         </ul>
       </Section>
 
-      {/* Openings + apply. With no published vacancies this renders a speculative-application state. */}
+      {/* Openings + apply. The client supplied role titles only, so this renders a titled list
+          with an apply action — see CareersClient. With no roles at all it falls back to the
+          speculative-application state. */}
       <Section
         tone="white"
         eyebrow={jobs.length > 0 ? "Open positions" : "Apply"}
         title={jobs.length > 0 ? "Current openings" : "Send us a speculative application"}
+        intro={jobs.length > 0 ? "The roles we are hiring for right now. Select a role to apply, or send a speculative application using the same form." : undefined}
       >
-        <CareersClient jobs={jobs} departments={getJobDepartments()} />
+        <CareersClient jobs={jobs} />
       </Section>
     </>
   );

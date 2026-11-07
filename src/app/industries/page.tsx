@@ -12,9 +12,9 @@ import { buildMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Industries We Serve — Power, Oil & Gas, Steel & More",
+  title: "Industries We Serve — Power, Cement, Oil & Gas, Steel & More",
   description:
-    "STRUCON engineers structures for heavy industry: power, steel, oil & gas, petrochemical, mining, infrastructure, warehousing, and industrial buildings.",
+    "STRUCON engineers structures across ten sectors: power & energy, cement & building materials, oil, gas & petrochemicals, steel & metals, material handling, lime & mineral processing, chemical & fertilizer, industrial & heavy engineering and commercial buildings.",
   path: "/industries",
   keywords: ["Industrial Engineering Consultants", "Power Plant Structural Design", "Pipe Rack Design", "Conveyor Gallery Design"],
 });
@@ -28,7 +28,7 @@ export default function IndustriesIndexPage() {
       <PageHeader
         eyebrow="Industries"
         title="Engineered for heavy industry"
-        intro="Two decades of structures for the sectors where steel does the heavy lifting."
+        intro="Ten sectors, one discipline: structures for the industries where steel does the heavy lifting."
         trail={[{ name: "Home", path: "/" }, { name: "Industries", path: "/industries" }]}
       />
 
