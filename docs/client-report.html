@@ -1,0 +1,293 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>STRUCON Website — Review &amp; Recommendation</title>
+<meta name="author" content="Shaurya Sharma">
+<style>
+  @page { size: A4; margin: 14mm 13mm; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#22303F;
+    font:10.4pt/1.6 "Segoe UI",-apple-system,Arial,sans-serif;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:184mm;margin:0 auto}
+
+  /* masthead */
+  .mast{background:#0B1F33;color:#E8EEF5;border-bottom:3px solid #F26419;
+        padding:26px 22px 18px;margin:0 0 24px;break-inside:avoid}
+  .eyebrow{display:flex;align-items:center;gap:9px;font-family:Consolas,monospace;font-size:8pt;
+           letter-spacing:.2em;text-transform:uppercase;color:#9FBAD1}
+  .eyebrow::before{content:"";display:inline-block;width:22px;height:1px;background:#F26419}
+  .mast h1{margin:12px 0 8px;color:#fff;font-size:24pt;line-height:1.08;letter-spacing:-.02em}
+  .mast .sub{max-width:140mm;color:rgba(232,238,245,.8);font-size:10.5pt;margin:0 0 18px}
+  .meta{display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.18);padding-top:9px}
+  .meta div{padding-right:16px;margin-right:16px;border-right:1px solid rgba(255,255,255,.12)}
+  .meta div:last-child{border-right:0;margin-right:0}
+  .meta dt{font-family:Consolas,monospace;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#7E96AB;margin:0}
+  .meta dd{margin:3px 0 0;color:#fff;font-weight:600;font-size:9pt}
+
+  h2{font-size:15.5pt;color:#0B1F33;margin:26px 0 9px;padding-bottom:5px;
+     border-bottom:1px solid #D9E0E8;letter-spacing:-.01em;break-after:avoid}
+  h3{font-size:11.5pt;color:#0B1F33;margin:16px 0 5px;break-after:avoid}
+  .lede{font-size:11.2pt;color:#1B2B3A}
+  p{margin:7px 0;orphans:3;widows:3}
+  ul{margin:7px 0;padding-left:18px}
+  li{margin:3.5px 0}
+  strong{color:#0B1F33}
+  code{font-family:Consolas,monospace;font-size:9pt;background:#EDF1F6;padding:1px 4px;border-radius:2px}
+  .sectlabel{font-family:Consolas,monospace;font-size:8pt;letter-spacing:.2em;
+             text-transform:uppercase;color:#4E7CA6}
+
+  table{border-collapse:collapse;width:100%;margin:11px 0;font-size:9pt;break-inside:avoid}
+  th{background:#12293F;color:#fff;text-align:left;padding:6px 8px;font-size:7.6pt;
+     letter-spacing:.05em;text-transform:uppercase}
+  td{padding:6px 8px;border-top:.5pt solid #D9E0E8;vertical-align:top}
+  tbody tr:nth-child(even) td{background:#F7F9FB}
+  td.l{font-weight:600;color:#0B1F33;white-space:nowrap}
+  .no{color:#B3372A;font-weight:600}
+  .yes{color:#1F7A4D;font-weight:600}
+
+  .tiles{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .tile{flex:1 1 30%;min-width:52mm;border:1px solid #D9E0E8;border-top:2px solid #F26419;
+        padding:10px 11px;break-inside:avoid}
+  .tile .v{font-size:17pt;font-weight:800;color:#0B1F33;letter-spacing:-.02em;line-height:1.1}
+  .tile .k{font-family:Consolas,monospace;font-size:7pt;letter-spacing:.14em;
+           text-transform:uppercase;color:#5A6B7E;margin-bottom:3px}
+  .tile .d{font-size:8.2pt;color:#5A6B7E;margin-top:4px;line-height:1.45}
+
+  .callout{border-left:3px solid #F26419;background:#F7F9FB;border-top:1px solid #E6EBF0;
+           border-right:1px solid #E6EBF0;border-bottom:1px solid #E6EBF0;
+           padding:11px 14px;margin:14px 0;break-inside:avoid}
+  .callout .t{font-family:Consolas,monospace;font-size:7.5pt;letter-spacing:.16em;
+              text-transform:uppercase;color:#5A6B7E;margin-bottom:4px}
+  .callout p{margin:5px 0}
+  .warn{border-left-color:#B3372A}
+  .ok{border-left-color:#1F7A4D}
+
+  .ask{border:1px solid #D9E0E8;padding:0;margin:12px 0;break-inside:avoid}
+  .ask .hd{background:#F2F5F8;padding:7px 11px;font-weight:700;color:#0B1F33;font-size:10pt;
+           border-bottom:1px solid #D9E0E8}
+  .ask .bd{padding:9px 11px}
+  .ask .bd p{margin:4px 0}
+
+  .foot{margin-top:26px;padding-top:9px;border-top:1px solid #D9E0E8;
+        font-family:Consolas,monospace;font-size:7.5pt;color:#7E96AB}
+  .src{font-size:8pt;color:#5A6B7E;padding-left:16px}
+  .src li{margin:2.5px 0}
+  .pagebreak{break-before:page}
+</style></head><body><div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">STRUCON Consulting Private Limited</p>
+  <h1>Website Review &amp; Recommendation</h1>
+  <p class="sub">Where the new website stands, the evidence for replacing the current one, and the
+  short list of items still needed from you to go live.</p>
+  <dl class="meta">
+    <div><dt>Prepared by</dt><dd>Shaurya Sharma</dd></div>
+    <div><dt>Document</dt><dd>STR-WEB-2026-02</dd></div>
+    <div><dt>Date</dt><dd>10 November 2026</dd></div>
+    <div><dt>Status</dt><dd>For review</dd></div>
+    <div><dt>Preview</dt><dd>strucon.vercel.app</dd></div>
+  </dl>
+</header>
+
+<!-- ============================ 1 -->
+<p class="sectlabel">01 · In short</p>
+<h2>Summary</h2>
+<p class="lede">The new STRUCON website is <strong>built and live for your review</strong> at
+<strong>strucon.vercel.app</strong>. It has 54 pages against roughly 15 on the current site, and now
+carries your real case studies, clients, directors, certification and approved legal text.</p>
+<p>Three things remain: a short list of <strong>photographs and brand files</strong>, three
+<strong>factual points to settle</strong>, and your decision to proceed. Everything still awaiting
+you is marked <strong>&ldquo;TBD&rdquo;</strong> on the site itself, so nothing looks finished when
+it is not.</p>
+
+<div class="tiles">
+  <div class="tile"><div class="k">Pages</div><div class="v">54</div><div class="d">Against ~15 today. Each one is a separate chance to be found on Google.</div></div>
+  <div class="tile"><div class="k">Case studies</div><div class="v">10</div><div class="d">Your real projects, with named clients and tonnages.</div></div>
+  <div class="tile"><div class="k">Ways to enquire</div><div class="v">5</div><div class="d">Versus one contact page today, with no way to send a tender.</div></div>
+  <div class="tile"><div class="k">Current site core</div><div class="v">Dec 2018</div><div class="d">WordPress 5.0.22, with plugins from 2019. A documented security risk.</div></div>
+  <div class="tile"><div class="k">Pages describing themselves to Google</div><div class="v">0 &rarr; 54</div><div class="d">The current site has no meta descriptions and no sitemap at all.</div></div>
+  <div class="tile"><div class="k">Still needed from you</div><div class="v">14</div><div class="d">Mostly photographs. Listed in section 04.</div></div>
+</div>
+
+<div class="callout ok">
+  <p class="t">Recommendation</p>
+  <p><strong>Replace the current website.</strong> Every measured comparison in section 03 favours
+  the new site, and the current one carries a live security risk and is effectively invisible to
+  Google. The remaining work is content, not engineering.</p>
+</div>
+
+<!-- ============================ 2 -->
+<p class="sectlabel">02 · Where it stands</p>
+<h2>What is already on the new site</h2>
+<p>Everything you sent in your content forms has been applied. None of it is invented &mdash;
+where you left a question blank, the site says so rather than filling the gap.</p>
+
+<table>
+  <thead><tr><th style="width:34%">Area</th><th>Now live</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Case studies</td><td>All 10 of your real projects &mdash; Bakreswar (19,000 MT), Sasan (15,000 MT), Paradip, Kochi, Nagarjuna, Baga Cement (135 m preheater tower), Semen Andalas, Sharjah Cement, NOM Nigeria and JSW blast furnace.</td></tr>
+    <tr><td class="l">Clients named</td><td>Larsen &amp; Toubro, Reliance Energy, Jaypee Ventures, Punj Lloyd, Paul Wurth, JSW Steel, Enexco Technologies.</td></tr>
+    <tr><td class="l">Certification</td><td>ISO 9001:2015, shown on the homepage and About page.</td></tr>
+    <tr><td class="l">Leadership</td><td>Owais Ahmad, Rukhsada Khatoon, Yasir Ali and Mohammad Shaheem.</td></tr>
+    <tr><td class="l">Industries</td><td>Your ten sectors, each with its own page and your scope list.</td></tr>
+    <tr><td class="l">Services</td><td>Eight service pages, with your confirmed software and 3000+ MT per month capacity.</td></tr>
+    <tr><td class="l">Careers</td><td>Your five live vacancies, with an online application form.</td></tr>
+    <tr><td class="l">Legal</td><td>Your approved Privacy Policy and Terms of Use.</td></tr>
+    <tr><td class="l">Company details</td><td>Registered and corporate addresses, CIN, GST, LinkedIn.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================ 3 -->
+<div class="pagebreak"></div>
+<p class="sectlabel">03 · The evidence</p>
+<h2>Why the current website should be replaced</h2>
+<p>The table below is a <strong>measured audit of the live strucon.net</strong>, not an opinion.
+Each line is verifiable from the page source today.</p>
+
+<table>
+  <thead><tr><th style="width:26%">Measured</th><th style="width:37%">Current strucon.net</th><th>New website</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Software core</td><td><span class="no">WordPress 5.0.22</span> &mdash; released December 2018, with WooCommerce 3.6.7 and Slider Revolution 5.4.8.1 from 2019</td><td><span class="yes">Next.js 16</span>, current and patched</td></tr>
+    <tr><td class="l">Meta descriptions</td><td><span class="no">0</span> &mdash; no page tells Google what it is about</td><td><span class="yes">Every page</span></td></tr>
+    <tr><td class="l">Sitemap</td><td><span class="no">Does not exist</span> (returns an error)</td><td><span class="yes">43 pages, generated automatically</span></td></tr>
+    <tr><td class="l">Structured data for Google</td><td><span class="no">None</span></td><td><span class="yes">6 types</span>, including FAQ and Article, which can earn richer search listings</td></tr>
+    <tr><td class="l">Homepage slider images</td><td><span class="no">1.33 MB</span> of unoptimised photographs</td><td><span class="yes">Modern compressed formats</span>, loaded only when needed</td></tr>
+    <tr><td class="l">Scripts / stylesheets</td><td><span class="no">39 / 21</span></td><td><span class="yes">Minimal</span> &mdash; pages are pre-built, not assembled on each visit</td></tr>
+    <tr><td class="l">Social sharing preview</td><td><span class="no">None</span> &mdash; LinkedIn posts show a bare link</td><td><span class="yes">Branded preview card</span></td></tr>
+    <tr><td class="l">Ways to enquire</td><td><span class="no">One contact page</span>, no tender upload</td><td><span class="yes">Five</span>, including tender document upload</td></tr>
+  </tbody>
+</table>
+
+<h3>What this costs in enquiries</h3>
+<p>Published industry research puts numbers against each of those gaps:</p>
+<ul>
+  <li>Visitors form a judgement of a company in <strong>50 milliseconds</strong>, before reading a
+      word, and <strong>75% admit judging credibility by website design</strong>.<sup>1,2</sup></li>
+  <li><strong>53% of mobile visits are abandoned</strong> if a page takes more than three seconds;
+      bounce rates rise <strong>32%</strong> between one and three seconds.<sup>3,4</sup></li>
+  <li>Page speed is part of Google&rsquo;s ranking system, and moving up one position lifts
+      click-through by about <strong>31%</strong>.<sup>5,6</sup></li>
+  <li>B2B buyers spend only <strong>17% of their evaluation time meeting suppliers</strong> &mdash;
+      the rest is independent research, mostly online.<sup>7</sup></li>
+</ul>
+<p>For most EPC prospects, your website <em>is</em> the first meeting. An engineer shortlisting
+steel detailers at 11pm is comparing you against competitors on a screen, not in a room.</p>
+
+<div class="callout warn">
+  <p class="t">Two things that actively work against you today</p>
+  <p><strong>Security.</strong> Slider Revolution is historically among the most exploited
+  WordPress plugins &mdash; one 2014&ndash;15 vulnerability compromised over 100,000 sites. Outdated
+  plugins remain the leading cause of WordPress compromise.<sup>8</sup> A hacked site gets flagged
+  by Google in search results, destroying exactly the trust this report is about.</p>
+  <p><strong>Credibility details.</strong> The current homepage displays animated counters that
+  read &ldquo;0&rdquo; next to Hours of Work, Clients and Staff, and the footer still says
+  &ldquo;Copyright 2023&rdquo;. To a procurement auditor these read as an unmaintained business.</p>
+</div>
+
+<h3>A note on typography</h3>
+<p>The current site uses Montserrat and Open Sans &mdash; the default pairing of a purchased
+template, loaded in eight weights across two separate requests, most of which are never used. The
+new site uses a three-part system: a technical display face, a screen-optimised body face, and a
+monospaced face for data and drawing-style annotations, all self-hosted so text appears instantly
+and never shifts as the page loads. Research on typography and credibility is unambiguous: the same
+words are judged more trustworthy in one typeface than another, and harder-to-read type makes a task
+feel harder before anyone has begun it.<sup>9,10</sup> A procurement director will not notice the
+letterforms; they will notice that one site felt effortless and precise.</p>
+
+<!-- ============================ 4 -->
+<div class="pagebreak"></div>
+<p class="sectlabel">04 · Action required</p>
+<h2>What we still need from you</h2>
+<p>This is the critical path. Nothing here is engineering work &mdash; it is content only. Items are
+marked <strong>TBD</strong> on the site, and a single summary page lists them all at
+<code>strucon.vercel.app/review</code>.</p>
+
+<table>
+  <thead><tr><th style="width:30%">Item</th><th style="width:14%">Priority</th><th>What is needed</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Company logo</td><td><span class="no">Critical</span></td><td>You noted it was attached, but no logo file arrived. The site is showing a temporary placeholder mark. Vector (SVG) or a large transparent PNG, plus a white version for dark backgrounds.</td></tr>
+    <tr><td class="l">Project photographs</td><td><span class="no">Critical</span></td><td>3&ndash;5 images per project. Seven images were received and are in use; most of the ten case studies still have none.</td></tr>
+    <tr><td class="l">Team photographs</td><td><span class="no">Critical</span></td><td>Headshots of the four directors, same style for all four.</td></tr>
+    <tr><td class="l">Client logos</td><td><span class="no">Critical</span></td><td>Image files for the seven named clients. Names currently appear as plain text.</td></tr>
+    <tr><td class="l">Enquiry inbox</td><td><span class="no">Critical</span></td><td>The forms work but do not yet deliver to anyone. Confirm the address that should receive website enquiries.</td></tr>
+    <tr><td class="l">Director biographies</td><td>High</td><td>Around 40&ndash;60 words each for Owais Ahmad, Rukhsada Khatoon and Yasir Ali. Mohammad Shaheem&rsquo;s is already live.</td></tr>
+    <tr><td class="l">Homepage video</td><td>High</td><td>10&ndash;20 seconds, no sound. Steel erection, a plant, or a model walkthrough. A photograph is currently in its place.</td></tr>
+    <tr><td class="l">Company profile PDF</td><td>High</td><td>The &ldquo;Download Company Profile&rdquo; button has no file behind it.</td></tr>
+    <tr><td class="l">Service &amp; industry photos</td><td>High</td><td>One image per service and per sector.</td></tr>
+    <tr><td class="l">Client testimonials</td><td>High</td><td>Three quotes, each with the person&rsquo;s name, job title, company and written permission.</td></tr>
+    <tr><td class="l">Google Analytics</td><td>High</td><td>So you can see visitor and enquiry numbers from day one.</td></tr>
+    <tr><td class="l">Project narratives</td><td>Medium</td><td>Kochi, Nagarjuna, Sharjah, NOM and JSW have figures but no challenge/solution story. Three or four sentences each would strengthen them considerably.</td></tr>
+  </tbody>
+</table>
+
+<h2>Three points to settle</h2>
+<p>These are factual questions we cannot answer for you, and each would be noticed by a client who
+checks.</p>
+
+<div class="ask">
+  <div class="hd">1. Were you founded in 2003 or 2008?</div>
+  <div class="bd">
+    <p>Your form gives the founding year as <strong>2008</strong>, and the website now shows that.
+    But the company story you wrote says <em>&ldquo;Since 2003&hellip;&rdquo;</em> and your approved
+    Terms of Use says <em>&ldquo;established in early 2003&rdquo;</em>. The site therefore says 2008
+    in one place and 2003 in two others.</p>
+    <p><strong>Suggested wording:</strong> &ldquo;Operating since 2003, incorporated in 2008&rdquo;
+    &mdash; which is accurate on both counts. Please confirm.</p>
+  </div>
+</div>
+
+<div class="ask">
+  <div class="hd">2. Which CIN is correct?</div>
+  <div class="bd">
+    <p>Your two forms give different numbers: <code>U24319HR2008PTC037858</code> and
+    <code>U74140HR2008PTC037858</code>. The company number, state and year match; only the activity
+    code differs. We have published the second, because <code>74140</code> denotes consultancy
+    whereas <code>24319</code> denotes chemical manufacturing &mdash; but one of the two is a typing
+    error, and a wrong CIN in the footer is a compliance matter.</p>
+  </div>
+</div>
+
+<div class="ask">
+  <div class="hd">3. Your Privacy Policy is missing section 12</div>
+  <div class="bd">
+    <p>The approved text runs from section 11 straight to section 13. We have published it exactly
+    as supplied and have not renumbered anything. Please check whether a clause was lost.</p>
+  </div>
+</div>
+
+<!-- ============================ 5 -->
+<p class="sectlabel">05 · Going live</p>
+<h2>What happens next</h2>
+<ul>
+  <li><strong>You review</strong> the site at strucon.vercel.app and return the items in section 04.</li>
+  <li><strong>We apply</strong> your content and remove every TBD marker.</li>
+  <li><strong>We redirect</strong> each old web address to its new equivalent, so existing links and
+      search rankings carry across rather than breaking.</li>
+  <li><strong>We connect</strong> the enquiry forms to your inbox and switch on Google Analytics and
+      Search Console.</li>
+  <li><strong>We point strucon.net</strong> at the new site and submit the sitemap to Google.</li>
+</ul>
+
+<div class="callout">
+  <p class="t">On the figures in this report</p>
+  <p>The audit lines in section 03 are measured from the live site and are verifiable today. The
+  research percentages describe effects observed across large numbers of websites &mdash; they
+  indicate direction and scale, not a guaranteed outcome for strucon.net. The measured facts alone
+  support the recommendation.</p>
+</div>
+
+<h3>Sources</h3>
+<ol class="src">
+  <li>Lindgaard et al. (2006), <em>Behaviour &amp; Information Technology</em> &mdash; 50-millisecond first impressions.</li>
+  <li>Stanford Web Credibility Project, Fogg et al. (2002) &mdash; 2,684 participants; design as the most-cited credibility factor.</li>
+  <li>Google mobile research (2016) &mdash; 53% abandonment beyond three seconds.</li>
+  <li>Google / SOASTA (2017) &mdash; bounce probability +32% from one to three seconds.</li>
+  <li>Google Search Central &mdash; Core Web Vitals in ranking systems, Page Experience update (2021).</li>
+  <li>Backlinko &mdash; organic click-through analysis across 4M+ results.</li>
+  <li>Gartner &mdash; <em>The B2B Buying Journey</em>; 17% of journey time spent with suppliers.</li>
+  <li>Sucuri (GoDaddy) Hacked Website Reports; RevSlider / SoakSoak campaign, 2014&ndash;15.</li>
+  <li>Errol Morris / New York Times (2012) &mdash; typeface and credibility, ~45,000 respondents.</li>
+  <li>Song &amp; Schwarz (2008), <em>Psychological Science</em> &mdash; &ldquo;If It&rsquo;s Hard to Read, It&rsquo;s Hard to Do&rdquo;.</li>
+</ol>
+
+<div class="foot">STR-WEB-2026-02 &middot; Prepared by Shaurya Sharma &middot; STRUCON Consulting Private Limited &middot; 10 November 2026</div>
+</div></body></html>
