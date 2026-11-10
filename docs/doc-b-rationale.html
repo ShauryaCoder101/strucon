@@ -1,0 +1,473 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>STRUCON Website — Design &amp; Engineering Rationale</title>
+<meta name="author" content="Shaurya Sharma">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+<style>
+  @page{size:A4;margin:14mm 13mm}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#22303F;font:10.3pt/1.6 "Segoe UI",-apple-system,Arial,sans-serif;
+       -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:184mm;margin:0 auto}
+  .mast{background:#0B1F33;color:#E8EEF5;border-bottom:3px solid #F26419;padding:26px 22px 16px;margin-bottom:22px;break-inside:avoid}
+  .eyebrow{display:flex;align-items:center;gap:9px;font-family:Consolas,monospace;font-size:8pt;
+           letter-spacing:.2em;text-transform:uppercase;color:#9FBAD1}
+  .eyebrow::before{content:"";display:inline-block;width:22px;height:1px;background:#F26419}
+  .mast h1{margin:11px 0 7px;color:#fff;font-size:23pt;line-height:1.08;letter-spacing:-.02em}
+  .mast .sub{max-width:142mm;color:rgba(232,238,245,.8);font-size:10.5pt;margin:0 0 16px}
+  .meta{display:flex;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.18);padding-top:9px}
+  .meta div{padding-right:15px;margin-right:15px;border-right:1px solid rgba(255,255,255,.12)}
+  .meta div:last-child{border-right:0;margin-right:0}
+  .meta dt{font-family:Consolas,monospace;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#7E96AB;margin:0}
+  .meta dd{margin:3px 0 0;color:#fff;font-weight:600;font-size:9pt}
+
+  h2{font-size:15pt;color:#0B1F33;margin:24px 0 8px;padding-bottom:5px;border-bottom:1px solid #D9E0E8;
+     letter-spacing:-.01em;break-after:avoid}
+  h3{font-size:11.4pt;color:#0B1F33;margin:16px 0 5px;break-after:avoid}
+  h4{font-size:10.3pt;color:#1B4B77;margin:12px 0 3px;break-after:avoid}
+  .sectlabel{font-family:Consolas,monospace;font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:#4E7CA6}
+  .lede{font-size:11pt;color:#1B2B3A}
+  p{margin:7px 0;orphans:3;widows:3}
+  ul{margin:6px 0;padding-left:18px} li{margin:3.5px 0}
+  strong{color:#0B1F33}
+  code{font-family:Consolas,monospace;font-size:8.8pt;background:#EDF1F6;padding:1px 4px;border-radius:2px}
+
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:8.9pt;break-inside:avoid}
+  th{background:#12293F;color:#fff;text-align:left;padding:6px 8px;font-size:7.5pt;letter-spacing:.05em;text-transform:uppercase}
+  td{padding:6px 8px;border-top:.5pt solid #D9E0E8;vertical-align:top}
+  tbody tr:nth-child(even) td{background:#F7F9FB}
+  td.l{font-weight:600;color:#0B1F33}
+  .no{color:#B3372A;font-weight:600}.yes{color:#1F7A4D;font-weight:600}
+
+  .callout{background:#F7F9FB;border:1px solid #E6EBF0;border-left:3px solid #F26419;
+           padding:11px 14px;margin:13px 0;break-inside:avoid}
+  .callout .t{font-family:Consolas,monospace;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:#5A6B7E;margin-bottom:4px}
+  .callout p{margin:5px 0}
+
+  /* type specimens */
+  .spec{border:1px solid #D9E0E8;padding:12px 14px;margin:10px 0;break-inside:avoid}
+  .spec .name{font-family:Consolas,monospace;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:#5A6B7E}
+  .spec .role{font-size:8.6pt;color:#5A6B7E;margin-top:2px}
+  .sg{font-family:"Space Grotesk",sans-serif}
+  .in{font-family:"Inter",sans-serif}
+  .pm{font-family:"IBM Plex Mono",Consolas,monospace}
+  .mo{font-family:"Montserrat",sans-serif}
+  .os{font-family:"Open Sans",sans-serif}
+  .big{font-size:20pt;line-height:1.1;letter-spacing:-.02em;color:#0B1F33;margin:7px 0 3px;font-weight:700}
+  .mid{font-size:11pt;line-height:1.5;color:#22303F;margin:4px 0}
+  .small{font-size:9pt;color:#1B4B77;letter-spacing:.1em}
+
+  .swatches{display:flex;flex-wrap:wrap;gap:7px;margin:11px 0}
+  .sw{flex:1 1 28%;min-width:46mm;border:1px solid #D9E0E8;break-inside:avoid}
+  .sw .chip{height:26px}
+  .sw .lbl{padding:6px 8px;font-size:8.2pt}
+  .sw .hex{font-family:Consolas,monospace;font-size:7.6pt;color:#5A6B7E}
+
+  .why{border:1px solid #D9E0E8;margin:10px 0;break-inside:avoid}
+  .why .hd{background:#F2F5F8;padding:6px 11px;font-weight:700;color:#0B1F33;font-size:9.8pt;border-bottom:1px solid #D9E0E8}
+  .why .bd{padding:8px 11px}
+  .why .bd p{margin:4px 0;font-size:9.4pt}
+  .why .q{font-family:Consolas,monospace;font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;color:#4E7CA6}
+
+  .foot{margin-top:24px;padding-top:9px;border-top:1px solid #D9E0E8;font-family:Consolas,monospace;font-size:7.5pt;color:#7E96AB}
+  .src{font-size:8pt;color:#5A6B7E;padding-left:16px}.src li{margin:2.5px 0}
+  .pb{break-before:page}
+</style></head><body><div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">STRUCON Consulting Private Limited</p>
+  <h1>Design &amp; Engineering Rationale</h1>
+  <p class="sub">Why the new website is built the way it is — the typography, the colour, the
+  structure, every section, and the search-engine architecture beneath it. A record of decisions
+  and the reasoning behind each one.</p>
+  <dl class="meta">
+    <div><dt>Prepared by</dt><dd>Shaurya Sharma</dd></div>
+    <div><dt>Document</dt><dd>STR-WEB-2026-03B</dd></div>
+    <div><dt>Date</dt><dd>10 November 2026</dd></div>
+    <div><dt>Preview</dt><dd>strucon.vercel.app</dd></div>
+  </dl>
+</header>
+
+<!-- 01 ------------------------------------------------ -->
+<p class="sectlabel">01 · The thesis</p>
+<h2>What this website is for</h2>
+<p class="lede">This is not a brochure. It is a lead-generation platform, and every decision in it
+was made against a single test: <strong>does this help an EPC engineer decide to contact
+STRUCON?</strong></p>
+<p>A prospective client arriving on the site is silently asking three questions. The structure
+answers them in order:</p>
+<table>
+  <thead><tr><th style="width:36%">The visitor asks</th><th>The site answers with</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Can they solve my engineering problem?</td><td>Eight service pages and ten industry pages, each naming the actual structures involved — pipe racks, preheater towers, conveyor galleries, bunker bays.</td></tr>
+    <tr><td class="l">Why trust them over another consultant?</td><td>Ten real case studies with named clients and verified tonnages, ISO 9001:2015, four named directors, and the standards worked to.</td></tr>
+    <tr><td class="l">How do I start?</td><td>Five distinct enquiry routes, a call-to-action on every page, and a tender-document upload.</td></tr>
+  </tbody>
+</table>
+<p>The reason this matters: Gartner finds B2B buying groups spend only <strong>17% of their
+evaluation time meeting suppliers</strong>.<sup>1</sup> The rest is independent research, mostly
+online. For a Middle-East engineer shortlisting steel detailers at 11pm, the website
+<em>is</em> the first meeting.</p>
+
+<!-- 02 ------------------------------------------------ -->
+<p class="sectlabel">02 · Identity</p>
+<h2>Why the site looks like an engineering drawing</h2>
+<p>The old site used a purchased construction template. It was indistinguishable from thousands of
+small-contractor websites, which is the opposite of what a firm selling precision should signal.</p>
+<p>Rather than invent a look, the new identity is drawn from <strong>STRUCON's own vernacular — the
+structural steel drawing</strong>. The visual devices are not decoration; each one is borrowed from
+the documents your engineers produce every day:</p>
+<ul>
+  <li><strong>The blueprint grid</strong> — a faint coordinate grid behind dark sections, as on a drawing sheet.</li>
+  <li><strong>Title blocks</strong> — the strip beneath the homepage headline reading <code>ESTABLISHED / STEEL DETAILED / QUALITY</code> is laid out exactly like the title block in the corner of a fabrication drawing.</li>
+  <li><strong>Discipline codes</strong> — each service card carries a three-letter code (<code>STR</code>, <code>DTL</code>, <code>BIM</code>, <code>CIV</code>) in the way drawing sets are indexed.</li>
+  <li><strong>Corner ticks and hairlines</strong> — the registration marks of a drawing frame.</li>
+</ul>
+<div class="callout">
+  <p class="t">Why this is a commercial decision, not an aesthetic one</p>
+  <p>An engineer recognises this language instantly, and recognition reads as competence. A
+  template cannot do that, because it was designed to fit every industry and therefore belongs to
+  none. The identity is <strong>ownable</strong> — it could not be lifted onto a competitor's site
+  without looking borrowed.</p>
+</div>
+
+<!-- 03 ------------------------------------------------ -->
+<div class="pb"></div>
+<p class="sectlabel">03 · Typography</p>
+<h2>Why these three typefaces</h2>
+<p class="lede">Typography is the single largest surface on any website — more of the page is type
+than anything else — and research shows it measurably changes how credible content feels.</p>
+
+<h3>What the old site used, and why it worked against you</h3>
+<div class="spec">
+  <div class="name">Montserrat &amp; Open Sans &mdash; current strucon.net</div>
+  <div class="role">The default pairing shipped with the purchased &ldquo;buildpro&rdquo; theme.</div>
+  <div class="big mo">Engineering Tomorrow</div>
+  <div class="mid os">Open Sans at theme defaults. Among the most-used font combinations on the web, which is precisely the problem: it reads as a bought template even to people who could not name why.</div>
+</div>
+<p>Beyond the familiarity problem, it was loaded badly: <strong>eight weights across two separate
+requests</strong> to Google's servers, most of them never used on the page. Every one of those is a
+round trip the visitor waits through before text settles, and because no metric-matched fallback was
+defined, the text visibly jumps as the fonts arrive — a scored failure in Google's Core Web Vitals.</p>
+
+<h3>What the new site uses</h3>
+<div class="spec">
+  <div class="name">Space Grotesk &mdash; display</div>
+  <div class="role">Headlines and section titles. Used with restraint.</div>
+  <div class="big sg">Engineering Excellence Without Boundaries.</div>
+  <div class="mid sg" style="font-size:10pt">A technical grotesque with slightly mechanical, drawn-not-written letterforms. It carries engineering character without tipping into novelty, and it is distinct enough that the site cannot be mistaken for a template.</div>
+</div>
+<div class="spec">
+  <div class="name">Inter &mdash; body</div>
+  <div class="role">All running text, descriptions and paragraphs.</div>
+  <div class="mid in" style="font-size:11.5pt">Designed specifically for screens: a tall x-height and open apertures keep it legible at small sizes and on the low-brightness screens common in site offices. It is the body face used by GitHub and Figma for exactly this reason.</div>
+</div>
+<div class="spec">
+  <div class="name">IBM Plex Mono &mdash; data &amp; annotation</div>
+  <div class="role">Discipline codes, tonnages, labels, title blocks, metrics.</div>
+  <div class="small pm">STEEL DETAILED &nbsp;&middot;&nbsp; 19,000 MT &nbsp;&middot;&nbsp; AISC &nbsp;&middot;&nbsp; STR / DTL / BIM</div>
+  <div class="mid pm" style="font-size:9.6pt">The layer that makes the identity work. A monospaced face with engineering heritage, used only for numbers and labels — mirroring the annotations on a fabrication drawing. Its figures are tabular, so tonnages line up in columns.</div>
+</div>
+
+<h3>The three roles, and why a third face exists at all</h3>
+<p>Most websites use two typefaces. A third is justified here because the content has a third
+<em>kind</em> of information: not prose and not headline, but <strong>data</strong> — tonnages,
+codes, standards, capacities. Giving data its own face does two things. It makes the numbers
+scannable, and it signals domain fluency, because an engineering audience associates monospaced
+annotation with drawings and schedules.</p>
+
+<table>
+  <thead><tr><th style="width:22%">Decision</th><th style="width:38%">Current strucon.net</th><th>New website</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Faces</td><td>Montserrat + Open Sans (template default)</td><td>Space Grotesk + Inter + IBM Plex Mono</td></tr>
+    <tr><td class="l">Weights loaded</td><td><span class="no">8</span>, most unused</td><td><span class="yes">Only those actually used</span>, subset to Latin</td></tr>
+    <tr><td class="l">Delivery</td><td><span class="no">2 external requests</span> that block text rendering</td><td><span class="yes">Self-hosted, 0 external requests</span></td></tr>
+    <tr><td class="l">Layout shift as fonts load</td><td><span class="no">Yes</span> — text visibly jumps</td><td><span class="yes">None</span> — metric-matched fallbacks generated at build</td></tr>
+    <tr><td class="l">Line length</td><td>Uncontrolled by the page builder</td><td>Capped near <strong>68 characters</strong>, the readability optimum</td></tr>
+    <tr><td class="l">Scale</td><td>Fixed sizes</td><td>Fluid — type scales smoothly from phone to 4K via <code>clamp()</code></td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p class="t">The evidence that type affects trust</p>
+  <p>In a New York Times experiment with roughly <strong>45,000 participants</strong>, the same
+  statement earned measurably higher agreement purely from the typeface it was set in.<sup>2</sup>
+  Song and Schwarz showed that instructions in a harder-to-read font made the described task feel
+  about <strong>twice as long</strong>, and made people less willing to begin it.<sup>3</sup> An MIT
+  AgeLab study measured humanist letterforms being processed faster at a glance than square
+  grotesques.<sup>4</sup></p>
+  <p>A procurement director will never comment on x-heights. They will come away feeling that one
+  site was effortless and precise and the others were noisy — and processing-fluency research shows
+  that feeling transfers onto judgements about the company itself.</p>
+</div>
+
+<!-- 04 ------------------------------------------------ -->
+<div class="pb"></div>
+<p class="sectlabel">04 · Colour</p>
+<h2>Why this palette, and why so little of it</h2>
+<div class="swatches">
+  <div class="sw"><div class="chip" style="background:#0B1F33"></div><div class="lbl"><strong>Ink</strong><br><span class="hex">#0B1F33</span><br>Deep steel navy. Dark sections, headings, authority.</div></div>
+  <div class="sw"><div class="chip" style="background:#1B4B77"></div><div class="lbl"><strong>Steel</strong><br><span class="hex">#1B4B77</span><br>Structural blue. Labels, links, secondary.</div></div>
+  <div class="sw"><div class="chip" style="background:#F26419"></div><div class="lbl"><strong>Accent</strong><br><span class="hex">#F26419</span><br>Molten orange. Calls to action only.</div></div>
+  <div class="sw"><div class="chip" style="background:#F4F6F9;border-bottom:1px solid #D9E0E8"></div><div class="lbl"><strong>Paper</strong><br><span class="hex">#F4F6F9</span><br>Cool light ground between sections.</div></div>
+  <div class="sw"><div class="chip" style="background:#D9E0E8"></div><div class="lbl"><strong>Line</strong><br><span class="hex">#D9E0E8</span><br>Grid lines, borders, dividers.</div></div>
+  <div class="sw"><div class="chip" style="background:#5A6B7E"></div><div class="lbl"><strong>Slate</strong><br><span class="hex">#5A6B7E</span><br>Secondary text and captions.</div></div>
+</div>
+<p>The palette comes from the materials: <strong>steel is blue-grey, and hot-rolled steel is
+orange.</strong> The navy carries authority and lets photography sit against it without competing;
+the orange exists for one purpose only.</p>
+<h4>Discipline: the accent appears almost nowhere</h4>
+<p>Orange is reserved almost exclusively for <strong>calls to action</strong> — the buttons that
+generate enquiries. It is not used for decoration, headings or borders. The result is that on any
+page, the single most visually arresting element is the thing you want clicked. A palette that uses
+its brightest colour everywhere teaches the visitor to ignore it.</p>
+<p>The neutrals are deliberately biased blue rather than pure grey. A pure mid-grey reads as
+unconsidered; a grey that leans toward the brand's own hue reads as chosen.</p>
+
+<!-- 05 ------------------------------------------------ -->
+<p class="sectlabel">05 · Structure</p>
+<h2>Why each section exists</h2>
+<p class="lede">No section was added because websites usually have one. Each earns its place by
+answering a question or removing a doubt.</p>
+
+<h3>The homepage, in order</h3>
+<div class="why"><div class="hd">1 · Hero</div><div class="bd">
+  <p class="q">Answers: who are you and what do you do?</p>
+  <p>A full-width industrial image, one headline, one supporting line, two buttons. Critically, the
+  headline is <strong>live text, not an image</strong> — so it appears the instant the page loads
+  rather than waiting for a photograph to download. Research puts first impressions at
+  <strong>50 milliseconds</strong>;<sup>5</sup> if the headline is inside the image, you have spent
+  that budget before saying anything.</p></div></div>
+
+<div class="why"><div class="hd">2 · Trusted by</div><div class="bd">
+  <p class="q">Builds: borrowed credibility, immediately</p>
+  <p>Larsen &amp; Toubro, Reliance Energy, Jaypee, Punj Lloyd, Paul Wurth, JSW, Enexco. Placed
+  directly beneath the hero because a visitor who recognises one name reads everything afterwards
+  more generously. These are only clients your own case studies name — nothing unconfirmed.</p></div></div>
+
+<div class="why"><div class="hd">3 · Stats bar</div><div class="bd">
+  <p class="q">Answers: are you big enough for my project?</p>
+  <p>Four figures on a dark band — experience, projects, engineers, countries. Set in the display
+  and mono faces so they read like a drawing schedule. Scale is the first disqualifier in EPC
+  procurement, so it appears before anything else can be read.</p></div></div>
+
+<div class="why"><div class="hd">4 · Services</div><div class="bd">
+  <p class="q">Answers: can you do the specific thing I need?</p>
+  <p>Eight cards, each with its discipline code and one plain sentence. The grid is the fastest
+  possible way for a visitor to locate themselves, and each card is a link into a full page — so this
+  section also distributes search authority across the eight service pages.</p></div></div>
+
+<div class="why"><div class="hd">5 · Industries</div><div class="bd">
+  <p class="q">Answers: have you worked in <em>my</em> sector?</p>
+  <p>Ten sector tiles. Sector experience is often a hard requirement in tender prequalification —
+  a cement client wants a cement plant, not general steelwork. Each tile names the real structures:
+  preheater towers, bunker bays, transfer towers.</p></div></div>
+
+<div class="why"><div class="hd">6 · Featured projects</div><div class="bd">
+  <p class="q">Proves: everything claimed above</p>
+  <p>Claims mean little; a 19,000 MT boiler structure for a named client means a great deal. These
+  cards carry client, location, tonnage and standard, because those are the four facts an engineer
+  scans for.</p></div></div>
+
+<div class="why"><div class="hd">7 · Why STRUCON</div><div class="bd">
+  <p class="q">Answers: why you and not the other three on my list?</p>
+  <p>Six differentiators stated plainly. Deliberately <em>unnumbered</em> — the order carries no
+  meaning, and numbering things that are not a sequence is decoration pretending to be structure.</p></div></div>
+
+<div class="why"><div class="hd">8 · Global presence</div><div class="bd">
+  <p class="q">Answers: can you serve a project in my country?</p>
+  <p>Built as an engineering coordinate grid rather than a conventional map — on-brand, and far
+  lighter than a mapping library, which would have cost seconds of load time for a decorative element.</p></div></div>
+
+<div class="why"><div class="hd">9 · Closing call to action</div><div class="bd">
+  <p class="q">Converts: the visitor who has read to the end</p>
+  <p>Someone who reaches the bottom of a homepage is the most qualified visitor you will get that
+  day. The old site let them arrive there and stop.</p></div></div>
+
+<h3>Why the service pages follow a fixed eight-part template</h3>
+<p>Every service page runs: <strong>Hero &rarr; Overview &rarr; Benefits &rarr; Process &rarr;
+Software &rarr; Deliverables &rarr; FAQs &rarr; Call to action.</strong> The order mirrors how a
+buyer actually evaluates a supplier — what it is, why it matters, how you work, what you use, what I
+receive, my remaining doubts, how to start.</p>
+<ul>
+  <li><strong>Process</strong> is numbered, because it genuinely is a sequence — this is the one place numbering carries information.</li>
+  <li><strong>Software</strong> is listed because in detailing, tooling is a qualification: &ldquo;Tekla&rdquo; answers a question a procurement form will ask.</li>
+  <li><strong>Deliverables</strong> exists because the commonest cause of disputes is a mismatch about what gets handed over. Stating it publicly signals a firm that has had that conversation many times.</li>
+  <li><strong>FAQs</strong> remove the last objections before the enquiry form — and they also qualify for enhanced Google listings (see section 06).</li>
+</ul>
+
+<h3>Why case studies use Challenge &rarr; Solution &rarr; Results</h3>
+<p>This is the format an engineer can forward to a colleague with one line of explanation. It also
+forces the useful content out: not &ldquo;we detailed a power plant&rdquo; but <em>compressed
+schedule with continuous design revisions &rarr; Tekla-led detailing with daily coordination &rarr;
+drawings ahead of erection with zero major RFIs.</em> Metrics appear as a strip — tonnage, schedule,
+standard — because those are the comparable facts.</p>
+
+<h3>Why careers, blog and leadership pages exist at all</h3>
+<ul>
+  <li><strong>Leadership</strong> — named people with titles convert an anonymous vendor into a firm with accountable individuals. The single largest trust gain available on any B2B site.</li>
+  <li><strong>Careers</strong> — doubles as a growth signal. A client checking whether you can staff their project reads an active careers page as evidence that you can.</li>
+  <li><strong>Blog</strong> — captures engineers researching a problem rather than a supplier, and demonstrates expertise in your own words. It is also the only part of the site that can grow indefinitely without redesign.</li>
+</ul>
+
+<!-- 06 ------------------------------------------------ -->
+<div class="pb"></div>
+<p class="sectlabel">06 · Search</p>
+<h2>How the site is engineered to be found</h2>
+<p class="lede">The current site is close to invisible to Google — not through bad luck, but because
+the signals search engines read are absent from it.</p>
+
+<table>
+  <thead><tr><th style="width:26%">Signal</th><th style="width:30%">Current strucon.net</th><th>New website</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Page titles</td><td><span class="no">One generic title</span></td><td><span class="yes">Unique per page</span>, written around a commercial search phrase</td></tr>
+    <tr><td class="l">Meta descriptions</td><td><span class="no">None on any page</span></td><td><span class="yes">Every page</span></td></tr>
+    <tr><td class="l">Sitemap</td><td><span class="no">Does not exist</span></td><td><span class="yes">43 URLs, generated automatically</span></td></tr>
+    <tr><td class="l">Structured data</td><td><span class="no">None</span></td><td><span class="yes">6 types</span></td></tr>
+    <tr><td class="l">Social preview</td><td><span class="no">None</span> — a bare link on LinkedIn</td><td><span class="yes">Branded preview card</span></td></tr>
+    <tr><td class="l">Indexable pages</td><td class="no">~15 thin pages</td><td class="yes">54, each targeting a distinct query</td></tr>
+  </tbody>
+</table>
+
+<h3>Targeting intent, not volume</h3>
+<p>The site does not chase the word &ldquo;engineering&rdquo;. It targets the phrases typed by
+someone who already has a tender in hand, and each is given <strong>its own page</strong> so it can
+rank:</p>
+<table>
+  <thead><tr><th style="width:42%">Page</th><th>Primary search phrase</th></tr></thead>
+  <tbody>
+    <tr><td class="l">/services/steel-detailing</td><td>steel detailing company &middot; Tekla modeling services</td></tr>
+    <tr><td class="l">/services/bim</td><td>structural BIM services &middot; clash detection</td></tr>
+    <tr><td class="l">/industries/power-energy</td><td>power plant structural design &middot; boiler structure detailing</td></tr>
+    <tr><td class="l">/industries/oil-gas-petrochemicals</td><td>pipe rack design</td></tr>
+    <tr><td class="l">/industries/material-handling-bulk-solids</td><td>conveyor gallery design &middot; transfer tower design</td></tr>
+  </tbody>
+</table>
+<p>This is why the page count matters. Fifty-four pages is not padding — it is fifty-four separate
+chances to be the result someone clicks. One page cannot rank for twenty different phrases.</p>
+
+<h3>The six structured-data types, and what each buys</h3>
+<p>Structured data is machine-readable information describing the page to Google. The current site
+has none, which means it is ineligible for every enhanced result format.</p>
+<ul>
+  <li><strong>Organization</strong> and <strong>ProfessionalService</strong> — establish the company, address and service area; the foundation for appearing as a business entity rather than a loose page.</li>
+  <li><strong>Service</strong> — tells Google what each service page actually offers.</li>
+  <li><strong>FAQPage</strong> — makes the service-page FAQs eligible for expandable answers directly in search results, which occupy more of the screen than a plain listing.</li>
+  <li><strong>Article</strong> — gives blog posts a date and author, enabling news and article treatments.</li>
+  <li><strong>BreadcrumbList</strong> — replaces the raw URL in search results with a readable path.</li>
+</ul>
+
+<h3>Speed, because Google ranks on it</h3>
+<p>Core Web Vitals have been part of Google's ranking systems since 2021.<sup>6</sup> The new site
+is built so that the pages are <strong>assembled once at build time and served as finished
+HTML</strong>, rather than constructed from a database on every visit as the current WordPress site
+does. Fonts are self-hosted, images are served in modern compressed formats and only loaded when
+scrolled to, and the homepage headline is text.</p>
+<p>The commercial stake: <strong>53% of mobile visits are abandoned</strong> beyond three
+seconds,<sup>7</sup> and Deloitte measured a <strong>0.1-second</strong> improvement lifting retail
+conversion by <strong>8.4%</strong>.<sup>8</sup> The current homepage asks a first-time visitor to
+download 39 scripts, 21 stylesheets and 1.33 MB of slider photographs before the page settles.</p>
+
+<div class="callout">
+  <p class="t">One deliberate protection</p>
+  <p>The review site at <code>strucon.vercel.app</code> is set to <strong>noindex</strong>. Without
+  that, Google could index the preview as a duplicate of your own website and the two would compete.
+  It is removed the moment the site moves to strucon.net.</p>
+</div>
+
+<!-- 07 ------------------------------------------------ -->
+<div class="pb"></div>
+<p class="sectlabel">07 · Trust</p>
+<h2>How the details compound into credibility</h2>
+<p>Stanford's Web Credibility Project — 2,684 participants, still the largest study of its kind —
+found that when people judge whether a company can be trusted, <strong>the look and design of the
+site is the most-cited factor, ahead of the information on it</strong>.<sup>9</sup> A companion study
+found <strong>94% of comments explaining mistrust were about design</strong> rather than
+content.<sup>10</sup></p>
+<p>Trust here is not produced by a single feature. It is the accumulation of small decisions that
+each say the same thing: <em>this firm is careful</em>.</p>
+<table>
+  <thead><tr><th style="width:34%">Decision</th><th>What a visitor subconsciously concludes</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Real client names on real projects</td><td>Others have taken this risk already.</td></tr>
+    <tr><td class="l">Tonnages, standards and locations stated</td><td>They expect to be checked.</td></tr>
+    <tr><td class="l">Named directors with titles</td><td>There are people here who are accountable.</td></tr>
+    <tr><td class="l">Deliverables listed publicly</td><td>They have had the scope conversation before.</td></tr>
+    <tr><td class="l">A stated process</td><td>Delivery is a system, not improvisation.</td></tr>
+    <tr><td class="l">Text that never shifts as the page loads</td><td>Nothing here is broken.</td></tr>
+    <tr><td class="l">Consistent type, spacing and colour throughout</td><td>Someone was paying attention.</td></tr>
+  </tbody>
+</table>
+
+<h3>What was deliberately left out — and why that also builds trust</h3>
+<ul>
+  <li><strong>No rotating carousel.</strong> A University of Notre Dame study found roughly
+      <strong>1% of visitors ever click one</strong>, and 84% of those clicks land on the first
+      slide.<sup>11</sup> The current site spends its most valuable screen space on a pattern users
+      ignore.</li>
+  <li><strong>No generic stock office photography.</strong> Smiling strangers at laptops say nothing
+      about structural engineering and are instantly recognisable as filler.</li>
+  <li><strong>No invented testimonials.</strong> None were supplied, so that section says so rather
+      than carrying a plausible fiction.</li>
+  <li><strong>No certification claim until it was verified.</strong> The old site displayed ISO
+      9001:2008 — a standard withdrawn in September 2018. To a procurement auditor that reads as a
+      lapsed certificate. Nothing was published until ISO 9001:2015 was confirmed.</li>
+  <li><strong>No unconfirmed client names.</strong> Eight organisations described as
+      &ldquo;potential&rdquo; were left off entirely.</li>
+</ul>
+<p>Every placeholder still on the site is labelled <strong>TBD</strong> rather than filled with
+convincing-sounding filler. Nothing invented will ever be published.</p>
+
+<h3>Built to be usable, which overlaps almost entirely with being professional</h3>
+<ul>
+  <li>Keyboard focus is visible, a skip-to-content link is present, and every form field has a real label.</li>
+  <li>Colour contrast is checked, so text remains readable on a tablet in daylight on site.</li>
+  <li>Animation is suppressed for visitors who have asked their device to reduce motion.</li>
+  <li>The layout is mobile-first — relevant because site-office browsing is phone-heavy and bandwidth-poor, exactly where the current 1.33 MB homepage fails hardest.</li>
+</ul>
+<p>Accessible structure is also the structure search engines parse most reliably, so this work and
+section 06 reinforce each other.</p>
+
+<!-- 08 ------------------------------------------------ -->
+<p class="sectlabel">08 · Summary</p>
+<h2>The upgrade, in one table</h2>
+<table>
+  <thead><tr><th style="width:26%"></th><th style="width:34%">Current strucon.net</th><th>New website</th></tr></thead>
+  <tbody>
+    <tr><td class="l">Identity</td><td>Purchased construction template</td><td>Engineering-drawing identity, ownable</td></tr>
+    <tr><td class="l">Typography</td><td>Template default, 8 weights, text jumps on load</td><td>Three purposeful faces, self-hosted, no shift</td></tr>
+    <tr><td class="l">Pages</td><td>~15</td><td>54</td></tr>
+    <tr><td class="l">Found by Google</td><td>No descriptions, no sitemap, no structured data</td><td>All three, plus 6 structured-data types</td></tr>
+    <tr><td class="l">Proof of work</td><td>No case studies</td><td>10, with named clients and tonnages</td></tr>
+    <tr><td class="l">Ways to enquire</td><td>1</td><td>5, including tender upload</td></tr>
+    <tr><td class="l">Software core</td><td>WordPress 5.0.22 (Dec 2018) + 2019 plugins</td><td>Next.js 16, current and patched</td></tr>
+    <tr><td class="l">Content editing</td><td>Dated admin, risky to update</td><td>Purpose-built admin panel</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p class="t">On the research quoted here</p>
+  <p>The audit figures describing strucon.net are measured from the live site and are verifiable
+  today from its page source. The research percentages describe effects observed across large
+  samples of other websites — they indicate direction and scale, not a guaranteed outcome for any
+  single site. The measured facts support the case on their own.</p>
+</div>
+
+<h3>Sources</h3>
+<ol class="src">
+  <li>Gartner, <em>The B2B Buying Journey</em> — 17% of journey time spent with suppliers.</li>
+  <li>Errol Morris / New York Times (2012) — typeface and credibility, ~45,000 respondents.</li>
+  <li>Song &amp; Schwarz (2008), <em>Psychological Science</em> — &ldquo;If It&rsquo;s Hard to Read, It&rsquo;s Hard to Do&rdquo;.</li>
+  <li>Reimer &amp; Mehler, MIT AgeLab with Monotype (2012) — glance legibility of humanist vs square grotesque type.</li>
+  <li>Lindgaard et al. (2006), <em>Behaviour &amp; Information Technology</em> — 50-millisecond first impressions.</li>
+  <li>Google Search Central — Core Web Vitals in ranking systems, Page Experience update (2021).</li>
+  <li>Google mobile research (2016) — 53% abandonment beyond three seconds.</li>
+  <li>Deloitte with Google (2020), <em>Milliseconds Make Millions</em> — +0.1s &rarr; +8.4% retail conversion.</li>
+  <li>Stanford Web Credibility Project, Fogg et al. (2002) — 2,684 participants.</li>
+  <li>Sillence et al. (2004), CHI — 94% of mistrust comments related to design.</li>
+  <li>Runyon, University of Notre Dame — carousel interaction statistics (~1%).</li>
+</ol>
+
+<div class="foot">STR-WEB-2026-03B &middot; Prepared by Shaurya Sharma &middot; STRUCON Consulting Private Limited &middot; 10 November 2026</div>
+</div></body></html>
